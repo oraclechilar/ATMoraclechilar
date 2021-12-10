@@ -95,19 +95,13 @@ public class AuthService
         return new ResponseEntity<>();
     }
 
-
-        @Override
-    public void create(AuthUser authUser) {
-
+    @Override
+    public ResponseEntity<String> create(AuthUser authUser) {
+        return null;
     }
 
     @Override
-    public void delete(String id) {
-
-    }
-
-    @Override
-    public AuthUser get(String id) {
+    public ResponseEntity<String> delete(String username) {
         return null;
     }
 
@@ -117,7 +111,17 @@ public class AuthService
     }
 
     @Override
-    public void update(String id, AuthUser authUser) {
+    public ResponseEntity<String> update(String username) {
+        return null;
+    }
 
+    @Override
+    public ResponseEntity<String> block(String username) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<String> unblock(String username) {
+        return null;
     }
 }

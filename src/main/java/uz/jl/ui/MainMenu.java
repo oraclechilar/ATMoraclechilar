@@ -21,8 +21,7 @@ public class MainMenu {
         }
     }
 
-    public static void run() {
-
+    public static void main(String[] args) {
         Menu.show();
         String choice = Input.getStr("?:");
         MenuKey key = MenuKey.getByValue(choice);
@@ -60,6 +59,7 @@ public class MainMenu {
             case BLOCK_CLIENT -> EmployeeUI.block();
             case UN_BLOCK_CLIENT -> EmployeeUI.unBlock();
             case BLOCK_LIST_CLIENT -> EmployeeUI.blockList();
+            case CREATE_CARD -> HrUI.createCard();
 
             case CREATE_BRANCH -> BranchUI.create();
             case UPDATE_BRANCH -> BranchUI.update();
@@ -84,6 +84,6 @@ public class MainMenu {
             default -> // TODO: 12/8/2021 do translations here
                     Print.println(Color.RED, "Wrong Choice");
         }
-        run();
+        main(args);
     }
 }

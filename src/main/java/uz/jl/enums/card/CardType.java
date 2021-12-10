@@ -17,4 +17,12 @@ public enum CardType {
     COBAGE("6330"),
     UNION_PAY("6262");
     private final String code;
+
+    public static CardType getType(String type) {
+        for (CardType value : values()) {
+            if (type.equalsIgnoreCase(value.name()))
+                return value;
+        }
+        return null;
+    }
 }

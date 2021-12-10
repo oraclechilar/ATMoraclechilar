@@ -48,6 +48,7 @@ public enum MenuKey {
     BLOCK_CLIENT,
     UN_BLOCK_CLIENT,
     BLOCK_LIST_CLIENT,
+    CREATE_CARD,
     RESET_USERNAME,
     RESET_PASSWORD,
     LOGIN,
