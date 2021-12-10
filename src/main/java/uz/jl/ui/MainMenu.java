@@ -19,6 +19,7 @@ public class MainMenu {
             e.printStackTrace();
         }
     }
+
     public static void run() {
 
         Menu.show();
