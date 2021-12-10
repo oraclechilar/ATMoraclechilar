@@ -24,7 +24,6 @@ public final class FRWAuthUser extends FRWBase<AuthUser> {
         return frwAuthUser;
     }
 
-
     public FRWAuthUser() {
         super(AppConfig.get("db.users.path"));
     }
