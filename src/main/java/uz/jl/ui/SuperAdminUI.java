@@ -41,7 +41,7 @@ public class SuperAdminUI {
         String choice = getStr("""
                 1. Submit
                 2. Cancel
-                 ? :  """);
+                 ? :""");
         if (choice.equals("2")) {
             return;
         }
@@ -80,7 +80,8 @@ public class SuperAdminUI {
             Print.println(String.format("""
                     %s ->
                     Username: %s
-                    Phone Number: %s """, i++, admin.getUsername(), admin.getPhoneNumber()));
+                    Phone Number: %s""",
+                    i++, admin.getUsername(), admin.getPhoneNumber()));
         }
     }
 
@@ -138,7 +139,7 @@ public class SuperAdminUI {
                 1. %s
                 2. %s
                 3. %s
-                ? : """, Language.UZ.getName(), Language.EN.getName(), Language.RU.getName()));
+                ? :""", Language.UZ.getName(), Language.EN.getName(), Language.RU.getName()));
         if ("1".equals(langChoice)) {
             return Language.UZ;
         } else if ("2".equals(langChoice)) {
