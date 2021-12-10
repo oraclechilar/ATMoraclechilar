@@ -19,7 +19,7 @@ public class MainMenu {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
+    public static void run() {
 
         Menu.show();
         String choice = Input.getStr("?:");
@@ -82,6 +82,6 @@ public class MainMenu {
             default -> // TODO: 12/8/2021 do translations here
                     Print.println(Color.RED, "Wrong Choice");
         }
-        main(args);
+        run();
     }
 }
