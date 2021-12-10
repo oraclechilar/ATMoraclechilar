@@ -23,7 +23,7 @@ public class AppConfig {
 
     public static void init() throws APIException {
         load();
-//        initSuperUser();
+        initSuperUser();
         language = Language.getByCode(get("bank.default.language"));
     }
 
@@ -32,7 +32,7 @@ public class AppConfig {
         user.setId(BaseUtils.genId());
         user.setUsername(get("bank.super.username"));
         user.setPassword(get("bank.super.password"));
-        user.setRole(Role.ADMIN);
+        user.setRole(Role.SUPER_ADMIN);
         user.setLanguage(Language.getByCode(get("bank.default.language")));
         user.setStatus(UserStatus.ACTIVE);
         user.setCreatedBy("-1");

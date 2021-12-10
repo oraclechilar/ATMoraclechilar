@@ -45,19 +45,19 @@ public class MainMenu {
             case UN_BLOCK_HR -> AdminUI.unBlock();
             case BLOCK_LIST_HR -> AdminUI.blockList();
 
-            case CREATE_USER -> HrUI.create();
-            case DELETE_USER -> HrUI.delete();
-            case LIST_USER -> HrUI.list();
-            case BLOCK_USER -> HrUI.block();
-            case UN_BLOCK_USER -> HrUI.unBlock();
-            case BLOCK_LIST_USER -> HrUI.blockList();
+            case CREATE_EMPLOYEE -> HrUI.create();
+            case DELETE_EMPLOYEE -> HrUI.delete();
+            case LIST_EMPLOYEE -> HrUI.list();
+            case BLOCK_EMPLOYEE -> HrUI.block();
+            case UN_BLOCK_EMPLOYEE -> HrUI.unBlock();
+            case BLOCK_LIST_EMPLOYEE -> HrUI.blockList();
 
-            case CREATE_EMPLOYEE -> EmployeeUI.create();
-            case DELETE_EMPLOYEE -> EmployeeUI.delete();
-            case LIST_EMPLOYEE -> EmployeeUI.list();
-            case BLOCK_EMPLOYEE -> EmployeeUI.block();
-            case UN_BLOCK_EMPLOYEE -> EmployeeUI.unBlock();
-            case BLOCK_LIST_EMPLOYEE -> EmployeeUI.blockList();
+            case CREATE_USER -> EmployeeUI.create();
+            case DELETE_USER -> EmployeeUI.delete();
+            case LIST_USER -> EmployeeUI.list();
+            case BLOCK_USER -> EmployeeUI.block();
+            case UN_BLOCK_USER -> EmployeeUI.unBlock();
+            case BLOCK_LIST_USER -> EmployeeUI.blockList();
 
             case CREATE_BRANCH -> BranchUI.create();
             case UPDATE_BRANCH -> BranchUI.update();

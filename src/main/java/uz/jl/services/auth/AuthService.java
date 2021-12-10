@@ -2,6 +2,8 @@ package uz.jl.services.auth;
 
 import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.enums.auth.Role;
+import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
 import uz.jl.mapper.AuthUserMapper;
@@ -19,7 +21,6 @@ import java.util.Objects;
 public class AuthService
         extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper>
         implements IBaseCrudService<AuthUser> {
-
     private static AuthService service;
 
     public static AuthService getInstance(AuthUserDao repository, AuthUserMapper mapper) {
@@ -38,21 +39,26 @@ public class AuthService
             AuthUser user = repository.findByUserName(username);
             if (Objects.isNull(user) || !user.getPassword().equals(password))
                 return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
+            user.setStatus(UserStatus.ACTIVE);
             Session.getInstance().setUser(user);
             return new ResponseEntity<>("success", HttpStatus.HTTP_200);
         } catch (APIException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.getStatusByCode(e.getCode()));
         }
     }
-//    public ResponseEntity<String> logout(){
-//        AuthUser authUser=Session.getInstance().getUser();
-//         authUser.setStatus(UserStatus.NON_ACTIVE);
-//         Session.getInstance().setUser(authUser);
-//         return new ResponseEntity<>("Success logout");
-//    }
+    public void logout() {
+        AuthUser user=Session.getInstance().getUser();
+        user.setStatus(UserStatus.NON_ACTIVE);
+        Session.getInstance().setUser(user);
+    }
+
+    public ResponseEntity<String> register(String username, String password, String serial, String number, String gender, String firstName, String lastname, String fathername) {
+
+        return new ResponseEntity<>();
+    }
 
 
-    @Override
+        @Override
     public void create(AuthUser authUser) {
 
     }

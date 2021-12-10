@@ -1,7 +1,10 @@
 package uz.jl.ui.menus;
 
+import jdk.jshell.Snippet;
 import uz.jl.configs.Session;
+import uz.jl.enums.atm.Status;
 import uz.jl.enums.auth.Role;
+import uz.jl.enums.auth.UserStatus;
 import uz.jl.utils.Print;
 
 import java.util.LinkedHashMap;
@@ -13,9 +16,10 @@ import java.util.Map;
 public class Menu {
     public static Map<String, MenuKey> menus() {
         Role role = Session.getInstance().getUser().getRole();
+        UserStatus userStatus =Session.getInstance().getUser().getStatus();
         Map<String, MenuKey> menus = new LinkedHashMap<>();
         // TODO: 12/8/2021 do translations here
-        if (Role.SUPER_ADMIN.equals(role)) {
+        if (Role.SUPER_ADMIN.equals(role)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Create Branch", MenuKey.CREATE_BRANCH);
             menus.put("Create Admin", MenuKey.CREATE_ADMIN);
 
@@ -26,7 +30,7 @@ public class Menu {
             menus.put("Delete Branch", MenuKey.DELETE_BRANCH);
 
             menus.put("Update Branch", MenuKey.UPDATE_BRANCH);
-        } else if (Role.ADMIN.equals(role)) {
+        } else if (Role.ADMIN.equals(role)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Create BRANCH", MenuKey.CREATE_BRANCH);
             menus.put("Delete BRANCH", MenuKey.DELETE_BRANCH);
 
@@ -40,7 +44,7 @@ public class Menu {
             menus.put("Block ATM", MenuKey.BLOCK_ATM);
 
             menus.put("Un Block ATM", MenuKey.UN_BLOCK_ATM);
-        } else if (role.in(Role.ADMIN, Role.HR)) {
+        } else if (role.in(Role.ADMIN, Role.HR)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Employee List", MenuKey.LIST_EMPLOYEE);
             menus.put("Create Employee", MenuKey.CREATE_EMPLOYEE);
 
@@ -49,15 +53,15 @@ public class Menu {
 
             menus.put("Un block Employee", MenuKey.UN_BLOCK_EMPLOYEE);
             menus.put("Blocked Employee List", MenuKey.BLOCK_LIST_EMPLOYEE);
-        } else if (Role.EMPLOYEE.equals(role)) {
+        } else if (Role.EMPLOYEE.equals(role)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Blocked Employee List", MenuKey.BLOCK_LIST_ATM);
             menus.put("Update Atm", MenuKey.UPDATE_ATM);
 
             menus.put("Atm List", MenuKey.LIST_ATM);
-        } else if (Role.ANONYMOUS.equals(role)) {
+        } else if (Role.ANONYMOUS.equals(role)||userStatus.equals(UserStatus.NON_ACTIVE)) {
             menus.put("Login", MenuKey.LOGIN);
         }
-        if (!Role.ANONYMOUS.equals(role)) {
+        if (!Role.ANONYMOUS.equals(role)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Logout", MenuKey.LOGOUT);
         }
         menus.put("Quit", MenuKey.EXIT);
