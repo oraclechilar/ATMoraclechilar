@@ -1,11 +1,14 @@
 package uz.jl.models;
 
+import jdk.jshell.execution.Util;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+
+import static uz.jl.utils.BaseUtils.genId;
 
 /**
  * @author Elmurodov Javohir, Mon 11:40 AM. 12/6/2021
@@ -15,7 +18,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class Auditable implements BaseEntity {
-    private String id;
+    private String id = genId();
     private Date createdAt;
     private String createdBy;
     private Date updatedAt;

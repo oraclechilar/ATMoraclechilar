@@ -1,6 +1,7 @@
 package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
+import uz.jl.configs.Loaders;
 import uz.jl.exceptions.APIException;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;

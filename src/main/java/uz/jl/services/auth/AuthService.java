@@ -8,12 +8,20 @@ import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.services.IBaseCrudService;
+import uz.jl.ui.SuperAdminUI;
+import uz.jl.utils.Color;
+import uz.jl.utils.Input;
+import uz.jl.utils.Print;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static uz.jl.utils.Input.getStr;
 
 /**
  * @author Elmurodov Javohir, Mon 10:46 AM. 12/6/2021
@@ -46,8 +54,9 @@ public class AuthService
             return new ResponseEntity<>(e.getMessage(), HttpStatus.getStatusByCode(e.getCode()));
         }
     }
+
     public void logout() {
-        AuthUser user=Session.getInstance().getUser();
+        AuthUser user = Session.getInstance().getUser();
         user.setStatus(UserStatus.NON_ACTIVE);
         Session.getInstance().setUser(user);
     }
@@ -58,7 +67,7 @@ public class AuthService
     }
 
 
-        @Override
+    @Override
     public void create(AuthUser authUser) {
 
     }
@@ -82,4 +91,5 @@ public class AuthService
     public void update(String id, AuthUser authUser) {
 
     }
+
 }

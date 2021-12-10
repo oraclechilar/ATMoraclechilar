@@ -8,9 +8,6 @@ import uz.jl.ui.MainMenu;
  */
 
 public class App {
-    static {
-    }
-
     public static void main(String[] args) {
         MainMenu.run();
     }
