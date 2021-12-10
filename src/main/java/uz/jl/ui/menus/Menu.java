@@ -30,6 +30,7 @@ public class Menu {
             menus.put("Delete Branch", MenuKey.DELETE_BRANCH);
 
             menus.put("Update Branch", MenuKey.UPDATE_BRANCH);
+
         } else if (Role.ADMIN.equals(role)&&userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Create BRANCH", MenuKey.CREATE_BRANCH);
             menus.put("Delete BRANCH", MenuKey.DELETE_BRANCH);
