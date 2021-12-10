@@ -23,22 +23,7 @@ public class AppConfig {
 
     public static void init() throws APIException {
         load();
-        initSuperUser();
         language = Language.getByCode(get("bank.default.language"));
-    }
-
-    private static void initSuperUser() {
-        AuthUser user = new AuthUser();
-        user.setId(BaseUtils.genId());
-        user.setUsername(get("bank.super.username"));
-        user.setPassword(get("bank.super.password"));
-        user.setRole(Role.SUPER_ADMIN);
-        user.setLanguage(Language.getByCode(get("bank.default.language")));
-        user.setStatus(UserStatus.ACTIVE);
-        user.setCreatedBy("-1");
-        user.setPhoneNumber(get("bank.super.phone"));
-        user.setCreatedBy(Session.getInstance().getUser().getId());
-        FRWAuthUser.getInstance().writeAll(user);
     }
 
     public static String get(String key) {
