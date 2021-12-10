@@ -1,12 +1,12 @@
 [
   {
-    "username": "ad",
-    "password": "ad123",
+    "username": "adm",
+    "password": "123",
     "role": "SUPER_ADMIN",
     "status": "ACTIVE",
-    "phoneNumber": "998908115225",
-    "id": "13960728412660009IfigCZAVL4occszzqxu",
-    "createdAt": "Dec 10, 2021, 12:01:01 PM",
+    "phoneNumber": "+998991234567",
+    "id": "12767988719500H39N0UUkq3yMZpRdvntm",
+    "createdAt": "Dec 10, 2021, 5:40:25 PM",
     "deleted": 0
   }
 ]

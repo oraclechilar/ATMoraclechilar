@@ -2,7 +2,11 @@ package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
 import uz.jl.configs.Loaders;
+import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.exceptions.APIException;
+import uz.jl.mapper.AuthUserMapper;
+import uz.jl.services.auth.SuperAdminService;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;
 import uz.jl.utils.Color;
@@ -22,7 +26,6 @@ public class MainMenu {
     }
 
     public static void run() {
-
         Menu.show();
         String choice = Input.getStr("?:");
         MenuKey key = MenuKey.getByValue(choice);
@@ -79,6 +82,7 @@ public class MainMenu {
 
             case EXIT -> {
                 Print.println(Color.YELLOW, "Good bye");
+                FRWAuthUser.getInstance().writeAll(SuperAdminService.getInstance(AuthUserDao.getInstance(), AuthUserMapper.getInstance()).users);
                 return;
             }
             default -> // TODO: 12/8/2021 do translations here
