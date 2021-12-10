@@ -59,7 +59,7 @@ public class MainMenu {
             case BLOCK_CLIENT -> EmployeeUI.block();
             case UN_BLOCK_CLIENT -> EmployeeUI.unBlock();
             case BLOCK_LIST_CLIENT -> EmployeeUI.blockList();
-            case CREATE_CARD -> HrUI.createCard();
+            case CREATE_CARD -> EmployeeUI.createCard();
 
             case CREATE_BRANCH -> BranchUI.create();
             case UPDATE_BRANCH -> BranchUI.update();

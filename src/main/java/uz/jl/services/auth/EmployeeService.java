@@ -12,7 +12,6 @@ import uz.jl.exceptions.APIException;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
 import uz.jl.models.card.Cards;
-import uz.jl.response.Data;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.services.IBaseCrudService;
@@ -32,17 +31,17 @@ import java.util.Objects;
  * Time : 10.12.2021 19:37
  * Project : ATMoracle
  */
-public class ClientService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper>
+public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper>
         implements IBaseCrudService<AuthUser> {
-    private static ClientService instance;
+    private static EmployeeService instance;
 
-    protected ClientService(AuthUserDao repository, AuthUserMapper mapper) {
+    protected EmployeeService(AuthUserDao repository, AuthUserMapper mapper) {
         super(repository, mapper);
     }
 
-    public static ClientService getInstance(AuthUserDao repository, AuthUserMapper mapper) {
+    public static EmployeeService getInstance(AuthUserDao repository, AuthUserMapper mapper) {
         if (Objects.isNull(instance))
-            return new ClientService(repository, mapper);
+            return new EmployeeService(repository, mapper);
         return instance;
     }
 
