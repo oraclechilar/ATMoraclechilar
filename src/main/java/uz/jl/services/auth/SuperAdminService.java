@@ -83,7 +83,7 @@ public class SuperAdminService {
     }
 
     /**
-     * @param choice  adminni raqami frontdan keladigan
+     * @param choice adminni raqami frontdan keladigan
      * @return -> Agar choice son bo'lmasa yoki adminlarni sonidan katta son bo'lsa, (-1) qaytadi.
      * Aks holda choiceni Integerga o'tkazib qaytaradi.
      */
