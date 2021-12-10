@@ -1,6 +1,7 @@
 package uz.jl.services;
 
 import uz.jl.models.BaseEntity;
+import uz.jl.models.auth.AuthUser;
 import uz.jl.response.ResponseEntity;
 
 import java.util.List;
@@ -12,9 +13,9 @@ public interface IBaseCrudService<E extends BaseEntity> {
     ResponseEntity<String> create(E e);
 
     ResponseEntity<String> delete(String username);
-
     List<E> getAll();
     ResponseEntity<String> update(String username);
     ResponseEntity<String> block(String username);
     ResponseEntity<String> unblock(String username);
+
 }

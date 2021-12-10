@@ -113,24 +113,13 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
         return new ResponseEntity<>(getUnblockedAdmins(), HttpStatus.HTTP_200);
     }
 
-
-    @Override
-    public AuthUser get(String id) {
-        for (AuthUser user : users) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
     @Override
     public List<AuthUser> getAll() {
         return users;
     }
 
     @Override
-    public ResponseEntity<String> update(String choice, AuthUser authUser) {
+    public ResponseEntity<String> update(String username) {
         return null;
     }
 
