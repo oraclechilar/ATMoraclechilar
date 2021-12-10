@@ -1,5 +1,6 @@
 package uz.jl.ui;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.enums.extras.Gender;
 import uz.jl.mapper.AuthUserMapper;
@@ -24,7 +25,6 @@ public class AuthUI extends BaseUI {
 
     public static void logout() {
        service.logout();
-
     }
     public static void register() {
         String username = Input.getStr("username : ");
@@ -40,8 +40,7 @@ public class AuthUI extends BaseUI {
     }
 
     public static void profile() {
-
+        ResponseEntity<String> response=service.profile();
+        showResponse(response);
     }
-
-
 }

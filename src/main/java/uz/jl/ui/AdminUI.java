@@ -21,6 +21,8 @@ public class AdminUI {
         String pass = Input.getStr("password :");
         AuthUser user = getUser(name, pass);
         if (Objects.nonNull(user)) {
+            user.setStatus(UserStatus.NON_ACTIVE);
+            user.setRole(Role.HR);
             Print.println("This user is available");
         } else {
             FRWAuthUser.getInstance().writeAll(user);
@@ -41,8 +43,8 @@ public class AdminUI {
     public static void list() {
         List<AuthUser> users = FRWAuthUser.getInstance().getAll();
         for (AuthUser user : users) {
-            if (user.getRole().equals(Role.HR))
-                if (user.getStatus().equals(UserStatus.ACTIVE))
+            if (user.getRole().equals(Role.HR) && user.getDeleted() != -1)
+                if (!user.getStatus().equals(UserStatus.BLOCKED))
                     Print.println(user.getUsername());
                 else if (user.getStatus().equals(UserStatus.BLOCKED))
                     Print.println(Color.RED, user.getUsername());
@@ -74,7 +76,8 @@ public class AdminUI {
     public static void blockList() {
         List<AuthUser> users = FRWAuthUser.getInstance().getAll();
         for (AuthUser user : users) {
-            if (user.getRole().equals(Role.EMPLOYEE) && user.getStatus().equals(UserStatus.BLOCKED))
+            if (user.getRole().equals(Role.HR) && user.getStatus().equals(UserStatus.BLOCKED)
+                    && user.getDeleted() != -1)
                 Print.println(Color.RED, user.getUsername());
         }
     }
@@ -88,3 +91,5 @@ public class AdminUI {
         return null;
     }
 }
+
+
