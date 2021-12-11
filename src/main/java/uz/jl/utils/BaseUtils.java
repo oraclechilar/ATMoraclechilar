@@ -23,4 +23,19 @@ public class BaseUtils {
             pan+=CardType.VISA.getCode();
         return pan+RandomStringUtils.random(12, false, true);
     }
+    public static Double toDouble(String text) {
+        try {
+            return Double.parseDouble(text);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static Integer toInteger(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
