@@ -13,6 +13,7 @@ import uz.jl.utils.Print;
 import java.util.List;
 
 import static uz.jl.ui.BaseUI.showResponse;
+import static uz.jl.utils.Color.BLUE;
 
 
 /**
@@ -27,11 +28,7 @@ public class EmployeeUI {
         String username = Input.getStr("Enter username:");
         String password = Input.getStr("Enter password:");
         String phoneNumber = Input.getStr("Enter phone number:");
-        AuthUser authUser = AuthUser.childBuilder().username(username).
-                password(password).phoneNumber(phoneNumber).
-                role(Role.CLIENT).createdBy(Session.getInstance().
-                        getUser().getId()).childBuild();
-        ResponseEntity<String> response = clientService.create(authUser);
+        ResponseEntity<String> response = clientService.create(username, password, phoneNumber);
         showResponse(response);
     }
 
@@ -42,10 +39,8 @@ public class EmployeeUI {
     }
 
     public static void list() {
-        List<AuthUser> list = clientService.getAll();
-        for (AuthUser authUser : list) {
-            Print.println(authUser.getUsername());
-        }
+        ResponseEntity<String> response = clientService.list();
+        showResponse(response);
     }
 
     public static void block() {
@@ -61,16 +56,14 @@ public class EmployeeUI {
     }
 
     public static void blockList() {
-        List<AuthUser> list = clientService.blockList();
-        for (AuthUser authUser : list) {
-            Print.println(authUser.getUsername());
-        }
+        ResponseEntity<String> response = clientService.blockList();
+        showResponse(response);
     }
-    public static void createCard() {
-        String user = Input.getStr("Enter holder name: ");
-        String cardType = Input.getStr("Enter cardType: ");
-        String password = Input.getStr("Enter password for card: ");
-        ResponseEntity<String> response = clientService.createCard(user, cardType, password);
+
+    public static void createCard(AuthUser user) {
+        String cardType = Input.getStr(BLUE + "Enter cardType(Uzcard/Humo/Mastercard/Visa/Cobage/UnionPay): ");
+        String password = Input.getStr(BLUE + "Enter password for card: ");
+        ResponseEntity<String> response = clientService.createCard(cardType, password, user);
         showResponse(response);
     }
 }

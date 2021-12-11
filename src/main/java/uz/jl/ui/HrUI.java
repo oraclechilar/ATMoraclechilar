@@ -5,6 +5,8 @@ import uz.jl.mapper.AuthUserMapper;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.auth.HRService;
 
+import java.net.SocketOptions;
+
 import static uz.jl.utils.Input.*;
 
 /**
@@ -33,6 +35,11 @@ public class HrUI extends BaseUI {
         showResponse(response);
     }
 
+    public static void blockList() {
+        ResponseEntity<String> response = service.blockList();
+        showResponse(response);
+    }
+
     public static void block() {
         list();
         String username = getStr("Username: ");
@@ -48,8 +55,4 @@ public class HrUI extends BaseUI {
         showResponse(response);
     }
 
-    public static void blockList() {
-        ResponseEntity<String> response = service.blockList();
-        showResponse(response);
-    }
 }

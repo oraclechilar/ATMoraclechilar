@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
 import uz.jl.models.auth.AuthUser;
@@ -28,6 +29,8 @@ public class AppConfig {
 
     private static final Properties properties = new Properties();
 
+
+
     public static void init() {
         try {
             load();
@@ -39,14 +42,7 @@ public class AppConfig {
     }
 
     private static void initUsers() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        File file = new File("src/main/resources/db/users.json");
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            AuthUserDao.getInstance().users = gson.fromJson(reader, new TypeToken<List<AuthUser>>() {
-            }.getType());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        AuthUserDao.getInstance().users = (ArrayList<AuthUser>) FRWAuthUser.getInstance().getAll();
     }
 
     public static String get(String key) {

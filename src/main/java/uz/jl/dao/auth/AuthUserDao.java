@@ -31,7 +31,6 @@ public class AuthUserDao extends BaseDao<AuthUser> {
     public void writeAll() {
         FRWAuthUser frwAuthUser = FRWAuthUser.getInstance();
         frwAuthUser.writeAll(users);
-
     }
 
     public AuthUser findByUserName(String username) {

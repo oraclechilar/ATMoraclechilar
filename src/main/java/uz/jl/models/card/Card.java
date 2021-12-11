@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cards extends Auditable {
+public class Card extends Auditable {
     private String pan;
     private String expiry;
     private String password;

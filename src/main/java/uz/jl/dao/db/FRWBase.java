@@ -10,10 +10,10 @@ import java.util.Objects;
 /**
  * @author Elmurodov Javohir, Thu 9:33 AM. 12/9/2021
  */
-public sealed abstract class FRWBase<T> permits FRWAuthUser, FRWBranch {
+public sealed abstract class FRWBase<T> permits FRWAuthUser, FRWBranch, FRWCard {
     protected List<T> list = new ArrayList<>();
     protected static Gson gson;
-    protected String path;
+    protected String    path;
 
     public FRWBase(String path) {
         if (Objects.isNull(gson)) {

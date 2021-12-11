@@ -1,5 +1,6 @@
 package uz.jl.ui;
 
+import uz.jl.configs.AppConfig;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.auth.Role;
