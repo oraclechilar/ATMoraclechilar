@@ -25,7 +25,7 @@ public class AdminUI {
             user.setRole(Role.HR);
             Print.println("This user is available");
         } else {
-            Print.println("succesfully");
+            Print.println("successfully");
         }
     }
 

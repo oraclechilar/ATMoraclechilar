@@ -14,14 +14,10 @@ import uz.jl.utils.Print;
  */
 public class MainMenu {
     static {
-        try {
-            AppConfig.init();
-        } catch (APIException e) {
-            e.printStackTrace();
-        }
+        AppConfig.init();
     }
 
-    public static void main(String[] args) {
+    public static void run() {
         Menu.show();
         String choice = Input.getStr("?:");
         MenuKey key = MenuKey.getByValue(choice);
@@ -59,7 +55,7 @@ public class MainMenu {
             case BLOCK_CLIENT -> EmployeeUI.block();
             case UN_BLOCK_CLIENT -> EmployeeUI.unBlock();
             case BLOCK_LIST_CLIENT -> EmployeeUI.blockList();
-            case CREATE_CARD -> EmployeeUI.createCard();
+            //case CREATE_CARD -> EmployeeUI.createCard();
 
             case CREATE_BRANCH -> BranchUI.create();
             case UPDATE_BRANCH -> BranchUI.update();
@@ -84,6 +80,6 @@ public class MainMenu {
             default -> // TODO: 12/8/2021 do translations here
                     Print.println(Color.RED, "Wrong Choice");
         }
-        main(args);
+        run();
     }
 }

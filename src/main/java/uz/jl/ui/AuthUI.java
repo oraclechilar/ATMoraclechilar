@@ -34,7 +34,7 @@ public class AuthUI extends BaseUI {
         String gender=Input.getStr("gender :");
         String firstName=Input.getStr("firstname : ");
         String lastName=Input.getStr("lastname : ");
-        String fatherName=Input.getStr("fathername : ");
+        String fatherName=Input.getStr("father name : ");
         ResponseEntity<String> response=service.register(username,password,serial,
                 number,gender,firstName,lastName,fatherName);
     }
