@@ -45,7 +45,7 @@ public final class FRWAuthUser extends FRWBase<AuthUser> {
 
     @Override
     public void writeAll(List<AuthUser> dataList) {
-        try (FileWriter fileWriter = new FileWriter(path, false);
+        try (FileWriter fileWriter = new FileWriter(path,false);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             String jsonDATA = gson.toJson(dataList);
             bufferedWriter.write(jsonDATA);

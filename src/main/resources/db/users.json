@@ -1,12 +1,21 @@
 [
   {
-    "username": "adm",
+    "username": "admin",
     "password": "123",
     "role": "SUPER_ADMIN",
     "status": "ACTIVE",
-    "phoneNumber": "+998991234567",
-    "id": "12767988719500H39N0UUkq3yMZpRdvntm",
-    "createdAt": "Dec 10, 2021, 5:40:25 PM",
+    "phoneNumber": "+998904554550",
+    "id": "13960728412660009IfigCZAVL4occszzqxu",
+    "createdAt": "Dec 10, 2021, 12:01:01 PM",
+    "deleted": 0
+  },
+  {
+    "username": "shaha",
+    "password": "1234",
+    "role": "ANONYMOUS",
+    "phoneNumber": "1234",
+    "id": "65947876320600V9XSqFkZUJaxGk6j3ve3",
+    "createdAt": "Dec 11, 2021, 1:32:15 AM",
     "deleted": 0
   }
 ]

@@ -11,6 +11,6 @@ public final class Loaders {
 
     public static void init() throws APIException {
         AppConfig.init();
-        LocaleConfig.init();
+        //LocaleConfig.init();
     }
 }

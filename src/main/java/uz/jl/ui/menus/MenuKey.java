@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum MenuKey {
+public enum MenuKey{
     CREATE_BRANCH,
     UPDATE_BRANCH,
     DELETE_BRANCH,
@@ -48,7 +48,6 @@ public enum MenuKey {
     BLOCK_CLIENT,
     UN_BLOCK_CLIENT,
     BLOCK_LIST_CLIENT,
-    CREATE_CARD,
     RESET_USERNAME,
     RESET_PASSWORD,
     LOGIN,

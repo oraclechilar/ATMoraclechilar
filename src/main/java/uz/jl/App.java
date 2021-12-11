@@ -1,6 +1,9 @@
 package uz.jl;
 
 
+import uz.jl.configs.Loaders;
+import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.exceptions.APIException;
 import uz.jl.ui.MainMenu;
 
 /**
@@ -9,6 +12,11 @@ import uz.jl.ui.MainMenu;
 
 public class App {
     public static void main(String[] args) {
-        //MainMenu.run();
+        try {
+            Loaders.init();
+        } catch (APIException e) {
+            e.printStackTrace();
+        }
+        MainMenu.run();
     }
 }

@@ -27,6 +27,16 @@ public class AuthUI extends BaseUI {
        service.logout();
     }
     public static void register() {
+        String username = Input.getStr("username : ");
+        String password = Input.getStr("password : ");
+        String serial=Input.getStr("password serial :");
+        String number=Input.getStr("password number : ");
+        String gender=Input.getStr("gender :");
+        String firstName=Input.getStr("firstname : ");
+        String lastName=Input.getStr("lastname : ");
+        String fatherName=Input.getStr("fathername : ");
+        ResponseEntity<String> response=service.register(username,password,serial,
+                number,gender,firstName,lastName,fatherName);
     }
 
     public static void profile() {

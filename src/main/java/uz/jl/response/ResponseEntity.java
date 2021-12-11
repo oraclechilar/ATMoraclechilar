@@ -11,6 +11,7 @@ import uz.jl.exceptions.APIRuntimeException;
 
 /**
  * @param <T> -> Data Type
+ * @param <S> -> Status HTTP Response
  */
 @Getter
 @Setter

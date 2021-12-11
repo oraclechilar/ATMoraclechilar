@@ -41,53 +41,55 @@ public class AuthService
     }
 
     public ResponseEntity<String> login(String username, String password) {
+        AuthUser user = repository.findByUserName(username);
+        if (Objects.isNull(user) || !user.getPassword().equals(password))
+            return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
+        user.setStatus(UserStatus.ACTIVE);
+        Session.getInstance().setUser(user);
+        return new ResponseEntity<>("success", HttpStatus.HTTP_200);
+    }
+
+    public void logout() {
+        AuthUser user = Session.getInstance().getUser();
+        user.setStatus(UserStatus.NON_ACTIVE);
+        Session.getInstance().setUser(user);
+    }
+
+    public ResponseEntity<String> profile() {
         try {
-            AuthUser user = repository.findByUserName(username);
-            if (Objects.isNull(user) || !user.getPassword().equals(password))
-                return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
-            user.setStatus(UserStatus.ACTIVE);
-            Session.getInstance().setUser(user);
+            AuthUser authUser = Session.getInstance().getUser();
+            println("Username : " + authUser.getUsername());
+            println("Password : ******* ");
+            println("Reset username" + " -> " + RESET_USERNAME);
+            println("Reset password" + " -> " + RESET_PASSWORD);
+            String choice = getStr("?:");
+            MenuKey key = MenuKey.getByValue(choice);
+            switch (key) {
+                case RESET_USERNAME -> resetUsername(authUser);
+                case RESET_PASSWORD -> resetPassword(authUser);
+            }
             return new ResponseEntity<>("success", HttpStatus.HTTP_200);
         } catch (APIException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.getStatusByCode(e.getCode()));
         }
     }
-    public void logout() {
-        AuthUser user=Session.getInstance().getUser();
-        user.setStatus(UserStatus.NON_ACTIVE);
-        Session.getInstance().setUser(user);
-    }
-    public ResponseEntity<String> profile(){
-        try{AuthUser authUser=Session.getInstance().getUser();
-        println("Username : "+authUser.getUsername());
-        println("Password : ******* ");
-        println("Reset username"+" -> "+RESET_USERNAME);
-        println("Reset password"+" -> "+RESET_PASSWORD);
-        String choice=getStr("?:");
-        MenuKey key = MenuKey.getByValue(choice);
-        switch(key){
-            case RESET_USERNAME -> resetUsername(authUser);
-            case RESET_PASSWORD -> resetPassword(authUser);
-        }
-        return new ResponseEntity<>("success",HttpStatus.HTTP_200);
-        }catch (APIException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.getStatusByCode(e.getCode()));
-        }
-    }
 
     private void resetUsername(AuthUser authUser) throws APIException {
-        String password1=getStr("Enter old password : ");
-        if(authUser.getPassword().equals(password1)){
+        String password1 = getStr("Enter old password : ");
+        if (authUser.getPassword().equals(password1)) {
             authUser.setUsername(getStr("Enter new username : "));
-        return;}
-        throw new APIException("Bad crediantials",HttpStatus.HTTP_400);
+            return;
         }
-    private void resetPassword(AuthUser authUser) throws APIException{
-        String password1=getStr("Enter old password : ");
-        if(authUser.getPassword().equals(password1)){
+        throw new APIException("Bad crediantials", HttpStatus.HTTP_400);
+    }
+
+    private void resetPassword(AuthUser authUser) throws APIException {
+        String password1 = getStr("Enter old password : ");
+        if (authUser.getPassword().equals(password1)) {
             authUser.setUsername(getStr("Enter new password : "));
-            return;}
-        throw new APIException("Bad crediantials",HttpStatus.HTTP_400);
+            return;
+        }
+        throw new APIException("Bad crediantials", HttpStatus.HTTP_400);
     }
 
     public ResponseEntity<String> register(String username, String password, String serial, String number, String gender, String firstName, String lastname, String fathername) {
@@ -95,13 +97,19 @@ public class AuthService
         return new ResponseEntity<>();
     }
 
+
     @Override
-    public ResponseEntity<String> create(AuthUser authUser) {
-        return null;
+    public void create(AuthUser authUser) {
+
     }
 
     @Override
-    public ResponseEntity<String> delete(String username) {
+    public void delete(String id) {
+
+    }
+
+    @Override
+    public AuthUser get(String id) {
         return null;
     }
 
@@ -111,17 +119,7 @@ public class AuthService
     }
 
     @Override
-    public ResponseEntity<String> update(String username) {
-        return null;
-    }
+    public void update(String id, AuthUser authUser) {
 
-    @Override
-    public ResponseEntity<String> block(String username) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<String> unblock(String username) {
-        return null;
     }
 }

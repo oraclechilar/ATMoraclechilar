@@ -9,6 +9,7 @@ import uz.jl.enums.auth.UserStatus;
 import uz.jl.models.Auditable;
 import uz.jl.models.settings.Language;
 
+import java.text.MessageFormat;
 import java.util.Date;
 
 /**
@@ -41,5 +42,9 @@ public class AuthUser extends Auditable {
         this.status = status;
         this.phoneNumber = phoneNumber;
         this.language = language;
+    }
+
+    public String show() {
+        return String.format("Username: %s\nPassword: %s\nPhone: %s\nId: %s", username, password, phoneNumber, getId());
     }
 }

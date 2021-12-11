@@ -10,5 +10,4 @@ import uz.jl.models.Auditable;
 public class Branch extends Auditable {
     private String name;
     private Status status;
-    private String bankId;
 }

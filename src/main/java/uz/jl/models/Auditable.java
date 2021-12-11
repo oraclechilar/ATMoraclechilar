@@ -16,7 +16,6 @@ import static uz.jl.utils.BaseUtils.genId;
 
 @Getter
 @Setter
-@ToString
 public class Auditable implements BaseEntity {
     private String id = genId();
     private Date createdAt;

@@ -6,7 +6,8 @@ package uz.jl.enums.auth;
 public enum UserStatus {
     ACTIVE(0),
     NON_ACTIVE(-1),
-    BLOCKED(-2);
+    BLOCKED(-2),
+    DELETED(-100);
 
     private final int code;
 
