@@ -9,6 +9,7 @@ import uz.jl.exceptions.APIException;
 import uz.jl.models.auth.AuthUser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -25,11 +26,11 @@ public class AuthUserDao extends BaseDao<AuthUser> {
         return dao;
     }
 
+    private static FRWAuthUser frwAuthUser = FRWAuthUser.getInstance();
     //endregion SINGLETON
-    public ArrayList<AuthUser> users = new ArrayList<>();
+    public List<AuthUser> users = frwAuthUser.getAll();
 
     public void writeAll() {
-        FRWAuthUser frwAuthUser = FRWAuthUser.getInstance();
         frwAuthUser.writeAll(users);
     }
 

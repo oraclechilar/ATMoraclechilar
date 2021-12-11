@@ -25,8 +25,7 @@ import static uz.jl.utils.Print.println;
  * @author Elmurodov Javohir, Mon 10:46 AM. 12/6/2021
  */
 public class AuthService
-        extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper>
-        implements IBaseCrudService<AuthUser> {
+        extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper> {
     private static AuthService service;
 
     public static AuthService getInstance(AuthUserDao repository, AuthUserMapper mapper) {
@@ -95,31 +94,5 @@ public class AuthService
     public ResponseEntity<String> register(String username, String password, String serial, String number, String gender, String firstName, String lastname, String fathername) {
 
         return new ResponseEntity<>();
-    }
-
-
-    @Override
-    public void create(AuthUser authUser) {
-
-    }
-
-    @Override
-    public void delete(String id) {
-
-    }
-
-    @Override
-    public AuthUser get(String id) {
-        return null;
-    }
-
-    @Override
-    public List<AuthUser> getAll() {
-        return null;
-    }
-
-    @Override
-    public void update(String id, AuthUser authUser) {
-
     }
 }

@@ -25,6 +25,7 @@ public class AuthUI extends BaseUI {
 
     public static void logout() {
        service.logout();
+        AuthUserDao.getInstance().writeAll();
     }
     public static void register() {
         String username = Input.getStr("username : ");

@@ -2,6 +2,7 @@ package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
 import uz.jl.configs.Loaders;
+import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.exceptions.APIException;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;
@@ -32,7 +33,7 @@ public class MainMenu {
             case DELETE_ADMIN -> SuperAdminUI.delete();
             case LIST_ADMIN -> SuperAdminUI.list();
             case BLOCK_ADMIN -> SuperAdminUI.block();
-            case UN_BLOCK_ADMIN -> SuperAdminUI.unblock();
+            case UN_BLOCK_ADMIN -> SuperAdminUI.unBlock();
             case BLOCK_LIST_ADMIN -> SuperAdminUI.blockList();
 
             case CREATE_HR -> AdminUI.create();
@@ -74,6 +75,8 @@ public class MainMenu {
             case BLOCK_LIST_ATM -> AtmUI.blockList();
 
             case EXIT -> {
+                // Hamma userlarni filega yozib qo'yadi
+                AuthUserDao.getInstance().writeAll();
                 Print.println(Color.YELLOW, "Good bye");
                 return;
             }
