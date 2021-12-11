@@ -3,11 +3,10 @@ package uz.jl.dao.db;
 import com.google.gson.reflect.TypeToken;
 import uz.jl.configs.AppConfig;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.branch.Branch;
 import uz.jl.models.card.Card;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,17 @@ public final class FRWCard extends FRWBase<Card> {
     }
 
     @Override
-    public void writeAll(List dataList) {
-        writeAll(Collections.singletonList(dataList));
+    public void writeAll(List<Card> dataList) {
+        try (FileWriter fileWriter = new FileWriter(path, false);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            String jsonDATA = gson.toJson(dataList);
+            bufferedWriter.write(jsonDATA);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeAll(Card card) {
+        writeAll(Collections.singletonList(card));
     }
 }

@@ -2,7 +2,10 @@ package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
 import uz.jl.configs.Loaders;
+import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.branch.BranchDao;
+import uz.jl.dao.card.CardDao;
 import uz.jl.exceptions.APIException;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;
@@ -77,6 +80,9 @@ public class MainMenu {
             case EXIT -> {
                 // Hamma userlarni filega yozib qo'yadi
                 AuthUserDao.getInstance().writeAll();
+                ATMDao.getInstance().writeAll();
+                BranchDao.getInstance().writeAll();
+                CardDao.getInstance().writeAll();
                 Print.println(Color.YELLOW, "Good bye");
                 return;
             }

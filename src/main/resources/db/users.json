@@ -1,6 +1,6 @@
 [
   {
-    "username": "admin",
+    "username": "super",
     "password": "123",
     "role": "SUPER_ADMIN",
     "status": "NON_ACTIVE",
@@ -38,7 +38,73 @@
     "status": "ACTIVE",
     "phoneNumber": "123",
     "id": "381394191507200MfmLP1PCCUllFDlMf6P4",
+    "createdAt": "Dec 11, 2021, 9:59:31 PM",
     "createdBy": "sa",
+    "deleted": 0
+  },
+  {
+    "username": "adm1",
+    "password": "123",
+    "role": "ADMIN",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998991234512",
+    "id": "116304440745900QyC9xMYHZlv6Jq49pEjw",
+    "createdAt": "Dec 11, 2021, 10:00:25 PM",
+    "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
+    "deleted": 0
+  },
+  {
+    "username": "hr1",
+    "password": "123",
+    "role": "HR",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998971234567",
+    "id": "116346636503100RHVkv7irvdwYpivYvkLq",
+    "createdAt": "Dec 11, 2021, 11:03:29 PM",
+    "createdBy": "adm1",
+    "deleted": 0
+  },
+  {
+    "username": "emp1",
+    "password": "123",
+    "role": "EMPLOYEE",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998972141423",
+    "id": "1163923958695008fgeLVgyCQWavQtlOKA0",
+    "createdAt": "Dec 11, 2021, 10:01:52 PM",
+    "deleted": 0
+  },
+  {
+    "username": "admin2",
+    "password": "123",
+    "role": "ADMIN",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998971234567",
+    "language": "EN",
+    "id": "120145447281700osIKJWvRrJPt55vkB5Wo",
+    "createdAt": "Dec 11, 2021, 11:04:26 PM",
+    "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
+    "deleted": 0
+  },
+  {
+    "username": "hr2",
+    "password": "123",
+    "role": "HR",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "112412",
+    "id": "120426055711500l3zyrcwUd7AzOC3LYfG4",
+    "createdAt": "Dec 11, 2021, 11:14:48 PM",
+    "createdBy": "admin2",
+    "deleted": 0
+  },
+  {
+    "username": "emp3",
+    "password": "123",
+    "role": "EMPLOYEE",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "1314131",
+    "id": "120845363775300JlrWiWlaya3exfDxeAT3",
+    "createdAt": "Dec 11, 2021, 11:16:05 PM",
     "deleted": 0
   }
 ]

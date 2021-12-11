@@ -27,9 +27,7 @@ public class AuthUserDao extends BaseDao<AuthUser> {
     }
 
     private static FRWAuthUser frwAuthUser = FRWAuthUser.getInstance();
-    //endregion SINGLETON
     public List<AuthUser> users = frwAuthUser.getAll();
-
     public void writeAll() {
         frwAuthUser.writeAll(users);
     }

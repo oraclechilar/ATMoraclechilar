@@ -61,9 +61,8 @@ public class Menu {
             menus.put("Block Employee", MenuKey.BLOCK_EMPLOYEE);
 
             menus.put("Un block Employee", MenuKey.UN_BLOCK_EMPLOYEE);
-            menus.put("Blocked Employee List", MenuKey.BLOCK_LIST_EMPLOYEE);
         } else if (Role.EMPLOYEE.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put("Blocked Employee List", MenuKey.BLOCK_LIST_ATM);
+            menus.put("Block list Atm", MenuKey.BLOCK_LIST_ATM);
             menus.put("Update Atm", MenuKey.UPDATE_ATM);
 
             menus.put("Atm List", MenuKey.LIST_ATM);

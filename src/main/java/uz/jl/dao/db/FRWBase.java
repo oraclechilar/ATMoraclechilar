@@ -13,7 +13,7 @@ import java.util.Objects;
 public sealed abstract class FRWBase<T> permits FRWAuthUser, FRWBranch, FRWCard,FRWAtm {
     protected List<T> list = new ArrayList<>();
     protected static Gson gson;
-    protected String    path;
+    protected String path;
 
     public FRWBase(String path) {
         if (Objects.isNull(gson)) {

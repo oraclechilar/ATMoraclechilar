@@ -1,7 +1,10 @@
 package uz.jl.ui;
 
 import uz.jl.configs.Session;
+import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.branch.BranchDao;
+import uz.jl.dao.card.CardDao;
 import uz.jl.enums.extras.Gender;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.response.ResponseEntity;
@@ -26,6 +29,9 @@ public class AuthUI extends BaseUI {
     public static void logout() {
         service.logout();
         AuthUserDao.getInstance().writeAll();
+        ATMDao.getInstance().writeAll();
+        BranchDao.getInstance().writeAll();
+        CardDao.getInstance().writeAll();
     }
 
     public static void register() {

@@ -3,8 +3,12 @@ package uz.jl.dao.atm;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import uz.jl.dao.db.FRWAtm;
+import uz.jl.dao.db.FRWAuthUser;
+import uz.jl.enums.atm.ATMType;
 import uz.jl.models.atm.ATMEntity;
+import uz.jl.models.auth.AuthUser;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,8 +16,6 @@ import java.util.Objects;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ATMDao extends BaseDao<ATMEntity> {
-    FRWAtm frwAtm = FRWAtm.getInstance();
-
     private static ATMDao dao;
 
     public static ATMDao getInstance() {
@@ -21,6 +23,14 @@ public class ATMDao extends BaseDao<ATMEntity> {
             dao = new ATMDao();
         return dao;
     }
+    private static FRWAtm frwAtm = FRWAtm.getInstance();
+
+    public List<ATMEntity> atms = frwAtm.getAll();
+
+    public void writeAll() {
+        frwAtm.writeAll(atms);
+    }
+
 }
 
 

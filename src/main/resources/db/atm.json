@@ -1,0 +1,41 @@
+[
+  {
+    "bankId": "qw1er2ty3ui4op5",
+    "type": "UZCARD",
+    "name": "sadasf",
+    "status": "ACTIVE",
+    "latitude": 24.0,
+    "longitude": 13.0,
+    "cassette1": {
+      "id": "120913208920600VKpg4qAMyawteX7Q4Mkk",
+      "currencyValue": "100000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "120913208984900TkMV3sjuHOd203ajytRV",
+      "currencyValue": "1000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "120913209017200GXi9X086dPAM9xPti2Ve",
+      "currencyValue": "10000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "120913209047000Pua8ceZKxbaFlEwM0uMN",
+      "currencyValue": "5000",
+      "status": "ACTIVE",
+      "currencyCount": 1000,
+      "deleted": 0
+    },
+    "id": "120913209106200KKEMZ6JXMir3G2SAQdNe",
+    "createdAt": "Dec 11, 2021, 11:17:13 PM",
+    "deleted": 0
+  }
+]
