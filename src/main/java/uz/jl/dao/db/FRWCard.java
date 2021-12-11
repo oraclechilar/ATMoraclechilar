@@ -1,6 +1,7 @@
 package uz.jl.dao.db;
 
 import com.google.gson.reflect.TypeToken;
+import uz.jl.configs.AppConfig;
 import uz.jl.models.auth.AuthUser;
 import uz.jl.models.card.Card;
 
@@ -23,7 +24,7 @@ public final class FRWCard extends FRWBase<Card> {
     }
 
     public FRWCard() {
-        super("src/main/resources/db/cards.json");
+        super(AppConfig.get("db.cards.path"));
     }
 
     @Override
