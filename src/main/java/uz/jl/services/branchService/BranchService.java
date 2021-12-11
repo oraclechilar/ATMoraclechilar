@@ -11,15 +11,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class BranchService {
-    public static List<Branch> branches = FRWBranch.getInstance().getAll();
 
-    public static ResponseEntity<String> create(Branch branch) {
+    private static BranchService install;
+
+    public static BranchService getInstall() {
+        if (Objects.isNull(install))
+            install = new BranchService();
+        return install;
+    }
+
+    public List<Branch> branches = FRWBranch.getInstance().getAll();
+
+    public ResponseEntity<String> create(Branch branch) {
         branches.add(branch);
         FRWBranch.getInstance().writeAll(branches);
         return new ResponseEntity<>("Successfully created brench", HttpStatus.HTTP_201);
     }
 
-    public static ResponseEntity<String> delete(String name) {
+    public ResponseEntity<String> delete(String name) {
         Branch branch = findByName(name);
         if (Objects.isNull(branch)) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -28,7 +37,7 @@ public class BranchService {
         return new ResponseEntity<>("Successfully", HttpStatus.HTTP_202);
     }
 
-    public static ResponseEntity<String> block(String str) {
+    public ResponseEntity<String> block(String str) {
         Branch branch = findByName(str);
         if (Objects.isNull(branch))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -36,7 +45,7 @@ public class BranchService {
         return new ResponseEntity<>("Successfully", HttpStatus.HTTP_202);
     }
 
-    public static ResponseEntity<String> unblock(String str) {
+    public ResponseEntity<String> unblock(String str) {
         Branch branch = findByName(str);
         if (Objects.isNull(branch))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -45,16 +54,16 @@ public class BranchService {
 
     }
 
-    public static ResponseEntity<ArrayList<Branch>> list() {
+    public ResponseEntity<ArrayList<Branch>> list() {
         if (getBranch().size() == 0) return new ResponseEntity<>(getBranch(), HttpStatus.HTTP_204);
         return new ResponseEntity<>(getBranch(), HttpStatus.HTTP_200);
     }
 
-    public static ArrayList<Branch> getBranch() {
+    public ArrayList<Branch> getBranch() {
         return (ArrayList<Branch>) FRWBranch.getInstance().getAll();
     }
 
-    private static Branch findByName(String name) {
+    private Branch findByName(String name) {
         for (Branch branch : branches) {
             if (branch.getName().equalsIgnoreCase(name))
                 return branch;
