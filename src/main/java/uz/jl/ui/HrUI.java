@@ -1,26 +1,11 @@
 package uz.jl.ui;
 
-import uz.jl.dao.db.FRWAuthUser;
-import uz.jl.enums.auth.Role;
-import uz.jl.enums.auth.UserStatus;
-import uz.jl.exceptions.APIException;
-import uz.jl.models.auth.AuthUser;
-import uz.jl.utils.Color;
-import uz.jl.utils.Input;
-import uz.jl.utils.Print;
-
-import java.util.List;
-import java.util.Objects;
-
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.response.ResponseEntity;
-import uz.jl.services.user.HRService;
+import uz.jl.services.auth.HRService;
 
 import static uz.jl.utils.Input.*;
-import static uz.jl.utils.Print.*;
-import static uz.jl.utils.BaseUtil.*;
-import static uz.jl.utils.Color.*;
 
 /**
  * @author Elmurodov Javohir, Wed 12:10 PM. 12/8/2021
