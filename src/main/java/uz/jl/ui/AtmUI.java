@@ -210,7 +210,7 @@ public class AtmUI extends BaseUI {
             case "3" -> AtmOperations.messageOf(card);
             case "4" -> AtmOperations.withdraw(card,atm);
             case "5" -> AtmOperations.putMoney(card,atm);
-            case "6" -> AtmOperations.exchangeMoney();
+            case "6" -> AtmOperations.exchangeMoney(atm,card);
             case "7" -> {
                 Print.println(Color.GREEN, "Home");
                 AuthUserDao.getInstance().writeAll();

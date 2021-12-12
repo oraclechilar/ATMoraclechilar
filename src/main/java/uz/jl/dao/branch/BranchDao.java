@@ -23,13 +23,22 @@ public class BranchDao extends BaseDao<Branch> {
             dao = new BranchDao();
         return dao;
     }
+
     private static FRWBranch frwBranch = FRWBranch.getInstance();
 
     public List<Branch> branches = frwBranch.getAll();
 
     public static Branch getByname(String branchName) {
         for (Branch branch : BranchDao.getInstance().branches) {
-            if(branch.getName().equals(branchName))
+            if (branch.getName().equals(branchName))
+                return branch;
+        }
+        return null;
+    }
+
+    public static Branch getById(String branchID) {
+        for (Branch branch : BranchDao.getInstance().branches) {
+            if (branch.getId().equals(branchID))
                 return branch;
         }
         return null;

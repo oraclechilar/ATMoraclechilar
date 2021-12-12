@@ -1,11 +1,19 @@
 package uz.jl.ui;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.enums.auth.Role;
+import uz.jl.enums.http.HttpStatus;
 import uz.jl.mapper.AuthUserMapper;
+import uz.jl.models.branch.Branch;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.auth.HRService;
+import uz.jl.services.branchService.BranchService;
+import uz.jl.utils.Color;
+import uz.jl.utils.Print;
 
 import java.net.SocketOptions;
+import java.util.ArrayList;
 
 import static uz.jl.utils.Input.*;
 
@@ -19,7 +27,25 @@ public class HrUI extends BaseUI {
         String username = getStr("Username: ");
         String password = getStr("Password:");
         String phoneNumber = getStr("PhoneNumber: ");
-        ResponseEntity<String> response = service.create(username, password, phoneNumber);
+        String branchID;
+        if(Session.getInstance().getUser().getRole().equals(Role.ADMIN)){
+            ResponseEntity<ArrayList<Branch>> branchResponse = BranchService.getInstall().list();
+            if (branchResponse.getStatus().equals(HttpStatus.HTTP_204.getCode())) {
+                Print.println(Color.RED, "There is no any branch");
+                return;
+            }
+            BranchUI.showBranch(branchResponse.getData());
+            String branchChoice = getStr("Choose branch: ");
+            ResponseEntity<String> branchIDResponse = BranchService.getInstall().getBranchID(branchChoice);
+            if (branchIDResponse.getStatus().equals(HttpStatus.HTTP_400.getCode())) {
+                Print.println(Color.RED, branchIDResponse.getData());
+            }
+            branchID = branchIDResponse.getData();
+
+        }else{
+            branchID=Session.getInstance().getUser().getBranchId();
+        }
+        ResponseEntity<String> response = service.create(username, password, phoneNumber,branchID);
         showResponse(response);
     }
 

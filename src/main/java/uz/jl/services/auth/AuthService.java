@@ -2,11 +2,14 @@ package uz.jl.services.auth;
 
 import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.branch.BranchDao;
+import uz.jl.enums.atm.Status;
 import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.branch.Branch;
 import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
@@ -46,6 +49,11 @@ public class AuthService
             return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
         if (user.getStatus().equals(UserStatus.BLOCKED)) {
             return new ResponseEntity<>("This user is blocked", HttpStatus.HTTP_401);
+        }if(Objects.nonNull(user.getBranchId())){
+            Branch branch=BranchDao.getById(user.getBranchId());
+            if(branch.getStatus().equals(Status.BLOCKED)){
+                return new ResponseEntity<>("This user is blocked");
+            }
         }
         user.setStatus(UserStatus.ACTIVE);
         session.setUser(user);

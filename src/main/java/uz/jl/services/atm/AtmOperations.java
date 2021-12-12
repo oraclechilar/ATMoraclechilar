@@ -50,8 +50,17 @@ public class AtmOperations {
         }
     }
 
-    public static void exchangeMoney() {
-
+    public static void exchangeMoney(ATMEntity atm,Card card) {
+        Print.println("Enter currency value (1$ / 10$ / 50$ / 100$)");
+        BigInteger dollar=getBigInt("...");
+        Print.println("Enter count of currency (1$ / 10$ / 50$ / 100$)");
+        BigInteger count=getBigInt("...");
+        BigInteger sum=(count.multiply(dollar)).multiply(BigInteger.valueOf(10700));
+        println("Please get money ");
+        BigInteger sum1=atmWithdrawMoney(atm,sum,card);
+        if(!sum1.equals(BigInteger.ZERO)){
+            Print.println("You can withdraw only "+ sum.subtract(sum1));
+        }
     }
 
     public static void putMoney(Card card,ATMEntity atm) {

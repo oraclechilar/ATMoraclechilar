@@ -147,5 +147,39 @@
     "createdAt": "Dec 13, 2021, 1:20:08 AM",
     "createdBy": "super",
     "deleted": 0
+  },
+  {
+    "username": "admin3",
+    "password": "123",
+    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
+    "role": "ADMIN",
+    "status": "ACTIVE",
+    "phoneNumber": "+92423532235",
+    "id": "211704122697000DJ2lzFzpUMHJHEwgEblC",
+    "createdAt": "Dec 13, 2021, 12:30:21 AM",
+    "createdBy": "super",
+    "deleted": 0
+  },
+  {
+    "username": "wrrwg",
+    "password": "123",
+    "branchId": "Missmatch input",
+    "role": "HR",
+    "status": "ACTIVE",
+    "phoneNumber": "+24124124",
+    "id": "211758773560100GdBJh8PiTwXJJkMZL9i5",
+    "createdBy": "admin3",
+    "deleted": 0
+  },
+  {
+    "username": "hr99",
+    "password": "123",
+    "branchId": "169101126456000OeFbaODUeef3afiam28a",
+    "role": "HR",
+    "status": "ACTIVE",
+    "phoneNumber": "+12412341234",
+    "id": "211780424020100pOPy2e4VjE7adJS8J5Eu",
+    "createdBy": "admin3",
+    "deleted": 0
   }
 ]

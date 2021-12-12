@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.utils.BaseUtils.getBigInt;
+import static uz.jl.utils.Color.RED;
 import static uz.jl.utils.Input.getStr;
 
 /**
@@ -68,7 +69,12 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     public ATMEntity get(String param) {
         List<ATMEntity> all = getAll();
         for (ATMEntity atm : all) {
-            if (atm.getDeleted() != 1) if (atm.getId().equals(param) || atm.getName().equals(param)) return atm;
+            if (atm.getDeleted() != 1)
+                if (atm.getId().equals(param) || atm.getName().equals(param))
+                    if(atm.getStatus().equals(ATMStatus.BLOCKED)){
+                        Print.println(RED,"Atm is blocked");
+                    }else
+                    return atm;
         }
         return null;
     }
@@ -211,7 +217,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
         String description = getStr("New status = ");
         CassetteStatus cassetteStatus = CassetteStatus.get(description);
         if (Objects.isNull(cassetteStatus)) {
-            Print.println(Color.RED, "Status not found");
+            Print.println(RED, "Status not found");
             return updateStatus(cassette);
         }
         cassette.setStatus(cassetteStatus);
