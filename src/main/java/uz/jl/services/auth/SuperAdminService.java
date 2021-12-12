@@ -110,7 +110,7 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
         int choiceN;
         try {
             choiceN = Integer.parseInt(choice);
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             return -1;
         }
         if (choiceN > getAdmins().size()) {
