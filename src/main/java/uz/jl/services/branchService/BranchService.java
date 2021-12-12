@@ -83,7 +83,6 @@ public class BranchService {
         return true;
     }
 
-
     public ResponseEntity<String> getBranchID(String choice) {
         int choiceN = castRequest(choice);
         if (choiceN == -1) {
@@ -91,6 +90,7 @@ public class BranchService {
         }
         return new ResponseEntity<>(getBranch().get(choiceN).getId(), HttpStatus.HTTP_202);
     }
+
     private int castRequest(String choice) {
         int choiceN;
         try {
