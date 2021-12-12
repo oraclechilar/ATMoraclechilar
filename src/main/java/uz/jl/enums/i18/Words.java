@@ -49,10 +49,10 @@ public enum Words {
     RESET_PASSWORD("reset_password", "parolni qayta o'rnatish", "reset password", "сбросить пароль"),
     RESET_LANGUAGE("reset_lang", "tilni qayta o'rnatish", "reset language", "сбросить язык"),
     LOGIN("login", "Kirish", "Login", "Вход"),
-    ATM_SERVICE("", "", "", ""),
-    PROFILE("", "", "", ""),
-    LOGOUT("logout", "Chiqish", "Logout", "Выйти"),
-    EXIT("exit", "Chiqish", "Logout", "Выйти"),
+    ATM_SERVICE("atm", "Atm ", "Atm", "Atm"),
+    PROFILE("profile", "hisob", "profile", "профиль"),
+    LOGOUT("logout", "Hisobdan chiqish", "Logout", "Выйти"),
+    EXIT("exit", "Chiqish", "Exit", "Выйти"),
     UNDEFINED("", "", "", "");
     private String code;
     private String uz;

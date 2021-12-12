@@ -43,15 +43,17 @@ public class AuthService
     }
 
     Session session = Session.getInstance();
+
     public ResponseEntity<String> login(String username, String password) {
         AuthUser user = repository.findByUserName(username);
         if (Objects.isNull(user) || !user.getPassword().equals(password))
             return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
         if (user.getStatus().equals(UserStatus.BLOCKED)) {
             return new ResponseEntity<>("This user is blocked", HttpStatus.HTTP_401);
-        }if(Objects.nonNull(user.getBranchId())){
-            Branch branch=BranchDao.getById(user.getBranchId());
-            if(branch.getStatus().equals(Status.BLOCKED)){
+        }
+        if (Objects.nonNull(user.getBranchId())) {
+            Branch branch = BranchDao.getById(user.getBranchId());
+            if (branch.getStatus().equals(Status.BLOCKED)) {
                 return new ResponseEntity<>("This user is blocked");
             }
         }
@@ -70,7 +72,7 @@ public class AuthService
         try {
             AuthUser authUser = session.getUser();
             println("Username : " + authUser.getUsername());
-            println("Password : ******* ");
+            println("Password : " + authUser.getPassword());
             println(RESU.get(session.getLanguage()) + " -> " + RESU);
             println(RESP.get(session.getLanguage()) + " -> " + RESP);
             println(RESL.get(session.getLanguage()) + " -> " + RESL);
@@ -88,17 +90,19 @@ public class AuthService
     }
 
     private void resetLanguage(AuthUser authUser) {
-        Language language=Language.EN;
+        Language language = Language.EN;
         String langChoice = Input.getStr(String.format("""
                 Please choose language -> 
-                1. %s
-                2. %s
-                3. %s
+                - %s
+                - %s
+                - %s
                 ? : """, Language.UZ.getName(), Language.EN.getName(), Language.RU.getName()));
-        if ("1".equals(langChoice)) {
+        if (langChoice.equalsIgnoreCase("uz")) {
             language = Language.UZ;
-        }else if ("3".equals(langChoice)) {
-            language= Language.RU;
+        } else if (langChoice.equalsIgnoreCase("ru")) {
+            language = Language.RU;
+        } else if (langChoice.equalsIgnoreCase("en")) {
+            language = Language.EN;
         } else {
             Print.println(Color.RED, "Wrong choice");
             resetLanguage(authUser);
