@@ -8,10 +8,12 @@ import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.branch.Branch;
 import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.auth.AuthService;
 import uz.jl.services.auth.SuperAdminService;
+import uz.jl.services.branchService.BranchService;
 import uz.jl.utils.Color;
 import uz.jl.utils.Input;
 import uz.jl.utils.Print;
@@ -33,10 +35,20 @@ public class SuperAdminUI {
     public static AuthUser sessionUser = Session.getInstance().getUser();
 
     public static void create() {
+        ResponseEntity<ArrayList<Branch>> branchResponse = BranchService.getInstall().list();
+        if (branchResponse.getStatus().equals(HttpStatus.HTTP_204.getCode())) {
+            Print.println(Color.RED, "There is no any branch");
+            return;
+        }
+        BranchUI.showBranch(branchResponse.getData());
+        String branchChoice = getStr("Choose branch: ");
+        ResponseEntity<String> branchIDResponse = BranchService.getInstall().getBranchID(branchChoice);
+        if (branchIDResponse.getStatus().equals(HttpStatus.HTTP_400.getCode())) {
+            Print.println(Color.RED, branchIDResponse.getData());
+        }
+        String branchID = branchIDResponse.getData();
         String username = getStr("Username: ");
         String password = getStr("Password: ");
-        String phoneNumber = getStr("Phone Number: ");
-        Language language = getLanguage();
         String choice = getStr("""
                 1. Submit
                 2. Cancel
@@ -44,13 +56,11 @@ public class SuperAdminUI {
         if (choice.equals("2")) {
             return;
         }
-        AuthUser admin = AuthUser.childBuilder().username(username).password(password).phoneNumber(phoneNumber).
-                language(language).role(Role.ADMIN).status(UserStatus.NON_ACTIVE).createdBy(sessionUser.getId())
-                .createdAt(new Date()).childBuild();
+        AuthUser admin = AuthUser.childBuilder().username(username).password(password).role(Role.ADMIN).branchId(branchID).childBuild();
         // TODO: 12/10/2021 Bank id
-        ResponseEntity<String> response = superAdminService.create(admin);
-        if (response.getStatus().equals(HttpStatus.HTTP_201.getCode())) {
-            Print.println(Color.PURPLE, response.getData());
+        ResponseEntity<String> response1 = superAdminService.create(admin);
+        if (response1.getStatus().equals(HttpStatus.HTTP_201.getCode())) {
+            Print.println(Color.PURPLE, response1.getData());
         }
     }
 

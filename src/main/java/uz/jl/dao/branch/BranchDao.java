@@ -25,12 +25,12 @@ public class BranchDao extends BaseDao<Branch> {
             dao = new BranchDao();
         return dao;
     }
-    private static FRWBranch frwBranch = FRWBranch.getInstance();
+    private final static FRWBranch frwBranch = FRWBranch.getInstance();
 
-    public List<Branch> branch = frwBranch.getAll();
+    public List<Branch> branches = frwBranch.getAll();
 
     public void writeAll() {
-        frwBranch.writeAll(branch);
+        frwBranch.writeAll(branches);
     }
 
 }

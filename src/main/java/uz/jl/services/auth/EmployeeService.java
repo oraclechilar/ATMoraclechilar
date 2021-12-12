@@ -54,8 +54,8 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
 
     public ResponseEntity<String> delete(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
-            if (user.getRole().equals(Role.CLIENT) && !user.getStatus().equals(UserStatus.DELETED) && user.getUsername().equals(username))
-                user.setStatus(UserStatus.DELETED);
+            if (user.getRole().equals(Role.CLIENT) && user.getDeleted() != -1 && user.getUsername().equals(username))
+                user.setDeleted(-1);
             else
                 return new ResponseEntity<>(RED + "User not found!", HttpStatus.HTTP_400);
         }
@@ -65,7 +65,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     public ResponseEntity<String> block(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.CLIENT)
-                    && !user.getStatus().equals(UserStatus.DELETED)
+                    && user.getDeleted() != -1
                     && user.getUsername().equals(username)
                     && !user.getStatus().equals(UserStatus.BLOCKED))
                 user.setStatus(UserStatus.BLOCKED);
@@ -78,7 +78,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     public ResponseEntity<String> unblock(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.CLIENT)
-                    && !user.getStatus().equals(UserStatus.DELETED)
+                    && user.getDeleted() != -1
                     && user.getUsername().equals(username)
                     && user.getStatus().equals(UserStatus.BLOCKED))
                 user.setStatus(UserStatus.ACTIVE);
@@ -91,7 +91,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     public ResponseEntity<String> blockList() {
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.CLIENT)
-                    && !user.getStatus().equals(UserStatus.DELETED)
+                    && user.getDeleted() != -1
                     && user.getStatus().equals(UserStatus.BLOCKED))
                 println(RED, user.getUsername() + " - (blocked)");
         });
@@ -101,7 +101,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     public ResponseEntity<String> list() {
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.CLIENT)
-                    && !user.getStatus().equals(UserStatus.DELETED)
+                    && user.getDeleted() != -1
                     && !user.getStatus().equals(UserStatus.BLOCKED))
                 println(PURPLE, user.getUsername());
             else

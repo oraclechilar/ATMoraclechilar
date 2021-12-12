@@ -92,14 +92,14 @@ public class BranchUI {
         }
     }
 
-
-//    private static Branch getBranch(String name) {
-//        for (Branch branch : branchService.branches) {
-//            if (branch.getName().equalsIgnoreCase(name))
-//                return branch;
-//        }
-//        return null;
-//    }
+    public static void showBranch(ArrayList<Branch> branches) {
+        int i = 1;
+        for (Branch branch : branches) {
+            Print.println(String.format("""
+                            %s -> name: %s""",
+                    i++, branch.getName()));
+        }
+    }
 
 
 }

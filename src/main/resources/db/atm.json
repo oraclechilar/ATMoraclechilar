@@ -2,7 +2,7 @@
   {
     "bankId": "qw1er2ty3ui4op5",
     "type": "UZCARD",
-    "name": "sadasf",
+    "name": "atm1",
     "status": "ACTIVE",
     "latitude": 24.0,
     "longitude": 13.0,
@@ -36,6 +36,45 @@
     },
     "id": "120913209106200KKEMZ6JXMir3G2SAQdNe",
     "createdAt": "Dec 11, 2021, 11:17:13 PM",
+    "deleted": 0
+  },
+  {
+    "bankId": "qw1er2ty3ui4op5",
+    "type": "VISA",
+    "name": "as",
+    "status": "ACTIVE",
+    "latitude": 12.0,
+    "longitude": 12.0,
+    "cassette1": {
+      "id": "53125293942005jFhAKNdVsO1EmVPvun3",
+      "currencyValue": "100",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "5312529461900pd1Mz167UKke8T2nosIe",
+      "currencyValue": "100000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "5312529476600co9VcpwP6ggXjTkEZCZR",
+      "currencyValue": "50000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "5312529490300yxz2QODBHt64pLouCpul",
+      "currencyValue": "10000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "id": "5312529539800mUVxqfA7RyZAiocKrKR4",
+    "createdAt": "Dec 12, 2021, 10:11:40 AM",
     "deleted": 0
   }
 ]

@@ -34,7 +34,7 @@ public class AuthUserDao extends BaseDao<AuthUser> {
 
     public AuthUser findByUserName(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
-            if (!user.getStatus().equals(UserStatus.DELETED) && user.getUsername().equals(username)) return user;
+            if (user.getDeleted() != -1 && user.getUsername().equals(username)) return user;
         }
         // TODO: 12/9/2021 translate please
         return null;

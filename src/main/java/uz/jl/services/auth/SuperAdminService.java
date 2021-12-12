@@ -1,5 +1,6 @@
 package uz.jl.services.auth;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.atm.BaseDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.db.FRWAuthUser;
@@ -18,10 +19,7 @@ import uz.jl.utils.Color;
 import uz.jl.utils.Input;
 import uz.jl.utils.Print;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static uz.jl.utils.Input.getStr;
 
@@ -47,6 +45,8 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
 
     @Override
     public ResponseEntity<String> create(AuthUser admin) {
+        admin.setCreatedAt(new Date());
+        admin.setCreatedBy(Session.getInstance().getUser().getId());
         authUserDao.users.add(admin);
         return new ResponseEntity<>("Succesfully created", HttpStatus.HTTP_201);
     }
