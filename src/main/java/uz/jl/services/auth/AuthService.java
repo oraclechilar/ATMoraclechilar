@@ -7,17 +7,19 @@ import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.services.IBaseCrudService;
 import uz.jl.ui.menus.MenuKey;
 import uz.jl.utils.Color;
+import uz.jl.utils.Input;
+import uz.jl.utils.Print;
 
 import java.util.List;
 import java.util.Objects;
 
-import static uz.jl.ui.menus.MenuKey.RESET_PASSWORD;
-import static uz.jl.ui.menus.MenuKey.RESET_USERNAME;
+import static uz.jl.ui.menus.MenuKey.*;
 import static uz.jl.utils.Color.RED;
 import static uz.jl.utils.Input.getStr;
 import static uz.jl.utils.Print.println;
@@ -66,17 +68,39 @@ public class AuthService
             println("Password : ******* ");
             println("Reset username" + " -> " + RESET_USERNAME);
             println("Reset password" + " -> " + RESET_PASSWORD);
+            println("Reset language" + " -> " + RESET_LANGUAGE);
             String choice = getStr("?:");
             MenuKey key = MenuKey.getByValue(choice);
             switch (key) {
                 case RESET_USERNAME -> resetUsername(authUser);
                 case RESET_PASSWORD -> resetPassword(authUser);
+                case RESET_LANGUAGE -> resetLanguage(authUser);
             }
             return new ResponseEntity<>("success", HttpStatus.HTTP_200);
         } catch (APIException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.getStatusByCode(e.getCode()));
         }
     }
+
+    private void resetLanguage(AuthUser authUser) {
+        Language language=Language.EN;
+        String langChoice = Input.getStr(String.format("""
+                Please choose language -> 
+                1. %s
+                2. %s
+                3. %s
+                ? : """, Language.UZ.getName(), Language.EN.getName(), Language.RU.getName()));
+        if ("1".equals(langChoice)) {
+            language = Language.UZ;
+        }else if ("3".equals(langChoice)) {
+            language= Language.RU;
+        } else {
+            Print.println(Color.RED, "Wrong choice");
+            resetLanguage(authUser);
+        }
+        session.setLanguage(language);
+    }
+
 
     private void resetUsername(AuthUser authUser) throws APIException {
         String password1 = getStr("Enter old password : ");

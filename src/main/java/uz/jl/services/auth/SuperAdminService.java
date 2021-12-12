@@ -1,26 +1,17 @@
 package uz.jl.services.auth;
 
-import uz.jl.dao.atm.BaseDao;
 import uz.jl.dao.auth.AuthUserDao;
-import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
-import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.services.EditEntity;
 import uz.jl.services.IBaseCrudService;
-import uz.jl.ui.SuperAdminUI;
-import uz.jl.utils.Color;
-import uz.jl.utils.Input;
-import uz.jl.utils.Print;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.utils.Input.getStr;

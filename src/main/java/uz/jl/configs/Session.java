@@ -3,6 +3,7 @@ package uz.jl.configs;
 import lombok.Getter;
 import lombok.Setter;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.settings.Language;
 
 import java.util.Objects;
 
@@ -13,6 +14,9 @@ public class Session {
     @Getter
     @Setter
     private AuthUser user;
+    @Getter
+    @Setter
+    private Language language;
     private static Session session;
 
     private Session() {

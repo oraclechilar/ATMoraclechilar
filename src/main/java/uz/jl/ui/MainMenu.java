@@ -2,6 +2,7 @@ package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
 import uz.jl.configs.Loaders;
+import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.branch.BranchDao;
@@ -59,7 +60,6 @@ public class MainMenu {
             case BLOCK_CLIENT -> EmployeeUI.block();
             case UN_BLOCK_CLIENT -> EmployeeUI.unBlock();
             case BLOCK_LIST_CLIENT -> EmployeeUI.blockList();
-            //case CREATE_CARD -> EmployeeUI.createCard();
 
             case CREATE_BRANCH -> BranchUI.create();
             case UPDATE_BRANCH -> BranchUI.update();
@@ -78,11 +78,11 @@ public class MainMenu {
             case BLOCK_LIST_ATM -> AtmUI.blockList();
 
             case EXIT -> {
-                // Hamma userlarni filega yozib qo'yadi
                 AuthUserDao.getInstance().writeAll();
                 ATMDao.getInstance().writeAll();
                 BranchDao.getInstance().writeAll();
                 CardDao.getInstance().writeAll();
+                PassportDao.getInstance().writeAll();
                 Print.println(Color.YELLOW, "Good bye");
                 return;
             }

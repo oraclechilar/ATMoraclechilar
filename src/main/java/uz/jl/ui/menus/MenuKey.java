@@ -50,6 +50,7 @@ public enum MenuKey{
     BLOCK_LIST_CLIENT,
     RESET_USERNAME,
     RESET_PASSWORD,
+    RESET_LANGUAGE,
     LOGIN,
     ATM_SERVICE,
     PROFILE,

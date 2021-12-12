@@ -10,6 +10,8 @@ import uz.jl.utils.Print;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static uz.jl.utils.Color.GREEN;
+
 /**
  * @author Elmurodov Javohir, Mon 11:30 AM. 12/6/2021
  */
@@ -87,6 +89,6 @@ public class Menu {
     }
 
     public static void show() {
-        Menu.menus().forEach((k, v) -> Print.println(k + " -> " + v));
+        Menu.menus().forEach((k, v) -> Print.println(GREEN,k + " -> " + v));
     }
 }

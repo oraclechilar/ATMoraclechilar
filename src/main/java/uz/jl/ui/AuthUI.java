@@ -1,6 +1,7 @@
 package uz.jl.ui;
 
 import uz.jl.configs.Session;
+import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.branch.BranchDao;
@@ -31,21 +32,9 @@ public class AuthUI extends BaseUI {
         ATMDao.getInstance().writeAll();
         BranchDao.getInstance().writeAll();
         CardDao.getInstance().writeAll();
+        PassportDao.getInstance().writeAll();
         service.logout();
 
-    }
-
-    public static void register() {
-        String username = Input.getStr("username : ");
-        String password = Input.getStr("password : ");
-        String serial = Input.getStr("password serial :");
-        String number = Input.getStr("password number : ");
-        String gender = Input.getStr("gender :");
-        String firstName = Input.getStr("firstname : ");
-        String lastName = Input.getStr("lastname : ");
-        String fatherName = Input.getStr("father name : ");
-        ResponseEntity<String> response = service.register(username, password, serial,
-                number, gender, firstName, lastName, fatherName);
     }
 
     public static void profile() {

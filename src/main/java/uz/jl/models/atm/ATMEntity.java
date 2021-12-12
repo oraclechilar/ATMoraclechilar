@@ -12,7 +12,7 @@ import uz.jl.models.Auditable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(of = {"name", "type"})
+@ToString(of = {"name", "type","status","\n","cassette1","cassette2","cassette3","cassette4"})
 public class ATMEntity extends Auditable {
     private String bankId;
     private ATMType type;

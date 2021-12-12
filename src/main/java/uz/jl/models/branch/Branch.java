@@ -3,6 +3,7 @@ package uz.jl.models.branch;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import uz.jl.enums.atm.Status;
 import uz.jl.models.Auditable;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@ToString(of = {"name","status"})
 public class Branch extends Auditable {
     private String name;
     private Status status;

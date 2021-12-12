@@ -1,6 +1,8 @@
 package uz.jl.ui;
 
 import uz.jl.dao.atm.ATMDao;
+import uz.jl.dao.branch.BranchDao;
+import uz.jl.dao.card.CardDao;
 import uz.jl.dao.db.FRWAtm;
 import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.atm.ATMStatus;
@@ -12,6 +14,8 @@ import uz.jl.mapper.ATMMapper;
 import uz.jl.models.atm.ATMEntity;
 import uz.jl.models.atm.Cassette;
 import uz.jl.models.auth.AuthUser;
+import uz.jl.models.branch.Branch;
+import uz.jl.models.card.Card;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.atm.AtmOperations;
 import uz.jl.services.atm.AtmService;
@@ -23,19 +27,23 @@ import uz.jl.utils.Print;
 import java.util.List;
 import java.util.Objects;
 
+import static uz.jl.utils.Color.RED;
 import static uz.jl.utils.Input.getStr;
 
 /**
  * @author Elmurodov Javohir, Wed 12:11 PM. 12/8/2021
  */
-public class AtmUI extends BaseUI{
+public class AtmUI extends BaseUI {
     static AtmService service = AtmService.getInstance(ATMDao.getInstance(), ATMMapper.getInstance());
 
     public static void menu() {
+        for (ATMEntity atm : ATMDao.getInstance().atms) {
+            Print.println(atm);
+        }
         String name = getStr("Atm name =");
         ATMEntity atm = service.get(name);
         if (Objects.isNull(atm)) {
-            Print.println(Color.RED, "ATM Not found");
+            Print.println(RED, "ATM Not found");
             return;
         }
         if (atm.getType().equals(ATMType.UZCARD) || atm.getType().equals(ATMType.HUMO)) {
@@ -47,10 +55,10 @@ public class AtmUI extends BaseUI{
     }
 
     public static void create() {
-        String name = getStr("name = ");
-        ATMEntity atm = service.get(name);
+        String atmName = getStr("atm name = ");
+        ATMEntity atm = service.get(atmName);
         if (Objects.nonNull(atm)) {
-            Print.println(Color.RED, "Atm name is available");
+            Print.println(RED, "Atm name is available");
             return;
         }
         ATMType.listType();
@@ -92,8 +100,12 @@ public class AtmUI extends BaseUI{
             cassette3 = new Cassette("50000", CassetteStatus.ACTIVE, 100, 0);
             cassette4 = new Cassette("10000", CassetteStatus.ACTIVE, 100, 0);
         }
+        Print.println("Cassette1"+cassette1);
+        Print.println("Cassette2"+cassette2);
+        Print.println("Cassette3"+cassette3);
+        Print.println("Cassette4"+cassette4);
 
-        ATMEntity newAtm = new ATMEntity("qw1er2ty3ui4op5", atmType, name, ATMStatus.ACTIVE, aDouble, bDouble, cassette1, cassette2, cassette3, cassette4);
+        ATMEntity newAtm = new ATMEntity("165137499323900mdUo3Po6fpoDzdUvpWqK", atmType, atmName, ATMStatus.ACTIVE, aDouble, bDouble, cassette1, cassette2, cassette3, cassette4);
         newAtm.setId(BaseUtils.genId());
         ResponseEntity<String> atmEntityResponseEntity = service.create(newAtm);
         showResponse(atmEntityResponseEntity);
@@ -143,7 +155,7 @@ public class AtmUI extends BaseUI{
     public static void blockList() {
         List<ATMEntity> all = service.getAll();
         for (ATMEntity atm : all) {
-            if (atm.getDeleted() != 1 && atm.getStatus().equals(ATMStatus.BLOCKED)) Print.println(Color.RED, atm);
+            if (atm.getDeleted() != 1 && atm.getStatus().equals(ATMStatus.BLOCKED)) Print.println(RED, atm);
         }
     }
 
@@ -169,12 +181,23 @@ public class AtmUI extends BaseUI{
     public static void showAll() {
         List<ATMEntity> all = service.getAll();
         for (ATMEntity atm : all) {
-            if (atm.getDeleted() != 1 && atm.getStatus().equals(ATMStatus.BLOCKED)) Print.println(Color.RED, atm);
+            if (atm.getDeleted() != 1 && atm.getStatus().equals(ATMStatus.BLOCKED)) Print.println(RED, atm);
             else Print.println(Color.CYAN, atm);
         }
     }
 
     private static void uzMenu() {
+        String cardNumber = getStr("Enter card number : ");
+        Card card = CardDao.getByCardNumber(cardNumber);
+        if (card == null) {
+            Print.println(RED, "Card not found ");
+            menu();
+        }
+        String password = getStr("Enter card password : ");
+        if(!card.getPassword().equals(password)){
+            Print.println(RED,"Bad credentials");
+            menu();
+        }
         Print.println(Color.PURPLE, "1. Turn the sms-service on");
         Print.println(Color.PURPLE, "2. Turn the sms-service of");
         Print.println(Color.PURPLE, "3. Show balance");
@@ -191,7 +214,7 @@ public class AtmUI extends BaseUI{
                 return;
             }
             default -> {
-                Print.println(Color.RED, "Wrong menu");
+                Print.println(RED, "Wrong menu");
                 return;
             }
         }
@@ -217,7 +240,7 @@ public class AtmUI extends BaseUI{
                 return;
             }
             default -> {
-                Print.println(Color.RED, "Wrong menu");
+                Print.println(RED, "Wrong menu");
                 return;
             }
         }

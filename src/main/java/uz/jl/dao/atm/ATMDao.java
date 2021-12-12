@@ -2,11 +2,9 @@ package uz.jl.dao.atm;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import uz.jl.dao.BaseDao;
 import uz.jl.dao.db.FRWAtm;
-import uz.jl.dao.db.FRWAuthUser;
-import uz.jl.enums.atm.ATMType;
 import uz.jl.models.atm.ATMEntity;
-import uz.jl.models.auth.AuthUser;
 
 import java.util.List;
 import java.util.Objects;

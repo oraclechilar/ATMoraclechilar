@@ -4,8 +4,11 @@ package uz.jl.services;
  * @author Elmurodov Javohir, Mon 10:52 AM. 12/6/2021
  */
 
-import uz.jl.dao.atm.BaseDao;
+import uz.jl.dao.BaseDao;
+import uz.jl.enums.extras.Gender;
 import uz.jl.models.BaseEntity;
+import uz.jl.models.auth.AuthUser;
+import uz.jl.response.ResponseEntity;
 
 /**
  * @param <E> E -> Entity
@@ -21,5 +24,4 @@ public abstract class BaseAbstractService
         this.repository = repository;
         this.mapper = mapper;
     }
-
 }

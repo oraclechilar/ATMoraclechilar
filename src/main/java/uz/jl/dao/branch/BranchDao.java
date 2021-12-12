@@ -2,10 +2,8 @@ package uz.jl.dao.branch;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uz.jl.dao.atm.BaseDao;
-import uz.jl.dao.db.FRWAtm;
+import uz.jl.dao.BaseDao;
 import uz.jl.dao.db.FRWBranch;
-import uz.jl.models.atm.ATMEntity;
 import uz.jl.models.branch.Branch;
 
 import java.util.List;
@@ -27,10 +25,18 @@ public class BranchDao extends BaseDao<Branch> {
     }
     private static FRWBranch frwBranch = FRWBranch.getInstance();
 
-    public List<Branch> branch = frwBranch.getAll();
+    public List<Branch> branches = frwBranch.getAll();
+
+    public static Branch getByname(String branchName) {
+        for (Branch branch : BranchDao.getInstance().branches) {
+            if(branch.getName().equals(branchName))
+                return branch;
+        }
+        return null;
+    }
 
     public void writeAll() {
-        frwBranch.writeAll(branch);
+        frwBranch.writeAll(branches);
     }
 
 }

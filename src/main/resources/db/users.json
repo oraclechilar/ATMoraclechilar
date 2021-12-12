@@ -3,7 +3,7 @@
     "username": "super",
     "password": "123",
     "role": "SUPER_ADMIN",
-    "status": "NON_ACTIVE",
+    "status": "ACTIVE",
     "phoneNumber": "+998904554550",
     "id": "13960728412660009IfigCZAVL4occszzqxu",
     "createdAt": "Dec 10, 2021, 12:01:01 PM",
@@ -56,7 +56,7 @@
     "username": "emp1",
     "password": "123",
     "role": "EMPLOYEE",
-    "status": "NON_ACTIVE",
+    "status": "ACTIVE",
     "phoneNumber": "+998972141423",
     "id": "1163923958695008fgeLVgyCQWavQtlOKA0",
     "createdAt": "Dec 11, 2021, 10:01:52 PM",
@@ -103,6 +103,27 @@
     "phoneNumber": "+998971234560",
     "id": "159778750236400lyB99okvao0Xy56klclK",
     "createdAt": "Dec 12, 2021, 10:04:57 AM",
+    "deleted": 0
+  },
+  {
+    "username": "adadad",
+    "role": "CLIENT",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998971234567",
+    "id": "168881600035900cQdsrWH5aeuNEOM63dgz",
+    "createdAt": "Dec 12, 2021, 12:36:40 PM",
+    "deleted": 0
+  },
+  {
+    "username": "admin21",
+    "password": "123",
+    "role": "ADMIN",
+    "status": "BLOCKED",
+    "phoneNumber": "+987123456",
+    "language": "UZ",
+    "id": "1691467665034006OLNIuzUu4eTLjIX3lXy",
+    "createdAt": "Dec 12, 2021, 12:41:05 PM",
+    "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
     "deleted": 0
   }
 ]

@@ -36,16 +36,8 @@ public class SuperAdminUI {
         String username = getStr("Username: ");
         String password = getStr("Password: ");
         String phoneNumber = getStr("Phone Number: ");
-        Language language = getLanguage();
-        String choice = getStr("""
-                1. Submit
-                2. Cancel
-                 ? :  """);
-        if (choice.equals("2")) {
-            return;
-        }
         AuthUser admin = AuthUser.childBuilder().username(username).password(password).phoneNumber(phoneNumber).
-                language(language).role(Role.ADMIN).status(UserStatus.NON_ACTIVE).createdBy(sessionUser.getId())
+                role(Role.ADMIN).status(UserStatus.NON_ACTIVE).createdBy(sessionUser.getId())
                 .createdAt(new Date()).childBuild();
         // TODO: 12/10/2021 Bank id
         ResponseEntity<String> response = superAdminService.create(admin);

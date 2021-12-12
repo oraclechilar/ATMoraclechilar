@@ -1,16 +1,19 @@
 package uz.jl.services.auth;
 
 import uz.jl.configs.AppConfig;
+import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.card.CardDao;
 import uz.jl.enums.atm.Status;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.card.CardType;
+import uz.jl.enums.extras.Gender;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
 import uz.jl.models.card.Card;
+import uz.jl.models.personal.Passport;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.ui.EmployeeUI;
@@ -21,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.utils.Color.*;
+import static uz.jl.utils.Input.getStr;
 import static uz.jl.utils.Print.println;
 
 public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUserMapper> {
@@ -36,20 +40,24 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         return instance;
     }
 
-    public ResponseEntity<String> create(String username, String password, String phoneNumber) {
+    public ResponseEntity<String> create(String username, String phoneNumber) {
         AuthUser temp = repository.findByUserName(username);
         if (Objects.nonNull(temp)) {
             return new ResponseEntity<>("Username already taken!");
         }
         AuthUser user = new AuthUser();
         user.setUsername(username);
-        user.setPassword(password);
         user.setStatus(UserStatus.NON_ACTIVE);
         user.setPhoneNumber(phoneNumber);
         user.setRole(Role.CLIENT);
         user.setLanguage(AppConfig.language);
         user.setCreatedAt(new Date());
-        EmployeeUI.createCard(user);
+        EmployeeUI.createPassport(user);
+        Print.println(BLUE+"Would you create card ? (yes/no)");
+        String choice=getStr("...");
+        if(choice.startsWith("y")){
+            EmployeeUI.createCard(user);
+        }
         AuthUserDao.getInstance().users.add(user);
         return new ResponseEntity<>(BLUE + "Thank you for using our bank :)");
     }
@@ -121,7 +129,18 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         card.setPan(pan);
         card.setBankId("23edqdwwstq12tvJPOwqm1w");
         CardDao.getInstance().cards.add(card);
-        Print.println("Your card number :"+pan);
-        return new ResponseEntity<>("Success!");
+        Print.println("Your card number :" + pan);
+        return new ResponseEntity<>(PURPLE + "Success!");
     }
+
+    public ResponseEntity<String> createPassport(String serial, String number, Gender gender1, String firstName, String lastName, String fatherName, AuthUser user) {
+        Passport passport = Passport.childBuilder().serial(serial).
+                number(number).gender(gender1).firstName(firstName).lastName(lastName)
+                .fatherName(fatherName).ownerId(user.getId()).build();
+        PassportDao.getInstance().passports.add(passport);
+        return new ResponseEntity<>(PURPLE + "Success");
+    }
+
+    ;
+
 }

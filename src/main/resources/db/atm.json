@@ -37,5 +37,44 @@
     "id": "120913209106200KKEMZ6JXMir3G2SAQdNe",
     "createdAt": "Dec 11, 2021, 11:17:13 PM",
     "deleted": 0
+  },
+  {
+    "bankId": "qw1er2ty3ui4op5",
+    "type": "HUMO",
+    "name": "jyhkyu",
+    "status": "ACTIVE",
+    "latitude": 12.0,
+    "longitude": 14.0,
+    "cassette1": {
+      "id": "16941707158590084yNiNVE2TOA96Tqn2VX",
+      "currencyValue": "100000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "1694170716295008rcbAfNsTUVwXqWzlONw",
+      "currencyValue": "50000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "169417071642600Iy6xsE781410PwKp8L2J",
+      "currencyValue": "10000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "169417071653600HQ7qCINA9IBPuehvgHwq",
+      "currencyValue": "5000",
+      "status": "ACTIVE",
+      "currencyCount": 1000,
+      "deleted": 0
+    },
+    "id": "169417071687600U0XwoRKkKKAxmsaEeSu3",
+    "createdAt": "Dec 12, 2021, 12:45:35 PM",
+    "deleted": 0
   }
 ]

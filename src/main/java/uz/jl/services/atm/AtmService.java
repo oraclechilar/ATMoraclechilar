@@ -76,6 +76,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
 
 
     public ResponseEntity<String> update(ATMEntity atmEntity) {
+        Print.println(atmEntity);
         Integer integer = AtmUI.updateMenu();
         if (integer.equals(1)) {
             return updateName(atmEntity);

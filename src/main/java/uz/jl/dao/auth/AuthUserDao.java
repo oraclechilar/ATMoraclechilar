@@ -2,13 +2,11 @@ package uz.jl.dao.auth;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uz.jl.dao.atm.BaseDao;
+import uz.jl.dao.BaseDao;
 import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.auth.UserStatus;
-import uz.jl.exceptions.APIException;
 import uz.jl.models.auth.AuthUser;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

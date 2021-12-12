@@ -1,13 +1,11 @@
 [
   {
-    "pan": "8600764166686546",
     "password": "2107",
-    "type": "UZCARD",
-    "status": "ACTIVE",
     "bankId": "23edqdwwstq12tvJPOwqm1w",
-    "holderId": "159778750236400lyB99okvao0Xy56klclK",
-    "id": "159788605234300dt5qu2rlmUnBrmJukWnL",
-    "createdAt": "Dec 12, 2021, 10:05:07 AM",
+    "role": "ANONYMOUS",
+    "status": "ACTIVE",
+    "id": "168912742057400SdtKHlNNvfEay1Xbg4yA",
+    "createdAt": "Dec 12, 2021, 12:37:11 PM",
     "deleted": 0
   }
 ]
