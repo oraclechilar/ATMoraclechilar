@@ -21,6 +21,10 @@ public class BaseUtils {
             pan+=CardType.UNION_PAY.getCode();
         else if(type.equals(CardType.VISA))
             pan+=CardType.VISA.getCode();
+        else if(type.equals(CardType.COBAGE))
+            pan+=CardType.COBAGE.getCode();
+        else if(type.equals(CardType.MASTER_CARD))
+            pan+=CardType.MASTER_CARD.getCode();
         return pan+RandomStringUtils.random(12, false, true);
     }
     public static Double toDouble(String text) {

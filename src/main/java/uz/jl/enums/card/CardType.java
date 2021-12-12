@@ -15,7 +15,8 @@ public enum CardType {
     MASTER_CARD("4853"),
     VISA("4735"),
     COBAGE("6330"),
-    UNION_PAY("6262");
+    UNION_PAY("6262"),
+    UNDEFINED("0");
     private final String code;
 
     public static CardType getType(String type) {
@@ -23,6 +24,6 @@ public enum CardType {
             if (type.equalsIgnoreCase(value.name()))
                 return value;
         }
-        return null;
+        return UNDEFINED;
     }
 }

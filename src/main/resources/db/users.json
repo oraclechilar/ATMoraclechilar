@@ -106,5 +106,15 @@
     "id": "120845363775300JlrWiWlaya3exfDxeAT3",
     "createdAt": "Dec 11, 2021, 11:16:05 PM",
     "deleted": 0
+  },
+  {
+    "username": "clinet1",
+    "password": "123",
+    "role": "CLIENT",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998971234560",
+    "id": "159778750236400lyB99okvao0Xy56klclK",
+    "createdAt": "Dec 12, 2021, 10:04:57 AM",
+    "deleted": 0
   }
 ]

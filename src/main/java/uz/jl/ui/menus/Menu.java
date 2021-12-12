@@ -66,6 +66,15 @@ public class Menu {
             menus.put("Update Atm", MenuKey.UPDATE_ATM);
 
             menus.put("Atm List", MenuKey.LIST_ATM);
+            menus.put("Create client",MenuKey.CREATE_CLIENT);
+
+            menus.put("List client",MenuKey.LIST_CLIENT);
+            menus.put("Block list client",MenuKey.BLOCK_LIST_CLIENT);
+
+            menus.put("Delete client",MenuKey.DELETE_CLIENT);
+            menus.put("Block client",MenuKey.BLOCK_CLIENT);
+
+            menus.put("Unblock client",MenuKey.UN_BLOCK_CLIENT);
         } else if (Role.ANONYMOUS.equals(role) || userStatus.equals(UserStatus.NON_ACTIVE)) {
             menus.put("Login", MenuKey.LOGIN);
             menus.put("ATM service",MenuKey.ATM_SERVICE);
