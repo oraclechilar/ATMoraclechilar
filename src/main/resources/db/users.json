@@ -34,7 +34,7 @@
     "username": "adm1",
     "password": "123",
     "role": "ADMIN",
-    "status": "NON_ACTIVE",
+    "status": "ACTIVE",
     "phoneNumber": "+998991234512",
     "id": "116304440745900QyC9xMYHZlv6Jq49pEjw",
     "createdAt": "Dec 11, 2021, 10:00:25 PM",

@@ -1,8 +1,10 @@
 [
   {
     "name": "branch1",
-    "status": "ACTIVE",
-    "id": "155225733932800nZ2mBfm1udCV1f9JyMYf",
+    "status": "BLOCKED",
+    "id": "5863142171300Izk1BdlGlt97ls0ZKP7d",
+    "createdAt": "Dec 12, 2021, 10:20:51 AM",
+    "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
     "deleted": 0
   },
   {

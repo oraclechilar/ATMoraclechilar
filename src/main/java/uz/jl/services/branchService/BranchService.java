@@ -1,6 +1,7 @@
 package uz.jl.services.branchService;
 
 import uz.jl.configs.Session;
+import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.db.FRWBranch;
 import uz.jl.enums.atm.Status;
 import uz.jl.enums.http.HttpStatus;
@@ -21,15 +22,14 @@ public class BranchService {
             install = new BranchService();
         return install;
     }
-
-    public List<Branch> branches = FRWBranch.getInstance().getAll();
+    BranchDao branchDao = BranchDao.getInstance();
 
     public ResponseEntity<String> create(Branch branch) {
         branch.setStatus(Status.ACTIVE);
         // TODO: 12/12/2021 Bank id bank yaratgandan keyin yozib qo'yamiz
         branch.setCreatedAt(new Date());
         branch.setCreatedBy(Session.getInstance().getUser().getId());
-        branches.add(branch);
+        branchDao.branches.add(branch);
         return new ResponseEntity<>("Successfully created branch", HttpStatus.HTTP_201);
     }
 
@@ -69,17 +69,40 @@ public class BranchService {
     }
 
     private Branch findByName(String name) {
-        for (Branch branch : branches) {
+        for (Branch branch : branchDao.branches) {
             if (branch.getName().equalsIgnoreCase(name))
                 return branch;
         }
         return null;
     }
     public boolean isAvailable(String name) {
-        for (Branch branch : branches) {
+        for (Branch branch : branchDao.branches) {
             if (branch.getName().equalsIgnoreCase(name))
                 return false;
         }
         return true;
     }
+
+
+    public ResponseEntity<String> getBranchID(String choice) {
+        int choiceN = castRequest(choice);
+        if (choiceN == -1) {
+            return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
+        }
+        return new ResponseEntity<>(getBranch().get(choiceN).getId(), HttpStatus.HTTP_202);
+    }
+    private int castRequest(String choice) {
+        int choiceN;
+        try {
+            choiceN = Integer.parseInt(choice);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+        if (choiceN > getBranch().size()) {
+            return -1;
+        }
+        return choiceN - 1;
+    }
+
+
 }

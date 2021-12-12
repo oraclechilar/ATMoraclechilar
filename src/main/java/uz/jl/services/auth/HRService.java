@@ -57,9 +57,9 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
 
     public ResponseEntity<String> delete(String username, String password) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
-            if (user.getRole().equals(Role.EMPLOYEE) && !user.getStatus().equals(UserStatus.DELETED) && user.getUsername().equals(username)
+            if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username)
                     && user.getPassword().equals(password))
-                user.setStatus(UserStatus.DELETED);
+                user.setDeleted(-1);
             else
                 return new ResponseEntity<>(RED + "User not found!", HttpStatus.HTTP_400);
         }
@@ -68,7 +68,7 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
 
     public ResponseEntity<String> block(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
-            if (user.getRole().equals(Role.EMPLOYEE) && !user.getStatus().equals(UserStatus.DELETED) && user.getUsername().equals(username) &&
+            if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username) &&
                     !user.getStatus().equals(UserStatus.BLOCKED))
                 user.setStatus(UserStatus.BLOCKED);
             else
@@ -79,7 +79,7 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
 
     public ResponseEntity<String> unblock(String username) {
         for (AuthUser user : AuthUserDao.getInstance().users) {
-            if (user.getRole().equals(Role.EMPLOYEE) && !user.getStatus().equals(UserStatus.DELETED) && user.getUsername().equals(username) &&
+            if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username) &&
                     user.getStatus().equals(UserStatus.BLOCKED))
                 user.setStatus(UserStatus.ACTIVE);
             else
