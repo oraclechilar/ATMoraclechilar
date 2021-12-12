@@ -3,10 +3,12 @@ package uz.jl.ui;
 import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.enums.auth.Role;
+import uz.jl.enums.card.CardType;
 import uz.jl.mapper.AuthUserMapper;
 import uz.jl.models.auth.AuthUser;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.auth.EmployeeService;
+import uz.jl.utils.BaseUtils;
 import uz.jl.utils.Input;
 import uz.jl.utils.Print;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 import static uz.jl.ui.BaseUI.showResponse;
 import static uz.jl.utils.Color.BLUE;
+import static uz.jl.utils.Color.RED;
 
 
 /**
@@ -61,9 +64,14 @@ public class EmployeeUI {
     }
 
     public static void createCard(AuthUser user) {
-        String cardType = Input.getStr(BLUE + "Enter cardType(Uzcard/Humo/Mastercard/Visa/Cobage/UnionPay): ");
+        String cardType = Input.getStr(BLUE + "Enter cardType(Uzcard/Humo/Master_card/Cobage/Union_Pay/Visa): ");
         String password = Input.getStr(BLUE + "Enter password for card: ");
-        ResponseEntity<String> response = clientService.createCard(cardType, password, user);
+        CardType cardType1=CardType.getType(cardType);
+        if(cardType1.equals(CardType.UNDEFINED)){
+            Print.println(RED,"Card type not found");
+        }
+        String pan= BaseUtils.createPan(cardType1);
+        ResponseEntity<String> response = clientService.createCard(cardType1, password, user,pan);
         showResponse(response);
     }
 }

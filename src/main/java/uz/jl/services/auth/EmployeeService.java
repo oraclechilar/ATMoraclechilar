@@ -2,6 +2,7 @@ package uz.jl.services.auth;
 
 import uz.jl.configs.AppConfig;
 import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.card.CardDao;
 import uz.jl.enums.atm.Status;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
@@ -13,6 +14,7 @@ import uz.jl.models.card.Card;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.ui.EmployeeUI;
+import uz.jl.utils.Print;
 
 import java.util.Date;
 import java.util.List;
@@ -110,17 +112,16 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         return new ResponseEntity<>("");
     }
 
-    public ResponseEntity<String> createCard(String cardType, String password, AuthUser user) {
+    public ResponseEntity<String> createCard(CardType cardType, String password, AuthUser user, String pan) {
         Card card = new Card();
         card.setStatus(Status.ACTIVE);
         card.setPassword(password);
         card.setHolderId(user.getId());
-        CardType type = ExtraServices.getCardType(cardType);
-        if (Objects.isNull(type)) {
-            return new ResponseEntity<>("Wrong card type,Please try again!", HttpStatus.HTTP_400);
-        }
-        card.setType(type);
+        card.setType(cardType);
+        card.setPan(pan);
         card.setBankId("23edqdwwstq12tvJPOwqm1w");
+        CardDao.getInstance().cards.add(card);
+        Print.println("Your card number :"+pan);
         return new ResponseEntity<>("Success!");
     }
 }
