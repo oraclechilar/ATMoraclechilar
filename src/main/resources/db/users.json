@@ -3,7 +3,7 @@
     "username": "super",
     "password": "123",
     "role": "SUPER_ADMIN",
-    "status": "NON_ACTIVE",
+    "status": "ACTIVE",
     "phoneNumber": "+998904554550",
     "language": "EN",
     "id": "13960728412660009IfigCZAVL4occszzqxu",
@@ -72,13 +72,13 @@
     "username": "adm2",
     "password": "123",
     "role": "ADMIN",
-    "status": "ACTIVE",
+    "status": "NON_ACTIVE",
     "phoneNumber": "+998971234567",
     "language": "EN",
     "id": "120145447281700osIKJWvRrJPt55vkB5Wo",
     "createdAt": "Dec 11, 2021, 11:04:26 PM",
     "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
-    "deleted": 0
+    "deleted": -1
   },
   {
     "username": "hr2",
@@ -137,88 +137,14 @@
     "deleted": 0
   },
   {
-    "username": "client13",
-    "role": "CLIENT",
-    "status": "NON_ACTIVE",
-    "phoneNumber": "+9987612324",
-    "language": "EN",
-    "id": "171809344133500nrUhQnSDztL3NVaIG33d",
-    "createdAt": "Dec 12, 2021, 1:25:28 PM",
-    "deleted": 0
-  },
-  {
-    "username": "sgrgd",
-    "role": "CLIENT",
-    "status": "NON_ACTIVE",
-    "phoneNumber": "24215346",
-    "language": "EN",
-    "id": "178246475014800mNAfen87o0yDxNFfxUXH",
-    "createdAt": "Dec 12, 2021, 3:12:45 PM",
-    "deleted": 0
-  },
-  {
-    "username": "admin5",
-    "password": "123",
-    "branchId": "Missmatch input",
-    "role": "ADMIN",
-    "language": "EN",
-    "id": "203512974606500nRHikMxY4IUnL74kd4pJ",
-    "createdAt": "Dec 12, 2021, 10:28:53 PM",
-    "deleted": 0
-  },
-  {
-    "username": "admin10",
-    "password": "123",
-    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
-    "role": "ADMIN",
-    "language": "EN",
-    "id": "204444661663100YvY1J2Ooxt3Wv6EQtJEE",
-    "createdAt": "Dec 12, 2021, 10:30:38 PM",
-    "deleted": 0
-  },
-  {
-    "username": "admin10",
+    "username": "ahr",
     "password": "123",
     "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
     "role": "ADMIN",
     "status": "ACTIVE",
-    "language": "EN",
-    "id": "204546908144300RmhZP0nvBZs2CUYK2XT0",
-    "createdAt": "Dec 12, 2021, 10:31:36 PM",
-    "deleted": 0
-  },
-  {
-    "username": "admin99",
-    "password": "123",
-    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
-    "role": "ADMIN",
-    "status": "NON_ACTIVE",
-    "language": "EN",
-    "id": "204598586564500lKpDNffH7rfiugUWXb4b",
-    "createdAt": "Dec 12, 2021, 10:40:11 PM",
-    "deleted": 0
-  },
-  {
-    "username": "emp1",
-    "password": "123",
-    "role": "EMPLOYEE",
-    "status": "ACTIVE",
-    "phoneNumber": "+998972141423",
-    "language": "EN",
-    "id": "1163923958695008fgeLVgyCQWavQtlOKA0",
-    "createdAt": "Dec 11, 2021, 10:01:52 PM",
-    "deleted": 0
-  },
-  {
-    "username": "admin100",
-    "password": "123",
-    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
-    "role": "ADMIN",
-    "status": "ACTIVE",
-    "phoneNumber": "+123124124",
-    "language": "EN",
-    "id": "205116873726400zdMxnYle5P1oHV3Vqbel",
-    "createdAt": "Dec 12, 2021, 10:40:33 PM",
+    "phoneNumber": "+998903061599",
+    "id": "38432812392300kRisJ8d1niqPppCIplQt",
+    "createdAt": "Dec 13, 2021, 1:20:08 AM",
     "createdBy": "super",
     "deleted": 0
   }

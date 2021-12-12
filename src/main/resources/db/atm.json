@@ -63,14 +63,14 @@
       "id": "169417071642600Iy6xsE781410PwKp8L2J",
       "currencyValue": 10000,
       "status": "ACTIVE",
-      "currencyCount": 100,
+      "currencyCount": 99,
       "deleted": 0
     },
     "cassette4": {
       "id": "169417071653600HQ7qCINA9IBPuehvgHwq",
       "currencyValue": 5000,
       "status": "ACTIVE",
-      "currencyCount": 1000,
+      "currencyCount": 999,
       "deleted": 0
     },
     "id": "169417071687600U0XwoRKkKKAxmsaEeSu3",

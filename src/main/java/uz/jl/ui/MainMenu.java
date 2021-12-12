@@ -1,13 +1,11 @@
 package uz.jl.ui;
 
 import uz.jl.configs.AppConfig;
-import uz.jl.configs.Loaders;
 import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.card.CardDao;
-import uz.jl.exceptions.APIException;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;
 import uz.jl.utils.Color;
@@ -28,54 +26,54 @@ public class MainMenu {
         MenuKey key = MenuKey.getByValue(choice);
 
         switch (key) {
-            case LOGIN -> AuthUI.login();
-            case ATM_SERVICE -> AtmUI.menu();
-            case PROFILE -> AuthUI.profile();
-            case LOGOUT -> AuthUI.logout();
+            case CRAD -> SuperAdminUI.create();
+            case LGN -> AuthUI.login();
+            case ATM -> AtmUI.menu();
+            case PR -> AuthUI.profile();
+            case LGT -> AuthUI.logout();
 
-            case CREATE_ADMIN -> SuperAdminUI.create();
-            case DELETE_ADMIN -> SuperAdminUI.delete();
-            case LIST_ADMIN -> SuperAdminUI.list();
-            case BLOCK_ADMIN -> SuperAdminUI.block();
-            case UN_BLOCK_ADMIN -> SuperAdminUI.unBlock();
-            case BLOCK_LIST_ADMIN -> SuperAdminUI.blockList();
+            case DELAD -> SuperAdminUI.delete();
+            case LISTAD -> SuperAdminUI.list();
+            case BLADM -> SuperAdminUI.block();
+            case UNBLADM -> SuperAdminUI.unBlock();
+            case BLISTADM -> SuperAdminUI.blockList();
 
-            case CREATE_HR -> AdminUI.create();
-            case DELETE_HR -> AdminUI.delete();
-            case LIST_HR -> AdminUI.list();
-            case BLOCK_HR -> AdminUI.block();
-            case UN_BLOCK_HR -> AdminUI.unBlock();
-            case BLOCK_LIST_HR -> AdminUI.blockList();
+            case CHR -> AdminUI.create();
+            case DELHR -> AdminUI.delete();
+            case LISTHR -> AdminUI.list();
+            case BLHR -> AdminUI.block();
+            case UNBLHR -> AdminUI.unBlock();
+            case BLISTHR -> AdminUI.blockList();
 
-            case CREATE_EMPLOYEE -> HrUI.create();
-            case DELETE_EMPLOYEE -> HrUI.delete();
-            case LIST_EMPLOYEE -> HrUI.list();
-            case BLOCK_EMPLOYEE -> HrUI.block();
-            case UN_BLOCK_EMPLOYEE -> HrUI.unBlock();
-            case BLOCK_LIST_EMPLOYEE -> HrUI.blockList();
+            case CEM -> HrUI.create();
+            case DEM -> HrUI.delete();
+            case LISTEM -> HrUI.list();
+            case BLEM -> HrUI.block();
+            case UNBLEM -> HrUI.unBlock();
+            case BLISTEM -> HrUI.blockList();
 
-            case CREATE_CLIENT -> EmployeeUI.create();
-            case DELETE_CLIENT -> EmployeeUI.delete();
-            case LIST_CLIENT -> EmployeeUI.list();
-            case BLOCK_CLIENT -> EmployeeUI.block();
-            case UN_BLOCK_CLIENT -> EmployeeUI.unBlock();
-            case BLOCK_LIST_CLIENT -> EmployeeUI.blockList();
+            case CCL -> EmployeeUI.create();
+            case DELCL -> EmployeeUI.delete();
+            case LISTCL -> EmployeeUI.list();
+            case BCL -> EmployeeUI.block();
+            case UNBLC -> EmployeeUI.unBlock();
+            case BLISTCL -> EmployeeUI.blockList();
 
-            case CREATE_BRANCH -> BranchUI.create();
-            case UPDATE_BRANCH -> BranchUI.update();
-            case DELETE_BRANCH -> BranchUI.delete();
-            case LIST_BRANCH -> BranchUI.list();
-            case BLOCK_BRANCH -> BranchUI.block();
-            case UN_BLOCK_BRANCH -> BranchUI.unblock();
-            case BLOCK_LIST_BRANCH -> BranchUI.blockList();
+            case CBR -> BranchUI.create();
+            case UBR -> BranchUI.update();
+            case DELBR -> BranchUI.delete();
+            case LBR -> BranchUI.list();
+            case BBR -> BranchUI.block();
+            case UNBBR -> BranchUI.unblock();
+            case BLBR -> BranchUI.blockList();
 
-            case CREATE_ATM -> AtmUI.create();
-            case UPDATE_ATM -> AtmUI.update();
-            case DELETE_ATM -> AtmUI.delete();
-            case LIST_ATM -> AtmUI.list();
-            case BLOCK_ATM -> AtmUI.block();
-            case UN_BLOCK_ATM -> AtmUI.unblock();
-            case BLOCK_LIST_ATM -> AtmUI.blockList();
+            case CRA -> AtmUI.create();
+            case UATM -> AtmUI.update();
+            case DATM -> AtmUI.delete();
+            case LISTA -> AtmUI.list();
+            case BATM -> AtmUI.block();
+            case UNBATM -> AtmUI.unblock();
+            case BLISTATM -> AtmUI.blockList();
 
             case EXIT -> {
                 AuthUserDao.getInstance().writeAll();

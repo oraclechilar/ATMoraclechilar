@@ -1,8 +1,6 @@
 package uz.jl.ui.menus;
 
-import jdk.jshell.Snippet;
 import uz.jl.configs.Session;
-import uz.jl.enums.atm.Status;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
 import uz.jl.models.settings.Language;
@@ -20,77 +18,76 @@ public class Menu {
     public static Map<String, MenuKey> menus() {
         Role role = Session.getInstance().getUser().getRole();
         UserStatus userStatus = Session.getInstance().getUser().getStatus();
-        Language language=Session.getInstance().getLanguage();
+        Language language = Session.getInstance().getLanguage();
         Map<String, MenuKey> menus = new LinkedHashMap<>();
-        // TODO: 12/8/2021 do translations here
         if (Role.SUPER_ADMIN.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put(MenuKey.CREATE_BRANCH.get(language), MenuKey.CREATE_BRANCH);
-            menus.put(MenuKey.CREATE_ADMIN.get(language), MenuKey.CREATE_ADMIN);
+            menus.put(MenuKey.CBR.get(language), MenuKey.CBR);
+            menus.put(MenuKey.CRAD.get(language), MenuKey.CRAD);
 
-            menus.put(MenuKey.BLOCK_ADMIN.get(language), MenuKey.BLOCK_ADMIN);
-            menus.put(MenuKey.BLOCK_BRANCH.get(language), MenuKey.BLOCK_BRANCH);
+            menus.put(MenuKey.BLADM.get(language), MenuKey.BLADM);
+            menus.put(MenuKey.BBR.get(language), MenuKey.BBR);
 
-            menus.put(MenuKey.LIST_ADMIN.get(language), MenuKey.LIST_ADMIN);
-            menus.put(MenuKey.BLOCK_LIST_ADMIN.get(language), MenuKey.BLOCK_LIST_ADMIN);
+            menus.put(MenuKey.LISTAD.get(language), MenuKey.LISTAD);
+            menus.put(MenuKey.BLISTADM.get(language), MenuKey.BLISTADM);
 
-            menus.put(MenuKey.DELETE_ADMIN.get(language), MenuKey.DELETE_ADMIN);
-            menus.put(MenuKey.DELETE_BRANCH.get(language), MenuKey.DELETE_BRANCH);
+            menus.put(MenuKey.DELAD.get(language), MenuKey.DELAD);
+            menus.put(MenuKey.DELBR.get(language), MenuKey.DELBR);
 
-            menus.put(MenuKey.UPDATE_BRANCH.get(language), MenuKey.UPDATE_BRANCH);
+            menus.put(MenuKey.UBR.get(language), MenuKey.UBR);
         } else if (Role.ADMIN.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put(MenuKey.CREATE_BRANCH.get(language), MenuKey.CREATE_BRANCH);
-            menus.put(MenuKey.DELETE_BRANCH.get(language), MenuKey.DELETE_BRANCH);
+            menus.put(MenuKey.CBR.get(language), MenuKey.CBR);
+            menus.put(MenuKey.DELBR.get(language), MenuKey.DELBR);
 
-            menus.put(MenuKey.UPDATE_BRANCH.get(language), MenuKey.UPDATE_BRANCH);
-            menus.put(MenuKey.CREATE_HR.get(language), MenuKey.CREATE_HR);
+            menus.put(MenuKey.UBR.get(language), MenuKey.UBR);
+            menus.put(MenuKey.CHR.get(language), MenuKey.CHR);
 
-            menus.put(MenuKey.LIST_HR.get(language), MenuKey.LIST_HR);
-            menus.put(MenuKey.BLOCK_LIST_HR.get(language), MenuKey.BLOCK_LIST_HR);
+            menus.put(MenuKey.LISTHR.get(language), MenuKey.LISTHR);
+            menus.put(MenuKey.BLISTHR.get(language), MenuKey.BLISTHR);
 
-            menus.put(MenuKey.DELETE_HR.get(language), MenuKey.DELETE_HR);
-            menus.put(MenuKey.CREATE_ATM.get(language), MenuKey.CREATE_ATM);
+            menus.put(MenuKey.DELHR.get(language), MenuKey.DELHR);
+            menus.put(MenuKey.CRA.get(language), MenuKey.CRA);
 
-            menus.put(MenuKey.DELETE_ATM.get(language), MenuKey.DELETE_ATM);
-            menus.put(MenuKey.BLOCK_ATM.get(language), MenuKey.BLOCK_ATM);
+            menus.put(MenuKey.DATM.get(language), MenuKey.DATM);
+            menus.put(MenuKey.BATM.get(language), MenuKey.BATM);
 
-            menus.put(MenuKey.UN_BLOCK_ATM.get(language), MenuKey.UN_BLOCK_ATM);
+            menus.put(MenuKey.UNBATM.get(language), MenuKey.UNBATM);
         } else if (role.in(Role.ADMIN, Role.HR) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put(MenuKey.LIST_EMPLOYEE.get(language), MenuKey.LIST_EMPLOYEE);
-            menus.put(MenuKey.BLOCK_LIST_EMPLOYEE.get(language), MenuKey.BLOCK_LIST_EMPLOYEE);
+            menus.put(MenuKey.LISTEM.get(language), MenuKey.LISTEM);
+            menus.put(MenuKey.BLISTEM.get(language), MenuKey.BLISTEM);
 
-            menus.put(MenuKey.CREATE_EMPLOYEE.get(language), MenuKey.CREATE_EMPLOYEE);
+            menus.put(MenuKey.CEM.get(language), MenuKey.CEM);
 
-            menus.put(MenuKey.DELETE_EMPLOYEE.get(language), MenuKey.DELETE_EMPLOYEE);
-            menus.put(MenuKey.BLOCK_EMPLOYEE.get(language), MenuKey.BLOCK_EMPLOYEE);
+            menus.put(MenuKey.DEM.get(language), MenuKey.DEM);
+            menus.put(MenuKey.BLEM.get(language), MenuKey.BLEM);
 
-            menus.put(MenuKey.UN_BLOCK_EMPLOYEE.get(language), MenuKey.UN_BLOCK_EMPLOYEE);
+            menus.put(MenuKey.UNBLEM.get(language), MenuKey.UNBLEM);
         } else if (Role.EMPLOYEE.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put(MenuKey.BLOCK_LIST_ATM.get(language), MenuKey.BLOCK_LIST_ATM);
-            menus.put(MenuKey.UPDATE_ATM.get(language), MenuKey.UPDATE_ATM);
+            menus.put(MenuKey.BLISTATM.get(language), MenuKey.BLISTATM);
+            menus.put(MenuKey.UATM.get(language), MenuKey.UATM);
 
-            menus.put(MenuKey.LIST_ATM.get(language), MenuKey.LIST_ATM);
-            menus.put(MenuKey.CREATE_CLIENT.get(language),MenuKey.CREATE_CLIENT);
+            menus.put(MenuKey.LISTA.get(language), MenuKey.LISTA);
+            menus.put(MenuKey.CCL.get(language), MenuKey.CCL);
 
-            menus.put(MenuKey.LIST_CLIENT.get(language),MenuKey.LIST_CLIENT);
-            menus.put(MenuKey.BLOCK_LIST_CLIENT.get(language),MenuKey.BLOCK_LIST_CLIENT);
+            menus.put(MenuKey.LISTCL.get(language), MenuKey.LISTCL);
+            menus.put(MenuKey.BLISTCL.get(language), MenuKey.BLISTCL);
 
-            menus.put(MenuKey.DELETE_CLIENT.get(language),MenuKey.DELETE_CLIENT);
-            menus.put(MenuKey.BLOCK_CLIENT.get(language),MenuKey.BLOCK_CLIENT);
+            menus.put(MenuKey.DELCL.get(language), MenuKey.DELCL);
+            menus.put(MenuKey.BCL.get(language), MenuKey.BCL);
 
-            menus.put(MenuKey.UN_BLOCK_CLIENT.get(language),MenuKey.UN_BLOCK_CLIENT);
+            menus.put(MenuKey.UNBLC.get(language), MenuKey.UNBLC);
         } else if (Role.ANONYMOUS.equals(role) || userStatus.equals(UserStatus.NON_ACTIVE)) {
-            menus.put(MenuKey.LOGIN.get(language), MenuKey.LOGIN);
-            menus.put(MenuKey.ATM_SERVICE.get(language),MenuKey.ATM_SERVICE);
+            menus.put(MenuKey.LGN.get(language), MenuKey.LGN);
+            menus.put(MenuKey.ATM.get(language), MenuKey.ATM);
         }
         if (!Role.ANONYMOUS.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
-            menus.put(MenuKey.LOGOUT.get(language), MenuKey.LOGOUT);
-            menus.put(MenuKey.PROFILE.get(language), MenuKey.PROFILE);
+            menus.put(MenuKey.LGT.get(language), MenuKey.LGT);
+            menus.put(MenuKey.PR.get(language), MenuKey.PR);
         }
         menus.put(MenuKey.EXIT.get(language), MenuKey.EXIT);
         return menus;
     }
 
     public static void show() {
-        Menu.menus().forEach((k, v) -> Print.println(GREEN,k + " -> " + v));
+        Menu.menus().forEach((k, v) -> Print.println(GREEN, k + " -> " + v));
     }
 }

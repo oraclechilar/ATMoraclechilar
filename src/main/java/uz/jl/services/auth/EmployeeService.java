@@ -58,7 +58,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         user.setRole(Role.CLIENT);
         user.setCreatedAt(new Date());
         EmployeeUI.createPassport(user);
-        Print.println(BLUE+"Would you create card ? (yes/no)");
+        Print.println(BLUE+"Would you create card? (yes/no)");
         String choice=getStr("...");
         if(choice.startsWith("y")){
             EmployeeUI.createCard(user);

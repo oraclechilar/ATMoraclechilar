@@ -10,17 +10,14 @@ import uz.jl.models.auth.AuthUser;
 import uz.jl.models.settings.Language;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
-import uz.jl.services.IBaseCrudService;
 import uz.jl.ui.menus.MenuKey;
 import uz.jl.utils.Color;
 import uz.jl.utils.Input;
 import uz.jl.utils.Print;
 
-import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.ui.menus.MenuKey.*;
-import static uz.jl.utils.Color.RED;
 import static uz.jl.utils.Input.getStr;
 import static uz.jl.utils.Print.println;
 
@@ -66,15 +63,15 @@ public class AuthService
             AuthUser authUser = session.getUser();
             println("Username : " + authUser.getUsername());
             println("Password : ******* ");
-            println(RESET_USERNAME.get(session.getLanguage()) + " -> " + RESET_USERNAME);
-            println(RESET_PASSWORD.get(session.getLanguage()) + " -> " + RESET_PASSWORD);
-            println(RESET_LANGUAGE.get(session.getLanguage()) + " -> " + RESET_LANGUAGE);
+            println(RESU.get(session.getLanguage()) + " -> " + RESU);
+            println(RESP.get(session.getLanguage()) + " -> " + RESP);
+            println(RESL.get(session.getLanguage()) + " -> " + RESL);
             String choice = getStr("?:");
             MenuKey key = MenuKey.getByValue(choice);
             switch (key) {
-                case RESET_USERNAME -> resetUsername(authUser);
-                case RESET_PASSWORD -> resetPassword(authUser);
-                case RESET_LANGUAGE -> resetLanguage(authUser);
+                case RESU -> resetUsername(authUser);
+                case RESP -> resetPassword(authUser);
+                case RESL -> resetLanguage(authUser);
             }
             return new ResponseEntity<>("success", HttpStatus.HTTP_200);
         } catch (APIException e) {
