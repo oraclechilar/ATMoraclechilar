@@ -10,18 +10,6 @@
     "deleted": 0
   },
   {
-    "username": "sa",
-    "password": "12",
-    "role": "ADMIN",
-    "status": "ACTIVE",
-    "phoneNumber": "12",
-    "language": "UZ",
-    "id": "379895225225900we8VNgEMzuv5TqHcCwrc",
-    "createdAt": "Dec 11, 2021, 9:15:24 PM",
-    "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
-    "deleted": 0
-  },
-  {
     "username": "12",
     "password": "12",
     "role": "HR",
@@ -75,7 +63,7 @@
     "deleted": 0
   },
   {
-    "username": "admin2",
+    "username": "adm2",
     "password": "123",
     "role": "ADMIN",
     "status": "NON_ACTIVE",

@@ -24,14 +24,12 @@ public class BranchUI {
 
     public static void create() {
         String name = Input.getStr("Branch name :");
-        Branch branch = getBranch(name);
-        if (Objects.nonNull(branch)) {
-            Print.println("This branch is available");
-            return;
+        if (!branchService.isAvailable(name)) {
+            Print.println(Color.RED, "This branch name is already taken. Please enter another branch name.");
+            create();
         }
-        branch = Branch.childBuilder().name(name).status(Status.ACTIVE).
-                bankId(Session.getInstance().getUser().getBankId()).childBuild();
-        ResponseEntity<String> response = BranchService.getInstall().create(branch);
+        Branch branch = Branch.childBuilder().name(name).childBuild();
+        ResponseEntity<String> response = branchService.create(branch);
         if (response.getStatus().equals(HttpStatus.HTTP_201.getCode()))
             Print.println(response.getData());
     }
@@ -94,11 +92,14 @@ public class BranchUI {
         }
     }
 
-    private static Branch getBranch(String name) {
-        for (Branch branch : FRWBranch.getInstance().getAll()) {
-            if (branch.getName().equalsIgnoreCase(name))
-                return branch;
-        }
-        return null;
-    }
+
+//    private static Branch getBranch(String name) {
+//        for (Branch branch : branchService.branches) {
+//            if (branch.getName().equalsIgnoreCase(name))
+//                return branch;
+//        }
+//        return null;
+//    }
+
+
 }

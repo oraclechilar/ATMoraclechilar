@@ -1,5 +1,6 @@
 package uz.jl.services.branchService;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.db.FRWBranch;
 import uz.jl.enums.atm.Status;
 import uz.jl.enums.http.HttpStatus;
@@ -7,6 +8,7 @@ import uz.jl.models.branch.Branch;
 import uz.jl.response.ResponseEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +25,12 @@ public class BranchService {
     public List<Branch> branches = FRWBranch.getInstance().getAll();
 
     public ResponseEntity<String> create(Branch branch) {
+        branch.setStatus(Status.ACTIVE);
+        // TODO: 12/12/2021 Bank id bank yaratgandan keyin yozib qo'yamiz
+        branch.setCreatedAt(new Date());
+        branch.setCreatedBy(Session.getInstance().getUser().getId());
         branches.add(branch);
-        FRWBranch.getInstance().writeAll(branches);
-        return new ResponseEntity<>("Successfully created brench", HttpStatus.HTTP_201);
+        return new ResponseEntity<>("Successfully created branch", HttpStatus.HTTP_201);
     }
 
     public ResponseEntity<String> delete(String name) {
@@ -69,5 +74,12 @@ public class BranchService {
                 return branch;
         }
         return null;
+    }
+    public boolean isAvailable(String name) {
+        for (Branch branch : branches) {
+            if (branch.getName().equalsIgnoreCase(name))
+                return false;
+        }
+        return true;
     }
 }

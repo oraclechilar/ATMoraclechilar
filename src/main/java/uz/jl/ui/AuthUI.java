@@ -27,11 +27,12 @@ public class AuthUI extends BaseUI {
     }
 
     public static void logout() {
-        service.logout();
         AuthUserDao.getInstance().writeAll();
         ATMDao.getInstance().writeAll();
         BranchDao.getInstance().writeAll();
         CardDao.getInstance().writeAll();
+        service.logout();
+
     }
 
     public static void register() {

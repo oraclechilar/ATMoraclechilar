@@ -11,6 +11,7 @@ import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.services.IBaseCrudService;
 import uz.jl.ui.menus.MenuKey;
+import uz.jl.utils.Color;
 
 import java.util.List;
 import java.util.Objects;
@@ -39,24 +40,28 @@ public class AuthService
         super(repository, mapper);
     }
 
+    Session session = Session.getInstance();
     public ResponseEntity<String> login(String username, String password) {
         AuthUser user = repository.findByUserName(username);
         if (Objects.isNull(user) || !user.getPassword().equals(password))
             return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);
+        if (user.getStatus().equals(UserStatus.BLOCKED)) {
+            return new ResponseEntity<>("This user is blocked", HttpStatus.HTTP_401);
+        }
         user.setStatus(UserStatus.ACTIVE);
-        Session.getInstance().setUser(user);
+        session.setUser(user);
         return new ResponseEntity<>("success", HttpStatus.HTTP_200);
     }
 
     public void logout() {
-        AuthUser user = Session.getInstance().getUser();
+        AuthUser user = session.getUser();
         user.setStatus(UserStatus.NON_ACTIVE);
-        Session.getInstance().setUser(user);
+        session.setUser(user);
     }
 
     public ResponseEntity<String> profile() {
         try {
-            AuthUser authUser = Session.getInstance().getUser();
+            AuthUser authUser = session.getUser();
             println("Username : " + authUser.getUsername());
             println("Password : ******* ");
             println("Reset username" + " -> " + RESET_USERNAME);
@@ -79,7 +84,7 @@ public class AuthService
             authUser.setUsername(getStr("Enter new username : "));
             return;
         }
-        throw new APIException("Bad crediantials", HttpStatus.HTTP_400);
+        throw new APIException("Bad Credentials", HttpStatus.HTTP_400);
     }
 
     private void resetPassword(AuthUser authUser) throws APIException {
@@ -88,7 +93,7 @@ public class AuthService
             authUser.setUsername(getStr("Enter new password : "));
             return;
         }
-        throw new APIException("Bad crediantials", HttpStatus.HTTP_400);
+        throw new APIException("Bad Credentials", HttpStatus.HTTP_400);
     }
 
     public ResponseEntity<String> register(String username, String password, String serial, String number, String gender, String firstName, String lastname, String fathername) {

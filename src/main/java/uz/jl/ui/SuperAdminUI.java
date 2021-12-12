@@ -45,7 +45,7 @@ public class SuperAdminUI {
             return;
         }
         AuthUser admin = AuthUser.childBuilder().username(username).password(password).phoneNumber(phoneNumber).
-                language(language).role(Role.ADMIN).status(UserStatus.ACTIVE).createdBy(sessionUser.getId())
+                language(language).role(Role.ADMIN).status(UserStatus.NON_ACTIVE).createdBy(sessionUser.getId())
                 .createdAt(new Date()).childBuild();
         // TODO: 12/10/2021 Bank id
         ResponseEntity<String> response = superAdminService.create(admin);
