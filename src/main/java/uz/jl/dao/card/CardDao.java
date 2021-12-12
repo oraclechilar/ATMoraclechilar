@@ -18,7 +18,7 @@ public class CardDao extends BaseDao<Card> {
             dao = new CardDao();
         return dao;
     }
-    private static FRWCard frwcard = FRWCard.getInstance();
+    private static final FRWCard frwcard = FRWCard.getInstance();
 
     public List<Card> cards = frwcard.getAll();
 

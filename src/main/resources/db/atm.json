@@ -76,5 +76,44 @@
     "id": "169417071687600U0XwoRKkKKAxmsaEeSu3",
     "createdAt": "Dec 12, 2021, 12:45:35 PM",
     "deleted": 0
+  },
+  {
+    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
+    "type": "HUMO",
+    "name": "grbrt",
+    "status": "ACTIVE",
+    "latitude": 12.0,
+    "longitude": 23.0,
+    "cassette1": {
+      "id": "178155324152300qV85qHYAUcBekf06hwnH",
+      "currencyValue": "100000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "178155324214000LslEpEd73SwNxWCIN5nr",
+      "currencyValue": "50000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "178155324227000LFhoD5ZcfIgca51rykvY",
+      "currencyValue": "10000",
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "178155324240600mnicKBvP0ro5zaQW3dEg",
+      "currencyValue": "5000",
+      "status": "ACTIVE",
+      "currencyCount": 1000,
+      "deleted": 0
+    },
+    "id": "1781553256366007u5g5bnXHd9uxSTCrSct",
+    "createdAt": "Dec 12, 2021, 3:11:14 PM",
+    "deleted": 0
   }
 ]

@@ -1,11 +1,14 @@
 [
   {
+    "pan": "9860634560968556",
     "password": "2107",
-    "bankId": "23edqdwwstq12tvJPOwqm1w",
-    "role": "ANONYMOUS",
+    "type": "HUMO",
     "status": "ACTIVE",
-    "id": "168912742057400SdtKHlNNvfEay1Xbg4yA",
-    "createdAt": "Dec 12, 2021, 12:37:11 PM",
+    "balance": 0,
+    "bankId": "23edqdwwstq12tvJPOwqm1w",
+    "holderId": "178246475014800mNAfen87o0yDxNFfxUXH",
+    "id": "178285721699800EbZdDatfKob4L6VUgKge",
+    "createdAt": "Dec 12, 2021, 3:13:24 PM",
     "deleted": 0
   }
 ]

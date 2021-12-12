@@ -19,6 +19,7 @@ import uz.jl.services.BaseAbstractService;
 import uz.jl.ui.EmployeeUI;
 import uz.jl.utils.Print;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -127,6 +128,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         card.setHolderId(user.getId());
         card.setType(cardType);
         card.setPan(pan);
+        card.setBalance(BigDecimal.ZERO);
         card.setBankId("23edqdwwstq12tvJPOwqm1w");
         CardDao.getInstance().cards.add(card);
         Print.println("Your card number :" + pan);

@@ -66,7 +66,7 @@
     "username": "adm2",
     "password": "123",
     "role": "ADMIN",
-    "status": "NON_ACTIVE",
+    "status": "ACTIVE",
     "phoneNumber": "+998971234567",
     "language": "EN",
     "id": "120145447281700osIKJWvRrJPt55vkB5Wo",
@@ -124,6 +124,24 @@
     "id": "1691467665034006OLNIuzUu4eTLjIX3lXy",
     "createdAt": "Dec 12, 2021, 12:41:05 PM",
     "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
+    "deleted": 0
+  },
+  {
+    "username": "client13",
+    "role": "CLIENT",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+9987612324",
+    "id": "171809344133500nrUhQnSDztL3NVaIG33d",
+    "createdAt": "Dec 12, 2021, 1:25:28 PM",
+    "deleted": 0
+  },
+  {
+    "username": "sgrgd",
+    "role": "CLIENT",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "24215346",
+    "id": "178246475014800mNAfen87o0yDxNFfxUXH",
+    "createdAt": "Dec 12, 2021, 3:12:45 PM",
     "deleted": 0
   }
 ]

@@ -32,7 +32,7 @@ public final class FRWCard extends FRWBase<Card> {
             try (FileReader fileReader = new FileReader(path);
                  BufferedReader bufferedReader = new BufferedReader(fileReader)) {
                 String jsonDATA = bufferedReader.lines().collect(Collectors.joining());
-                list = gson.fromJson(jsonDATA, new TypeToken<List<AuthUser>>() {
+                list = gson.fromJson(jsonDATA, new TypeToken<List<Card>>() {
                 }.getType());
             } catch (IOException e) {
                 e.printStackTrace();

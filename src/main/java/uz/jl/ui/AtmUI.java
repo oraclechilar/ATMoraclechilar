@@ -1,27 +1,20 @@
 package uz.jl.ui;
 
 import uz.jl.dao.atm.ATMDao;
-import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.card.CardDao;
 import uz.jl.dao.db.FRWAtm;
-import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.atm.ATMStatus;
 import uz.jl.enums.atm.ATMType;
 import uz.jl.enums.atm.CassetteStatus;
-import uz.jl.enums.auth.Role;
-import uz.jl.enums.auth.UserStatus;
 import uz.jl.mapper.ATMMapper;
 import uz.jl.models.atm.ATMEntity;
 import uz.jl.models.atm.Cassette;
-import uz.jl.models.auth.AuthUser;
-import uz.jl.models.branch.Branch;
 import uz.jl.models.card.Card;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.atm.AtmOperations;
 import uz.jl.services.atm.AtmService;
 import uz.jl.utils.BaseUtils;
 import uz.jl.utils.Color;
-import uz.jl.utils.Input;
 import uz.jl.utils.Print;
 
 import java.util.List;
@@ -46,11 +39,15 @@ public class AtmUI extends BaseUI {
             Print.println(RED, "ATM Not found");
             return;
         }
+        if (atm.getStatus().equals(ATMStatus.BLOCKED)) {
+            Print.println(RED, "ATM is Blocked");
+            return;
+        }
         if (atm.getType().equals(ATMType.UZCARD) || atm.getType().equals(ATMType.HUMO)) {
             uzMenu();
         }
         if (atm.getType().equals(ATMType.VISA)) {
-            enMenu();
+            //enMenu();
         }
     }
 
@@ -198,43 +195,22 @@ public class AtmUI extends BaseUI {
             Print.println(RED,"Bad credentials");
             menu();
         }
-        Print.println(Color.PURPLE, "1. Turn the sms-service on");
-        Print.println(Color.PURPLE, "2. Turn the sms-service of");
-        Print.println(Color.PURPLE, "3. Show balance");
-        Print.println(Color.PURPLE, "4. Cash");
-        Print.println(Color.PURPLE, "5. Home");
-        String choice = getStr("choice menu =");
-        switch (choice) {
-            case "1" -> AtmOperations.messageOn();
-            case "2" -> AtmOperations.messageOf();
-            case "3" -> AtmOperations.showBalance();
-            case "4" -> AtmOperations.cash();
-            case "5" -> {
-                Print.println(Color.GREEN, "Home");
-                return;
-            }
-            default -> {
-                Print.println(RED, "Wrong menu");
-                return;
-            }
-        }
-        uzMenu();
+        uzMenuAtm(card);
     }
-
-    private static void enMenu() {
-        Print.println(Color.PURPLE, "1. Turn the sms-service on");
-        Print.println(Color.PURPLE, "2. Turn the sms-service of");
-        Print.println(Color.PURPLE, "3. Show balance");
-        Print.println(Color.PURPLE, "4. Cash");
-        Print.println(Color.PURPLE, "5. Exchange money");
+    private static void uzMenuAtm(Card card){
+        Print.println(Color.PURPLE, "1. Show balance");
+        Print.println(Color.PURPLE, "2. Turn the sms-service on");
+        Print.println(Color.PURPLE, "3. Turn the sms-service off");
+        Print.println(Color.PURPLE, "4. Withdraw money");
+        Print.println(Color.PURPLE, "5. Put money on the card");
         Print.println(Color.PURPLE, "6. Home");
         String choice = getStr("choice menu =");
         switch (choice) {
-            case "1" -> AtmOperations.messageOn();
-            case "2" -> AtmOperations.messageOf();
-            case "3" -> AtmOperations.showBalance();
-            case "4" -> AtmOperations.cash();
-            case "5" -> AtmOperations.exchangeMoney();
+            case "1" -> AtmOperations.showBalance(card);
+            case "2" -> AtmOperations.messageOn();
+            case "3" -> AtmOperations.messageOf();
+            case "4" -> AtmOperations.withdraw();
+            case "5" -> AtmOperations.putMoney(card);
             case "6" -> {
                 Print.println(Color.GREEN, "Home");
                 return;
@@ -244,6 +220,31 @@ public class AtmUI extends BaseUI {
                 return;
             }
         }
-        enMenu();
+        uzMenuAtm(card);
     }
+//    private static void enMenu() {
+//        Print.println(Color.PURPLE, "1. Turn the sms-service on");
+//        Print.println(Color.PURPLE, "2. Turn the sms-service off");
+//        Print.println(Color.PURPLE, "3. Show balance");
+//        Print.println(Color.PURPLE, "4. Cash");
+//        Print.println(Color.PURPLE, "5. Exchange money");
+//        Print.println(Color.PURPLE, "6. Home");
+//        String choice = getStr("choice menu =");
+//        switch (choice) {
+//            case "1" -> AtmOperations.messageOn();
+//            case "2" -> AtmOperations.messageOf();
+//            case "3" -> AtmOperations.withdraw();
+//            case "4" -> AtmOperations.withdraw();
+//            case "5" -> AtmOperations.exchangeMoney();
+//            case "6" -> {
+//                Print.println(Color.GREEN, "Home");
+//                return;
+//            }
+//            default -> {
+//                Print.println(RED, "Wrong menu");
+//                return;
+//            }
+//        }
+//        enMenu();
+//    }
 }

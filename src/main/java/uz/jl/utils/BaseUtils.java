@@ -3,6 +3,9 @@ package uz.jl.utils;
 import org.apache.commons.lang3.RandomStringUtils;
 import uz.jl.enums.card.CardType;
 
+import java.math.BigDecimal;
+import java.util.Scanner;
+
 /**
  * @author Elmurodov Javohir, Mon 12:13 PM. 12/6/2021
  */
@@ -41,5 +44,14 @@ public class BaseUtils {
         } catch (Exception e) {
             return null;
         }
+    }
+    public static Scanner SCANNER_BIG_DEC=new Scanner(System.in);
+    public static BigDecimal getBig() {
+        return getBig("");
+    }
+
+    public static BigDecimal getBig(String str) {
+        Print.print(str);
+        return SCANNER_BIG_DEC.nextBigDecimal();
     }
 }
