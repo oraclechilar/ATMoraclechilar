@@ -17,6 +17,8 @@ import uz.jl.utils.BaseUtils;
 import uz.jl.utils.Color;
 import uz.jl.utils.Print;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,7 +46,7 @@ public class AtmUI extends BaseUI {
             return;
         }
         if (atm.getType().equals(ATMType.UZCARD) || atm.getType().equals(ATMType.HUMO)) {
-            uzMenu();
+            uzMenu(atm);
         }
         if (atm.getType().equals(ATMType.VISA)) {
             //enMenu();
@@ -87,15 +89,15 @@ public class AtmUI extends BaseUI {
         Cassette cassette4;
 
         if (atmType.equals(ATMType.UZCARD) || atmType.equals(ATMType.HUMO)) {
-            cassette1 = new Cassette("100000", CassetteStatus.ACTIVE, 100, 0);
-            cassette2 = new Cassette("50000", CassetteStatus.ACTIVE, 100, 0);
-            cassette3 = new Cassette("10000", CassetteStatus.ACTIVE, 100, 0);
-            cassette4 = new Cassette("5000", CassetteStatus.ACTIVE, 1000, 0);
+            cassette1 = new Cassette(BigDecimal.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette2 = new Cassette(BigDecimal.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette3 = new Cassette(BigDecimal.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette4 = new Cassette(BigDecimal.valueOf(5000), CassetteStatus.ACTIVE, BigInteger.valueOf(1000), 0);
         } else {
-            cassette1 = new Cassette("100", CassetteStatus.ACTIVE, 100, 0);
-            cassette2 = new Cassette("100000", CassetteStatus.ACTIVE, 100, 0);
-            cassette3 = new Cassette("50000", CassetteStatus.ACTIVE, 100, 0);
-            cassette4 = new Cassette("10000", CassetteStatus.ACTIVE, 100, 0);
+            cassette1 = new Cassette(BigDecimal.valueOf(100), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette2 = new Cassette(BigDecimal.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette3 = new Cassette(BigDecimal.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette4 = new Cassette(BigDecimal.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
         }
         Print.println("Cassette1"+cassette1);
         Print.println("Cassette2"+cassette2);
@@ -183,7 +185,7 @@ public class AtmUI extends BaseUI {
         }
     }
 
-    private static void uzMenu() {
+    private static void uzMenu(ATMEntity atm) {
         String cardNumber = getStr("Enter card number : ");
         Card card = CardDao.getByCardNumber(cardNumber);
         if (card == null) {
@@ -195,9 +197,9 @@ public class AtmUI extends BaseUI {
             Print.println(RED,"Bad credentials");
             menu();
         }
-        uzMenuAtm(card);
+        uzMenuAtm(card,atm);
     }
-    private static void uzMenuAtm(Card card){
+    private static void uzMenuAtm(Card card,ATMEntity atm){
         Print.println(Color.PURPLE, "1. Show balance");
         Print.println(Color.PURPLE, "2. Turn the sms-service on");
         Print.println(Color.PURPLE, "3. Turn the sms-service off");
@@ -207,9 +209,9 @@ public class AtmUI extends BaseUI {
         String choice = getStr("choice menu =");
         switch (choice) {
             case "1" -> AtmOperations.showBalance(card);
-            case "2" -> AtmOperations.messageOn();
-            case "3" -> AtmOperations.messageOf();
-            case "4" -> AtmOperations.withdraw();
+            case "2" -> AtmOperations.messageOn(card);
+            case "3" -> AtmOperations.messageOf(card);
+            case "4" -> AtmOperations.withdraw(card,atm);
             case "5" -> AtmOperations.putMoney(card);
             case "6" -> {
                 Print.println(Color.GREEN, "Home");
@@ -220,7 +222,7 @@ public class AtmUI extends BaseUI {
                 return;
             }
         }
-        uzMenuAtm(card);
+        uzMenuAtm(card,atm);
     }
 //    private static void enMenu() {
 //        Print.println(Color.PURPLE, "1. Turn the sms-service on");

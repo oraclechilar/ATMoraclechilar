@@ -16,12 +16,22 @@ public enum Language {
     private final String name;
     private final String code;
 
-    public static Language getByCode(String code) {
-        for (Language language : values()) {
-            if (language.getCode().equalsIgnoreCase(code)) {
-                return language;
-            }
+    public static void showAll() {
+        for (Language code : values()) {
+            System.out.println(code);
         }
-        return null;
+    }
+
+    public static Language findByCode(String code) {
+        for (Language language : values()) {
+            if (language.code.equalsIgnoreCase(code))
+                return language;
+        }
+        return findByCode(EN.getCode());
+    }
+
+    @Override
+    public String toString() {
+        return name + " -> " + code;
     }
 }

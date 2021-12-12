@@ -25,4 +25,5 @@ public class Card extends Auditable {
     private BigDecimal balance;
     private String bankId;
     private String holderId;
+    private String smsPhoneNumber;
 }

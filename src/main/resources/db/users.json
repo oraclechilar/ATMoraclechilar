@@ -5,6 +5,7 @@
     "role": "SUPER_ADMIN",
     "status": "ACTIVE",
     "phoneNumber": "+998904554550",
+    "language": "EN",
     "id": "13960728412660009IfigCZAVL4occszzqxu",
     "createdAt": "Dec 10, 2021, 12:01:01 PM",
     "deleted": 0
@@ -15,6 +16,7 @@
     "role": "HR",
     "status": "ACTIVE",
     "phoneNumber": "12",
+    "language": "EN",
     "id": "381005074998800baBmU3XXczxVX6VHVg3h",
     "createdAt": "Dec 11, 2021, 9:40:06 PM",
     "deleted": 0
@@ -25,6 +27,7 @@
     "role": "HR",
     "status": "ACTIVE",
     "phoneNumber": "123",
+    "language": "EN",
     "id": "381394191507200MfmLP1PCCUllFDlMf6P4",
     "createdAt": "Dec 11, 2021, 9:59:31 PM",
     "createdBy": "sa",
@@ -36,6 +39,7 @@
     "role": "ADMIN",
     "status": "ACTIVE",
     "phoneNumber": "+998991234512",
+    "language": "EN",
     "id": "116304440745900QyC9xMYHZlv6Jq49pEjw",
     "createdAt": "Dec 11, 2021, 10:00:25 PM",
     "createdBy": "13960728412660009IfigCZAVL4occszzqxu",
@@ -47,6 +51,7 @@
     "role": "HR",
     "status": "NON_ACTIVE",
     "phoneNumber": "+998971234567",
+    "language": "EN",
     "id": "116346636503100RHVkv7irvdwYpivYvkLq",
     "createdAt": "Dec 11, 2021, 11:03:29 PM",
     "createdBy": "adm1",
@@ -58,6 +63,7 @@
     "role": "EMPLOYEE",
     "status": "ACTIVE",
     "phoneNumber": "+998972141423",
+    "language": "EN",
     "id": "1163923958695008fgeLVgyCQWavQtlOKA0",
     "createdAt": "Dec 11, 2021, 10:01:52 PM",
     "deleted": 0
@@ -80,6 +86,7 @@
     "role": "HR",
     "status": "NON_ACTIVE",
     "phoneNumber": "112412",
+    "language": "EN",
     "id": "120426055711500l3zyrcwUd7AzOC3LYfG4",
     "createdAt": "Dec 11, 2021, 11:14:48 PM",
     "createdBy": "admin2",
@@ -91,6 +98,7 @@
     "role": "EMPLOYEE",
     "status": "NON_ACTIVE",
     "phoneNumber": "1314131",
+    "language": "EN",
     "id": "120845363775300JlrWiWlaya3exfDxeAT3",
     "createdAt": "Dec 11, 2021, 11:16:05 PM",
     "deleted": 0
@@ -101,6 +109,7 @@
     "role": "CLIENT",
     "status": "NON_ACTIVE",
     "phoneNumber": "+998971234560",
+    "language": "EN",
     "id": "159778750236400lyB99okvao0Xy56klclK",
     "createdAt": "Dec 12, 2021, 10:04:57 AM",
     "deleted": 0
@@ -110,6 +119,7 @@
     "role": "CLIENT",
     "status": "NON_ACTIVE",
     "phoneNumber": "+998971234567",
+    "language": "EN",
     "id": "168881600035900cQdsrWH5aeuNEOM63dgz",
     "createdAt": "Dec 12, 2021, 12:36:40 PM",
     "deleted": 0
@@ -131,6 +141,7 @@
     "role": "CLIENT",
     "status": "NON_ACTIVE",
     "phoneNumber": "+9987612324",
+    "language": "EN",
     "id": "171809344133500nrUhQnSDztL3NVaIG33d",
     "createdAt": "Dec 12, 2021, 1:25:28 PM",
     "deleted": 0
@@ -140,6 +151,7 @@
     "role": "CLIENT",
     "status": "NON_ACTIVE",
     "phoneNumber": "24215346",
+    "language": "EN",
     "id": "178246475014800mNAfen87o0yDxNFfxUXH",
     "createdAt": "Dec 12, 2021, 3:12:45 PM",
     "deleted": 0

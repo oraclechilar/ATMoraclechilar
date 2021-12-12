@@ -16,7 +16,7 @@ public class Session {
     private AuthUser user;
     @Getter
     @Setter
-    private Language language;
+    private Language language=AppConfig.language;
     private static Session session;
 
     private Session() {

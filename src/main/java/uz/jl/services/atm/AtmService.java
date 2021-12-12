@@ -15,9 +15,12 @@ import uz.jl.utils.BaseUtils;
 import uz.jl.utils.Color;
 import uz.jl.utils.Print;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
+import static uz.jl.utils.BaseUtils.getBigInt;
 import static uz.jl.utils.Input.getStr;
 
 /**
@@ -191,7 +194,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     }
 
     private ResponseEntity<String> updateCurrencyValue(Cassette cassette) {
-        String currencyValue = getStr("New CurrencyValue = ");
+        BigDecimal currencyValue = BaseUtils.getBig("New CurrencyValue = ");
         cassette.setCurrencyValue(currencyValue);
         return new ResponseEntity<>("Successfully");
     }
@@ -209,12 +212,8 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     }
 
     private ResponseEntity<String> updateCurrencyCount(Cassette cassette) {
-        String currencyCount = getStr("New CurrencyCount = ");
-        Integer integer = BaseUtils.toInteger(currencyCount);
-        if (Objects.isNull(integer)) {
-            return updateCurrencyCount(cassette);
-        }
-        cassette.setCurrencyCount(integer);
+        BigInteger currencyCount = getBigInt("New CurrencyCount = ");
+        cassette.setCurrencyCount(currencyCount);
         return new ResponseEntity<>("Successfully");
     }
 

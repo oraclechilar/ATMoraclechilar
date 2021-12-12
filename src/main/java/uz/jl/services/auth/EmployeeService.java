@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import static uz.jl.utils.BaseUtils.getBig;
 import static uz.jl.utils.Color.*;
 import static uz.jl.utils.Input.getStr;
 import static uz.jl.utils.Print.println;
@@ -51,7 +52,6 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         user.setStatus(UserStatus.NON_ACTIVE);
         user.setPhoneNumber(phoneNumber);
         user.setRole(Role.CLIENT);
-        user.setLanguage(AppConfig.language);
         user.setCreatedAt(new Date());
         EmployeeUI.createPassport(user);
         Print.println(BLUE+"Would you create card ? (yes/no)");
@@ -128,10 +128,15 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         card.setHolderId(user.getId());
         card.setType(cardType);
         card.setPan(pan);
-        card.setBalance(BigDecimal.ZERO);
-        card.setBankId("23edqdwwstq12tvJPOwqm1w");
-        CardDao.getInstance().cards.add(card);
+        card.setBankId("165137499323900mdUo3Po6fpoDzdUvpWqK");
         Print.println("Your card number :" + pan);
+        Print.println("would you deposit money to the card (yes/no)");
+        String choice=getStr("...");
+        if(choice.startsWith("y")){
+            BigDecimal sum=getBig("Enter amount of money : ");
+            card.setBalance(sum);
+        }
+        CardDao.getInstance().cards.add(card);
         return new ResponseEntity<>(PURPLE + "Success!");
     }
 

@@ -66,9 +66,9 @@ public class AuthService
             AuthUser authUser = session.getUser();
             println("Username : " + authUser.getUsername());
             println("Password : ******* ");
-            println("Reset username" + " -> " + RESET_USERNAME);
-            println("Reset password" + " -> " + RESET_PASSWORD);
-            println("Reset language" + " -> " + RESET_LANGUAGE);
+            println(RESET_USERNAME.get(session.getLanguage()) + " -> " + RESET_USERNAME);
+            println(RESET_PASSWORD.get(session.getLanguage()) + " -> " + RESET_PASSWORD);
+            println(RESET_LANGUAGE.get(session.getLanguage()) + " -> " + RESET_LANGUAGE);
             String choice = getStr("?:");
             MenuKey key = MenuKey.getByValue(choice);
             switch (key) {
@@ -114,14 +114,9 @@ public class AuthService
     private void resetPassword(AuthUser authUser) throws APIException {
         String password1 = getStr("Enter old password : ");
         if (authUser.getPassword().equals(password1)) {
-            authUser.setUsername(getStr("Enter new password : "));
+            authUser.setPassword(getStr("Enter new password : "));
             return;
         }
         throw new APIException("Bad Credentials", HttpStatus.HTTP_400);
-    }
-
-    public ResponseEntity<String> register(String username, String password, String serial, String number, String gender, String firstName, String lastname, String fathername) {
-
-        return new ResponseEntity<>();
     }
 }

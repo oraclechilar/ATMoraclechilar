@@ -4,6 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import uz.jl.enums.card.CardType;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -45,6 +46,7 @@ public class BaseUtils {
             return null;
         }
     }
+
     public static Scanner SCANNER_BIG_DEC=new Scanner(System.in);
     public static BigDecimal getBig() {
         return getBig("");
@@ -53,5 +55,14 @@ public class BaseUtils {
     public static BigDecimal getBig(String str) {
         Print.print(str);
         return SCANNER_BIG_DEC.nextBigDecimal();
+    }
+    public static Scanner SCANNER_BIG_INT=new Scanner(System.in);
+    public static BigInteger getBigInt() {
+        return getBigInt("");
+    }
+
+    public static BigInteger getBigInt(String str) {
+        Print.print(str);
+        return SCANNER_BIG_INT.nextBigInteger();
     }
 }

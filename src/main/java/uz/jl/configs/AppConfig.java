@@ -37,7 +37,7 @@ public class AppConfig {
         } catch (APIException e) {
             e.printStackTrace();
         }
-        language = Language.getByCode(get("bank.default.language"));
+        language = Language.findByCode(get("bank.default.language"));
         initUsers();
     }
 

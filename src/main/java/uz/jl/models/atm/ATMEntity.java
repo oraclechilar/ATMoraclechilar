@@ -5,6 +5,8 @@ import uz.jl.enums.atm.ATMStatus;
 import uz.jl.enums.atm.ATMType;
 import uz.jl.models.Auditable;
 
+import java.text.MessageFormat;
+
 /**
  * @author Elmurodov Javohir, Mon 12:10 PM. 11/29/2021
  */
@@ -12,7 +14,6 @@ import uz.jl.models.Auditable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(of = {"name", "type","status"})
 public class ATMEntity extends Auditable {
     private String bankId;
     private ATMType type;
@@ -24,6 +25,11 @@ public class ATMEntity extends Auditable {
     private Cassette cassette2;
     private Cassette cassette3;
     private Cassette cassette4;
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("name : {0} , type : {1} , status : {2}",name,type,status);
+    }
 }
 
 

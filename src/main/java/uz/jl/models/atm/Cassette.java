@@ -4,6 +4,9 @@ import lombok.*;
 import uz.jl.enums.atm.CassetteStatus;
 import uz.jl.utils.BaseUtils;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * @author Elmurodov Javohir, Mon 11:54 AM. 11/29/2021
  */
@@ -15,9 +18,9 @@ import uz.jl.utils.BaseUtils;
 @ToString(of = {"currencyValue", "currencyCount"})
 public class Cassette {
     private final String id = BaseUtils.genId();
-    private String currencyValue;
+    private BigDecimal currencyValue;
     private CassetteStatus status;
-    private Integer currencyCount;
+    private BigInteger currencyCount;
     private int deleted;
 }
 
