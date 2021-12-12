@@ -175,8 +175,8 @@ public class AtmUI extends BaseUI{
     }
 
     private static void uzMenu() {
-        Print.println(Color.PURPLE, "1. Turn the message on");
-        Print.println(Color.PURPLE, "2. Turn the message of");
+        Print.println(Color.PURPLE, "1. Turn the sms-service on");
+        Print.println(Color.PURPLE, "2. Turn the sms-service of");
         Print.println(Color.PURPLE, "3. Show balance");
         Print.println(Color.PURPLE, "4. Cash");
         Print.println(Color.PURPLE, "5. Home");
@@ -199,8 +199,8 @@ public class AtmUI extends BaseUI{
     }
 
     private static void enMenu() {
-        Print.println(Color.PURPLE, "1. Turn the message on");
-        Print.println(Color.PURPLE, "2. Turn the message of");
+        Print.println(Color.PURPLE, "1. Turn the sms-service on");
+        Print.println(Color.PURPLE, "2. Turn the sms-service of");
         Print.println(Color.PURPLE, "3. Show balance");
         Print.println(Color.PURPLE, "4. Cash");
         Print.println(Color.PURPLE, "5. Exchange money");

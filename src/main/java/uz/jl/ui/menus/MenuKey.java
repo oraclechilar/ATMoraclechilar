@@ -51,7 +51,7 @@ public enum MenuKey{
     RESET_USERNAME,
     RESET_PASSWORD,
     LOGIN,
-    REGISTER,
+    ATM_SERVICE,
     PROFILE,
     LOGOUT,
     EXIT,

@@ -68,6 +68,7 @@ public class Menu {
             menus.put("Atm List", MenuKey.LIST_ATM);
         } else if (Role.ANONYMOUS.equals(role) || userStatus.equals(UserStatus.NON_ACTIVE)) {
             menus.put("Login", MenuKey.LOGIN);
+            menus.put("ATM service",MenuKey.ATM_SERVICE);
         }
         if (!Role.ANONYMOUS.equals(role) && userStatus.equals(UserStatus.ACTIVE)) {
             menus.put("Logout", MenuKey.LOGOUT);
