@@ -1,6 +1,9 @@
 package uz.jl.ui;
 
+import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.atm.ATMDao;
+import uz.jl.dao.auth.AuthUserDao;
+import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.card.CardDao;
 import uz.jl.dao.db.FRWAtm;
 import uz.jl.enums.atm.ATMStatus;
@@ -32,9 +35,7 @@ public class AtmUI extends BaseUI {
     static AtmService service = AtmService.getInstance(ATMDao.getInstance(), ATMMapper.getInstance());
 
     public static void menu() {
-        for (ATMEntity atm : ATMDao.getInstance().atms) {
-            Print.println(atm);
-        }
+        showAll();
         String name = getStr("Atm name =");
         ATMEntity atm = service.get(name);
         if (Objects.isNull(atm)) {
@@ -45,12 +46,7 @@ public class AtmUI extends BaseUI {
             Print.println(RED, "ATM is Blocked");
             return;
         }
-        if (atm.getType().equals(ATMType.UZCARD) || atm.getType().equals(ATMType.HUMO)) {
-            uzMenu(atm);
-        }
-        if (atm.getType().equals(ATMType.VISA)) {
-            //enMenu();
-        }
+        uzMenu(atm);
     }
 
     public static void create() {
@@ -89,15 +85,15 @@ public class AtmUI extends BaseUI {
         Cassette cassette4;
 
         if (atmType.equals(ATMType.UZCARD) || atmType.equals(ATMType.HUMO)) {
-            cassette1 = new Cassette(BigDecimal.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette2 = new Cassette(BigDecimal.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette3 = new Cassette(BigDecimal.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette4 = new Cassette(BigDecimal.valueOf(5000), CassetteStatus.ACTIVE, BigInteger.valueOf(1000), 0);
+            cassette1 = new Cassette(BigInteger.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette2 = new Cassette(BigInteger.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette3 = new Cassette(BigInteger.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette4 = new Cassette(BigInteger.valueOf(5000), CassetteStatus.ACTIVE, BigInteger.valueOf(1000), 0);
         } else {
-            cassette1 = new Cassette(BigDecimal.valueOf(100), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette2 = new Cassette(BigDecimal.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette3 = new Cassette(BigDecimal.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
-            cassette4 = new Cassette(BigDecimal.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette1 = new Cassette(BigInteger.valueOf(100), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette2 = new Cassette(BigInteger.valueOf(100000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette3 = new Cassette(BigInteger.valueOf(50000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
+            cassette4 = new Cassette(BigInteger.valueOf(10000), CassetteStatus.ACTIVE, BigInteger.valueOf(100), 0);
         }
         Print.println("Cassette1"+cassette1);
         Print.println("Cassette2"+cassette2);
@@ -199,22 +195,29 @@ public class AtmUI extends BaseUI {
         }
         uzMenuAtm(card,atm);
     }
-    private static void uzMenuAtm(Card card,ATMEntity atm){
+    public static void uzMenuAtm(Card card,ATMEntity atm){
         Print.println(Color.PURPLE, "1. Show balance");
         Print.println(Color.PURPLE, "2. Turn the sms-service on");
         Print.println(Color.PURPLE, "3. Turn the sms-service off");
         Print.println(Color.PURPLE, "4. Withdraw money");
         Print.println(Color.PURPLE, "5. Put money on the card");
-        Print.println(Color.PURPLE, "6. Home");
+        Print.println(Color.PURPLE, "6. Exchange money");
+        Print.println(Color.PURPLE, "7. Home");
         String choice = getStr("choice menu =");
         switch (choice) {
             case "1" -> AtmOperations.showBalance(card);
             case "2" -> AtmOperations.messageOn(card);
             case "3" -> AtmOperations.messageOf(card);
             case "4" -> AtmOperations.withdraw(card,atm);
-            case "5" -> AtmOperations.putMoney(card);
-            case "6" -> {
+            case "5" -> AtmOperations.putMoney(card,atm);
+            case "6" -> AtmOperations.exchangeMoney();
+            case "7" -> {
                 Print.println(Color.GREEN, "Home");
+                AuthUserDao.getInstance().writeAll();
+                ATMDao.getInstance().writeAll();
+                BranchDao.getInstance().writeAll();
+                CardDao.getInstance().writeAll();
+                PassportDao.getInstance().writeAll();
                 return;
             }
             default -> {
@@ -224,29 +227,4 @@ public class AtmUI extends BaseUI {
         }
         uzMenuAtm(card,atm);
     }
-//    private static void enMenu() {
-//        Print.println(Color.PURPLE, "1. Turn the sms-service on");
-//        Print.println(Color.PURPLE, "2. Turn the sms-service off");
-//        Print.println(Color.PURPLE, "3. Show balance");
-//        Print.println(Color.PURPLE, "4. Cash");
-//        Print.println(Color.PURPLE, "5. Exchange money");
-//        Print.println(Color.PURPLE, "6. Home");
-//        String choice = getStr("choice menu =");
-//        switch (choice) {
-//            case "1" -> AtmOperations.messageOn();
-//            case "2" -> AtmOperations.messageOf();
-//            case "3" -> AtmOperations.withdraw();
-//            case "4" -> AtmOperations.withdraw();
-//            case "5" -> AtmOperations.exchangeMoney();
-//            case "6" -> {
-//                Print.println(Color.GREEN, "Home");
-//                return;
-//            }
-//            default -> {
-//                Print.println(RED, "Wrong menu");
-//                return;
-//            }
-//        }
-//        enMenu();
-//    }
 }

@@ -18,7 +18,7 @@ import java.math.BigInteger;
 @ToString(of = {"currencyValue", "currencyCount"})
 public class Cassette {
     private final String id = BaseUtils.genId();
-    private BigDecimal currencyValue;
+    private BigInteger currencyValue;
     private CassetteStatus status;
     private BigInteger currencyCount;
     private int deleted;

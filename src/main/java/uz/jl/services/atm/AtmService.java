@@ -74,12 +74,19 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     }
 
     public List<ATMEntity> getAll() {
-        return FRWAtm.getInstance().getAll();
+        return ATMDao.getInstance().atms;
     }
 
 
     public ResponseEntity<String> update(ATMEntity atmEntity) {
-        Print.println(atmEntity);
+        Print.println(atmEntity.getName());
+        Print.println(atmEntity.getType());
+        Print.println(atmEntity.getStatus());
+        Print.println(atmEntity.getCassette1());
+        Print.println(atmEntity.getCassette2());
+        Print.println(atmEntity.getCassette3());
+        Print.println(atmEntity.getCassette4());
+
         Integer integer = AtmUI.updateMenu();
         if (integer.equals(1)) {
             return updateName(atmEntity);
@@ -194,7 +201,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     }
 
     private ResponseEntity<String> updateCurrencyValue(Cassette cassette) {
-        BigDecimal currencyValue = BaseUtils.getBig("New CurrencyValue = ");
+        BigInteger currencyValue = BaseUtils.getBigInt("New CurrencyValue = ");
         cassette.setCurrencyValue(currencyValue);
         return new ResponseEntity<>("Successfully");
     }

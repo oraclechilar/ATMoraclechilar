@@ -8,28 +8,28 @@
     "longitude": 13.0,
     "cassette1": {
       "id": "120913208920600VKpg4qAMyawteX7Q4Mkk",
-      "currencyValue": "100000",
+      "currencyValue": 100000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette2": {
       "id": "120913208984900TkMV3sjuHOd203ajytRV",
-      "currencyValue": "1000",
+      "currencyValue": 1000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette3": {
       "id": "120913209017200GXi9X086dPAM9xPti2Ve",
-      "currencyValue": "10000",
+      "currencyValue": 10000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette4": {
       "id": "120913209047000Pua8ceZKxbaFlEwM0uMN",
-      "currencyValue": "5000",
+      "currencyValue": 5000,
       "status": "ACTIVE",
       "currencyCount": 1000,
       "deleted": 0
@@ -47,28 +47,28 @@
     "longitude": 14.0,
     "cassette1": {
       "id": "16941707158590084yNiNVE2TOA96Tqn2VX",
-      "currencyValue": "100000",
+      "currencyValue": 100000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette2": {
       "id": "1694170716295008rcbAfNsTUVwXqWzlONw",
-      "currencyValue": "50000",
+      "currencyValue": 50000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette3": {
       "id": "169417071642600Iy6xsE781410PwKp8L2J",
-      "currencyValue": "10000",
+      "currencyValue": 10000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette4": {
       "id": "169417071653600HQ7qCINA9IBPuehvgHwq",
-      "currencyValue": "5000",
+      "currencyValue": 5000,
       "status": "ACTIVE",
       "currencyCount": 1000,
       "deleted": 0
@@ -86,34 +86,112 @@
     "longitude": 23.0,
     "cassette1": {
       "id": "178155324152300qV85qHYAUcBekf06hwnH",
-      "currencyValue": "100000",
+      "currencyValue": 100000,
+      "status": "ACTIVE",
+      "currencyCount": 99998,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "178155324214000LslEpEd73SwNxWCIN5nr",
+      "currencyValue": 50000,
+      "status": "ACTIVE",
+      "currencyCount": 49999,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "178155324227000LFhoD5ZcfIgca51rykvY",
+      "currencyValue": 10000,
+      "status": "ACTIVE",
+      "currencyCount": 9998,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "178155324240600mnicKBvP0ro5zaQW3dEg",
+      "currencyValue": 5000,
+      "status": "ACTIVE",
+      "currencyCount": 4999,
+      "deleted": 0
+    },
+    "id": "1781553256366007u5g5bnXHd9uxSTCrSct",
+    "createdAt": "Dec 12, 2021, 3:11:14 PM",
+    "deleted": 0
+  },
+  {
+    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
+    "type": "UZCARD",
+    "name": "uzb",
+    "status": "ACTIVE",
+    "latitude": 12.0,
+    "longitude": 34.0,
+    "cassette1": {
+      "id": "205161429412300FFAjH2jY5Z0wcyQ1paIj",
+      "currencyValue": 100000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette2": {
-      "id": "178155324214000LslEpEd73SwNxWCIN5nr",
-      "currencyValue": "50000",
+      "id": "205161429455500S3sydMWMJDbuZ2uekRXL",
+      "currencyValue": 50000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette3": {
-      "id": "178155324227000LFhoD5ZcfIgca51rykvY",
-      "currencyValue": "10000",
+      "id": "205161429486200YEmodIW6fD7rfofCp95i",
+      "currencyValue": 10000,
       "status": "ACTIVE",
       "currencyCount": 100,
       "deleted": 0
     },
     "cassette4": {
-      "id": "178155324240600mnicKBvP0ro5zaQW3dEg",
-      "currencyValue": "5000",
+      "id": "205161429530000xV6ZPo01XqSt7PdY9Cu1",
+      "currencyValue": 5000,
       "status": "ACTIVE",
       "currencyCount": 1000,
       "deleted": 0
     },
-    "id": "1781553256366007u5g5bnXHd9uxSTCrSct",
-    "createdAt": "Dec 12, 2021, 3:11:14 PM",
+    "id": "20516143136030036QPwWFbHdm6bzyynE8v",
+    "createdAt": "Dec 12, 2021, 10:41:18 PM",
+    "deleted": 0
+  },
+  {
+    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
+    "type": "UZCARD",
+    "name": "chorsu",
+    "status": "ACTIVE",
+    "latitude": 12.0,
+    "longitude": 56.0,
+    "cassette1": {
+      "id": "205533446000700R2hpJD8KSsBqUAZf4blM",
+      "currencyValue": 100000,
+      "status": "ACTIVE",
+      "currencyCount": 50,
+      "deleted": 0
+    },
+    "cassette2": {
+      "id": "205533446039700XTf4fVRGQlFG8Gpr1zUX",
+      "currencyValue": 50000,
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette3": {
+      "id": "205533446051900z0K8GgmWpuz9ig992Wsa",
+      "currencyValue": 10000,
+      "status": "ACTIVE",
+      "currencyCount": 100,
+      "deleted": 0
+    },
+    "cassette4": {
+      "id": "205533446062700Z2BVDti1Fsgs7S6bvT14",
+      "currencyValue": 5000,
+      "status": "ACTIVE",
+      "currencyCount": 1000,
+      "deleted": 0
+    },
+    "id": "205533448587500FZ52LBXzKiwE8dpGvdZP",
+    "createdAt": "Dec 12, 2021, 10:47:30 PM",
     "deleted": 0
   }
 ]

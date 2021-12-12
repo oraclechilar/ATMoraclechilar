@@ -16,11 +16,6 @@ public enum Language {
     private final String name;
     private final String code;
 
-    public static void showAll() {
-        for (Language code : values()) {
-            System.out.println(code);
-        }
-    }
 
     public static Language findByCode(String code) {
         for (Language language : values()) {

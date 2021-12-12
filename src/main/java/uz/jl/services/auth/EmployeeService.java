@@ -1,6 +1,7 @@
 package uz.jl.services.auth;
 
 import uz.jl.configs.AppConfig;
+import uz.jl.configs.Session;
 import uz.jl.dao.Personal.PassportDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.card.CardDao;
@@ -20,11 +21,13 @@ import uz.jl.ui.EmployeeUI;
 import uz.jl.utils.Print;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.utils.BaseUtils.getBig;
+import static uz.jl.utils.BaseUtils.getBigInt;
 import static uz.jl.utils.Color.*;
 import static uz.jl.utils.Input.getStr;
 import static uz.jl.utils.Print.println;
@@ -51,6 +54,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         user.setUsername(username);
         user.setStatus(UserStatus.NON_ACTIVE);
         user.setPhoneNumber(phoneNumber);
+        user.setBranchId(Session.getInstance().getUser().getBranchId());
         user.setRole(Role.CLIENT);
         user.setCreatedAt(new Date());
         EmployeeUI.createPassport(user);
@@ -133,7 +137,7 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
         Print.println("would you deposit money to the card (yes/no)");
         String choice=getStr("...");
         if(choice.startsWith("y")){
-            BigDecimal sum=getBig("Enter amount of money : ");
+            BigInteger sum=getBigInt("Enter amount of money : ");
             card.setBalance(sum);
         }
         CardDao.getInstance().cards.add(card);

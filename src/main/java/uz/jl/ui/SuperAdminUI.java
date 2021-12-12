@@ -20,6 +20,7 @@ import uz.jl.utils.Print;
 
 import java.nio.channels.Pipe;
 import java.security.Provider;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,20 +36,9 @@ public class SuperAdminUI {
     public static AuthUser sessionUser = Session.getInstance().getUser();
 
     public static void create() {
-        ResponseEntity<ArrayList<Branch>> branchResponse = BranchService.getInstall().list();
-        if (branchResponse.getStatus().equals(HttpStatus.HTTP_204.getCode())) {
-            Print.println(Color.RED, "There is no any branch");
-            return;
-        }
-        BranchUI.showBranch(branchResponse.getData());
-        String branchChoice = getStr("Choose branch: ");
-        ResponseEntity<String> branchIDResponse = BranchService.getInstall().getBranchID(branchChoice);
-        if (branchIDResponse.getStatus().equals(HttpStatus.HTTP_400.getCode())) {
-            Print.println(Color.RED, branchIDResponse.getData());
-        }
-        String branchID = branchIDResponse.getData();
         String username = getStr("Username: ");
         String password = getStr("Password: ");
+        String phoneNumber = getStr("Phone number : ");
         String choice = getStr("""
                 1. Submit
                 2. Cancel
@@ -56,7 +46,11 @@ public class SuperAdminUI {
         if (choice.equals("2")) {
             return;
         }
-        AuthUser admin = AuthUser.childBuilder().username(username).password(password).role(Role.ADMIN).branchId(branchID).childBuild();
+        AuthUser admin = AuthUser.childBuilder().username(username).password(password).
+                status(UserStatus.ACTIVE).phoneNumber(phoneNumber).
+                createdBy(Session.getInstance().getUser().getUsername())
+                .createdAt(new Date())
+                .role(Role.ADMIN).bankId("165137499323900mdUo3Po6fpoDzdUvpWqK").childBuild();
         // TODO: 12/10/2021 Bank id
         ResponseEntity<String> response1 = superAdminService.create(admin);
         if (response1.getStatus().equals(HttpStatus.HTTP_201.getCode())) {
@@ -121,25 +115,6 @@ public class SuperAdminUI {
     /**
      * @return User tanlagan tilni qaytaradi
      */
-    private static Language getLanguage() {
-        String langChoice = Input.getStr(String.format("""
-                Please choose language -> 
-                1. %s
-                2. %s
-                3. %s
-                ? : """, Language.UZ.getName(), Language.EN.getName(), Language.RU.getName()));
-        if ("1".equals(langChoice)) {
-            return Language.UZ;
-        } else if ("2".equals(langChoice)) {
-            return Language.EN;
-        } else if ("3".equals(langChoice)) {
-            return Language.RU;
-        } else {
-            Print.println(Color.RED, "Wrong choice");
-            getLanguage();
-        }
-        return null;
-    }
 
     /**
      * @param response Agar response sifatida HTTP_400 va HTTP_202 kelsa, shu responseni datasini ko'rsatib beradi
