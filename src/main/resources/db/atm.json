@@ -166,7 +166,7 @@
       "id": "205533446000700R2hpJD8KSsBqUAZf4blM",
       "currencyValue": 100000,
       "status": "ACTIVE",
-      "currencyCount": 50,
+      "currencyCount": 48,
       "deleted": 0
     },
     "cassette2": {
@@ -180,7 +180,7 @@
       "id": "205533446051900z0K8GgmWpuz9ig992Wsa",
       "currencyValue": 10000,
       "status": "ACTIVE",
-      "currencyCount": 100,
+      "currencyCount": 99,
       "deleted": 0
     },
     "cassette4": {

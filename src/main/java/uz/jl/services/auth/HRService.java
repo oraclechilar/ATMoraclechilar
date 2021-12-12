@@ -1,5 +1,6 @@
 package uz.jl.services.auth;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
@@ -29,7 +30,7 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
         super(repository, mapper);
     }
 
-    public ResponseEntity<String> create(String username, String password, String phoneNumber) {
+    public ResponseEntity<String> create(String username, String password, String phoneNumber,String branchId) {
         AuthUser temp = repository.findByUserName(username);
         if (Objects.nonNull(temp)) {
             return new ResponseEntity<>("Username already taken!", HttpStatus.HTTP_400);
@@ -38,6 +39,7 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
         user.setUsername(username);
         user.setPassword(password);
         user.setStatus(UserStatus.NON_ACTIVE);
+        user.setBranchId(branchId);
         user.setPhoneNumber(phoneNumber);
         user.setRole(Role.EMPLOYEE);
         AuthUserDao.getInstance().users.add(user);
