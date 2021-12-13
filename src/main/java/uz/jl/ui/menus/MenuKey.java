@@ -53,9 +53,9 @@ public enum MenuKey{
     RESP("reset_password", "parolni qayta o'rnatish", "reset password", "сбросить пароль"),
     RESL("reset_lang", "tilni qayta o'rnatish", "reset language", "сбросить язык"),
     LGN("login", "Kirish", "login", "вход"),
-    ATM("", "atm service", "atm xizmati", "банкомат"),
+    ATM("", "atm xizmati", "atm service", "банкомат"),
     PR("profile", "profil", "profile", "профиль"),
-    LGT("logout", "profildan Chiqish", "logout", "выход"),
+    LGT("logout", "profildan chiqish", "logout", "выход"),
     EXIT("exit", "dasturni tugatish", "exit", "выход"),
     UNDEFINED("undefined", "aniqlanmagan", "undefined", "неопределенный");
     private final String code;

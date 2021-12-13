@@ -1,9 +1,11 @@
 package uz.jl.services.atm;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.db.FRWAtm;
 import uz.jl.enums.atm.ATMStatus;
 import uz.jl.enums.atm.CassetteStatus;
+import uz.jl.enums.auth.Role;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.mapper.ATMMapper;
 import uz.jl.models.atm.ATMEntity;
@@ -11,6 +13,7 @@ import uz.jl.models.atm.Cassette;
 import uz.jl.response.ResponseEntity;
 import uz.jl.services.BaseAbstractService;
 import uz.jl.ui.AtmUI;
+import uz.jl.ui.MainMenu;
 import uz.jl.utils.BaseUtils;
 import uz.jl.utils.Color;
 import uz.jl.utils.Print;
@@ -21,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static uz.jl.utils.BaseUtils.getBigInt;
+import static uz.jl.utils.Color.PURPLE;
 import static uz.jl.utils.Color.RED;
 import static uz.jl.utils.Input.getStr;
 
@@ -42,39 +46,39 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
     }
 
     public ResponseEntity<String> create(ATMEntity atmEntity) {
-        List<ATMEntity> all = getAll();
-        all.add(atmEntity);
-        FRWAtm.getInstance().writeAll(all);
-        return new ResponseEntity<>("success");
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
+        ATMDao.getInstance().atms.add(atmEntity);
+        FRWAtm.getInstance().writeAll(ATMDao.getInstance().atms);
+        return new ResponseEntity<>(PURPLE + "success");
     }
 
 
     public ResponseEntity<String> delete(String param) {
-        List<ATMEntity> all = service.getAll();
-        for (ATMEntity atmEntity : all) {
+        for (ATMEntity atmEntity : ATMDao.getInstance().atms) {
             if (atmEntity.getDeleted() != 1) if (atmEntity.getName().equals(param) || atmEntity.getId().equals(param)) {
                 atmEntity.setDeleted(1);
                 atmEntity.getCassette1().setDeleted(1);
                 atmEntity.getCassette2().setDeleted(1);
                 atmEntity.getCassette3().setDeleted(1);
                 atmEntity.getCassette4().setDeleted(1);
-                FRWAtm.getInstance().writeAll(all);
-                return new ResponseEntity<>("success");
+                FRWAtm.getInstance().writeAll(ATMDao.getInstance().atms);
+                return new ResponseEntity<>(PURPLE + "success");
             }
         }
-        return new ResponseEntity<>("Atm not found", HttpStatus.HTTP_404);
+        return new ResponseEntity<>(RED + "Atm not found", HttpStatus.HTTP_404);
     }
 
 
     public ATMEntity get(String param) {
-        List<ATMEntity> all = getAll();
-        for (ATMEntity atm : all) {
+        for (ATMEntity atm : ATMDao.getInstance().atms) {
             if (atm.getDeleted() != 1)
                 if (atm.getId().equals(param) || atm.getName().equals(param))
-                    if(atm.getStatus().equals(ATMStatus.BLOCKED)){
-                        Print.println(RED,"Atm is blocked");
-                    }else
-                    return atm;
+                    if (atm.getStatus().equals(ATMStatus.BLOCKED)) {
+                        Print.println(RED, PURPLE + "Atm is blocked");
+                    } else
+                        return atm;
         }
         return null;
     }
@@ -115,12 +119,11 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
         if (integer.equals(7)) {
             return updateCassette(atmEntity.getCassette4());
         }
-        return new ResponseEntity<>("Wrong menu", HttpStatus.HTTP_400);
+        return new ResponseEntity<>(RED + "Wrong menu", HttpStatus.HTTP_400);
     }
 
     public ResponseEntity<String> block(String param) {
-        List<ATMEntity> all = service.getAll();
-        for (ATMEntity atmEntity : all) {
+        for (ATMEntity atmEntity : ATMDao.getInstance().atms) {
             if (atmEntity.getDeleted() != 1 && !atmEntity.getStatus().equals(ATMStatus.BLOCKED))
                 if (atmEntity.getName().equals(param) || atmEntity.getId().equals(param)) {
                     atmEntity.setStatus(ATMStatus.BLOCKED);
@@ -128,16 +131,15 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
                     atmEntity.getCassette2().setStatus(CassetteStatus.BLOCKED);
                     atmEntity.getCassette3().setStatus(CassetteStatus.BLOCKED);
                     atmEntity.getCassette4().setStatus(CassetteStatus.BLOCKED);
-                    FRWAtm.getInstance().writeAll(all);
-                    return new ResponseEntity<>("success");
+                    FRWAtm.getInstance().writeAll(ATMDao.getInstance().atms);
+                    return new ResponseEntity<>(PURPLE + "success");
                 }
         }
-        return new ResponseEntity<>("Atm not found", HttpStatus.HTTP_404);
+        return new ResponseEntity<>(RED + "Atm not found", HttpStatus.HTTP_404);
     }
 
     public ResponseEntity<String> unBlock(String param) {
-        List<ATMEntity> all = service.getAll();
-        for (ATMEntity atmEntity : all) {
+        for (ATMEntity atmEntity : ATMDao.getInstance().atms) {
             if (atmEntity.getDeleted() != 1 && atmEntity.getStatus().equals(ATMStatus.BLOCKED))
                 if (atmEntity.getName().equals(param) || atmEntity.getId().equals(param)) {
                     atmEntity.setStatus(ATMStatus.ACTIVE);
@@ -145,17 +147,17 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
                     atmEntity.getCassette2().setStatus(CassetteStatus.ACTIVE);
                     atmEntity.getCassette3().setStatus(CassetteStatus.ACTIVE);
                     atmEntity.getCassette4().setStatus(CassetteStatus.ACTIVE);
-                    FRWAtm.getInstance().writeAll(all);
-                    return new ResponseEntity<>("success");
+                    FRWAtm.getInstance().writeAll(ATMDao.getInstance().atms);
+                    return new ResponseEntity<>(PURPLE + "success");
                 }
         }
-        return new ResponseEntity<>("Atm not found", HttpStatus.HTTP_404);
+        return new ResponseEntity<>(RED + "Atm not found", HttpStatus.HTTP_404);
     }
 
     private ResponseEntity<String> updateName(ATMEntity atmEntity) {
         String name = getStr("New name = ");
         atmEntity.setName(name);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateLatitude(ATMEntity atmEntity) {
@@ -165,7 +167,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
             return updateLatitude(atmEntity);
         }
         atmEntity.setLatitude(aDouble);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateLongitude(ATMEntity atmEntity) {
@@ -175,7 +177,7 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
             return updateLongitude(atmEntity);
         }
         atmEntity.setLongitude(bDouble);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateCassette(Cassette cassette) {
@@ -203,13 +205,13 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
         if (integer.equals(4)) {
             return updateDeleted(cassette);
         }
-        return new ResponseEntity<>("Wrong menu", HttpStatus.HTTP_400);
+        return new ResponseEntity<>(RED + "Wrong menu", HttpStatus.HTTP_400);
     }
 
     private ResponseEntity<String> updateCurrencyValue(Cassette cassette) {
         BigInteger currencyValue = BaseUtils.getBigInt("New CurrencyValue = ");
         cassette.setCurrencyValue(currencyValue);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateStatus(Cassette cassette) {
@@ -221,22 +223,34 @@ public class AtmService extends BaseAbstractService<ATMEntity, ATMDao, ATMMapper
             return updateStatus(cassette);
         }
         cassette.setStatus(cassetteStatus);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateCurrencyCount(Cassette cassette) {
         BigInteger currencyCount = getBigInt("New CurrencyCount = ");
         cassette.setCurrencyCount(currencyCount);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
     }
 
     private ResponseEntity<String> updateDeleted(Cassette cassette) {
         if (cassette.getDeleted() == 0) {
             cassette.setDeleted(1);
-            return new ResponseEntity<>("Successfully");
+            return new ResponseEntity<>(PURPLE + "Successfully");
         }
         cassette.setDeleted(0);
-        return new ResponseEntity<>("Successfully");
+        return new ResponseEntity<>(PURPLE + "Successfully");
+    }
+
+    public static ResponseEntity<String> list() {
+        int count = 1;
+        for (ATMEntity atm : ATMDao.getInstance().atms) {
+            if (atm.getDeleted() != 1 && !atm.getStatus().equals(ATMStatus.BLOCKED))
+                Print.println(count++ + ". " + Color.PURPLE, atm);
+        }
+        if (count < 2) {
+            return new ResponseEntity<>(RED + "Atm not found!", HttpStatus.HTTP_404);
+        }
+        return new ResponseEntity<>("");
     }
 }
 

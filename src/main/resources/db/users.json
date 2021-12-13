@@ -143,6 +143,7 @@
     "role": "ADMIN",
     "status": "ACTIVE",
     "phoneNumber": "+998903061599",
+    "language": "EN",
     "id": "38432812392300kRisJ8d1niqPppCIplQt",
     "createdAt": "Dec 13, 2021, 1:20:08 AM",
     "createdBy": "super",
@@ -155,6 +156,7 @@
     "role": "ADMIN",
     "status": "ACTIVE",
     "phoneNumber": "+92423532235",
+    "language": "EN",
     "id": "211704122697000DJ2lzFzpUMHJHEwgEblC",
     "createdAt": "Dec 13, 2021, 12:30:21 AM",
     "createdBy": "super",
@@ -167,7 +169,9 @@
     "role": "HR",
     "status": "ACTIVE",
     "phoneNumber": "+24124124",
+    "language": "EN",
     "id": "211758773560100GdBJh8PiTwXJJkMZL9i5",
+    "createdAt": "Dec 13, 2021, 1:29:34 AM",
     "createdBy": "admin3",
     "deleted": 0
   },
@@ -178,8 +182,23 @@
     "role": "HR",
     "status": "ACTIVE",
     "phoneNumber": "+12412341234",
+    "language": "EN",
     "id": "211780424020100pOPy2e4VjE7adJS8J5Eu",
+    "createdAt": "Dec 13, 2021, 1:29:34 AM",
     "createdBy": "admin3",
+    "deleted": 0
+  },
+  {
+    "username": "alex",
+    "password": "123",
+    "bankId": "165137499323900mdUo3Po6fpoDzdUvpWqK",
+    "role": "ADMIN",
+    "status": "NON_ACTIVE",
+    "phoneNumber": "+998903061599",
+    "language": "EN",
+    "id": "39419290141900H9vAfe2rYBAENs3rCX7Q",
+    "createdAt": "Dec 13, 2021, 1:36:35 AM",
+    "createdBy": "super",
     "deleted": 0
   }
 ]

@@ -5,7 +5,6 @@ import uz.jl.enums.atm.Status;
 import uz.jl.enums.card.CardType;
 import uz.jl.models.Auditable;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -21,6 +20,7 @@ public class Card extends Auditable {
     private String pan;
     private String expiry;
     private String password;
+    private boolean smsServiceEnabled;
     private CardType type;
     private Status status;
     private BigInteger balance;

@@ -1,5 +1,6 @@
 package uz.jl.services.auth;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
@@ -38,12 +39,18 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
 
     @Override
     public ResponseEntity<String> create(AuthUser admin) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         authUserDao.users.add(admin);
         return new ResponseEntity<>("Succesfully created", HttpStatus.HTTP_201);
     }
 
     @Override
     public ResponseEntity<String> delete(String choice) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         int choiceN = castRequest(choice);
         if (choiceN == -1) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -54,6 +61,9 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
 
     @Override
     public ResponseEntity<String> block(String choice) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         int choiceN = castRequest(choice);
         if (choiceN == -1) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -61,8 +71,12 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
         getUnBlockedAdmins().get(choiceN).setStatus(UserStatus.BLOCKED);
         return new ResponseEntity<>("Successfully", HttpStatus.HTTP_202);
     }
+
     @Override
     public ResponseEntity<String> unBlock(String choice) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         int choiceN = castRequest(choice);
         if (choiceN == -1) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -72,6 +86,9 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
     }
 
     public ResponseEntity<ArrayList<AuthUser>> list() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         if (getAdmins().size() == 0) {
             return new ResponseEntity<>(getAdmins(), HttpStatus.HTTP_204);
         }
@@ -79,6 +96,9 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
     }
 
     public ResponseEntity<ArrayList<AuthUser>> blockedAdminList() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         if (getBlockedAdmins().size() == 0) {
             return new ResponseEntity<>(getBlockedAdmins(), HttpStatus.HTTP_204);
         }
@@ -86,6 +106,9 @@ public class SuperAdminService extends BaseAbstractService<AuthUser, AuthUserDao
     }
 
     public ResponseEntity<ArrayList<AuthUser>> unBlockedAdminList() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         if (getUnBlockedAdmins().size() == 0) {
             return new ResponseEntity<>(getUnBlockedAdmins(), HttpStatus.HTTP_204);
         }

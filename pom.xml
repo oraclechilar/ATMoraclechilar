@@ -14,7 +14,14 @@
             <artifactId>utils</artifactId>
             <version>3</version>
         </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.23.0</version>
+        </dependency>
     </dependencies>
+
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

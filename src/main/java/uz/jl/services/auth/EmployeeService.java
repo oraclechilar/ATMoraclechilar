@@ -46,6 +46,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> create(String username, String phoneNumber) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUser temp = repository.findByUserName(username);
         if (Objects.nonNull(temp)) {
             return new ResponseEntity<>("Username already taken!");
@@ -68,6 +71,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> delete(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.CLIENT) && user.getDeleted() != -1 && user.getUsername().equals(username))
                 user.setDeleted(-1);
@@ -78,6 +84,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> block(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.CLIENT)
                     && user.getDeleted() != -1
@@ -91,6 +100,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> unblock(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.CLIENT)
                     && user.getDeleted() != -1
@@ -104,6 +116,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> blockList() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.CLIENT)
                     && user.getDeleted() != -1
@@ -114,6 +129,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> list() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.CLIENT)
                     && user.getDeleted() != -1
@@ -126,6 +144,9 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> createCard(CardType cardType, String password, AuthUser user, String pan) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         Card card = new Card();
         card.setStatus(Status.ACTIVE);
         card.setPassword(password);
@@ -145,13 +166,14 @@ public class EmployeeService extends BaseAbstractService<AuthUser, AuthUserDao, 
     }
 
     public ResponseEntity<String> createPassport(String serial, String number, Gender gender1, String firstName, String lastName, String fatherName, AuthUser user) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.EMPLOYEE)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         Passport passport = Passport.childBuilder().serial(serial).
                 number(number).gender(gender1).firstName(firstName).lastName(lastName)
                 .fatherName(fatherName).ownerId(user.getId()).build();
         PassportDao.getInstance().passports.add(passport);
         return new ResponseEntity<>(PURPLE + "Success");
     }
-
-    ;
 
 }

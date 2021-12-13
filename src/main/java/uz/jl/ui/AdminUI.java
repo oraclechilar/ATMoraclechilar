@@ -28,6 +28,7 @@ public class AdminUI {
     static AdminService adminService = new AdminService().getInstall();
 
     public static void create() {
+
         ResponseEntity<ArrayList<Branch>> branchResponse = BranchService.getInstall().list();
         if (branchResponse.getStatus().equals(HttpStatus.HTTP_204.getCode())) {
             Print.println(Color.RED, "There is no any branch");

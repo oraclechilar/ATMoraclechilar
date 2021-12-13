@@ -23,7 +23,7 @@ import static uz.jl.utils.Input.*;
 public class HrUI extends BaseUI {
     static HRService service = HRService.getInstance(AuthUserDao.getInstance(), AuthUserMapper.getInstance());
 
-    public static void create() {
+    public static void  create() {
         String username = getStr("Username: ");
         String password = getStr("Password:");
         String phoneNumber = getStr("PhoneNumber: ");

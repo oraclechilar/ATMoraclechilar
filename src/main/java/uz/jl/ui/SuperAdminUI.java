@@ -42,7 +42,7 @@ public class SuperAdminUI {
         String choice = getStr("""
                 1. Submit
                 2. Cancel
-                 ? :  """);
+                ? : """);
         if (choice.equals("2")) {
             return;
         }
@@ -56,6 +56,7 @@ public class SuperAdminUI {
         if (response1.getStatus().equals(HttpStatus.HTTP_201.getCode())) {
             Print.println(Color.PURPLE, response1.getData());
         }
+
     }
 
     public static void delete() {

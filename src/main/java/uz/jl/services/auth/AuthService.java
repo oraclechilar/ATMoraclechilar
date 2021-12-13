@@ -4,6 +4,7 @@ import uz.jl.configs.Session;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.branch.BranchDao;
 import uz.jl.enums.atm.Status;
+import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.exceptions.APIException;
@@ -45,6 +46,9 @@ public class AuthService
     Session session = Session.getInstance();
 
     public ResponseEntity<String> login(String username, String password) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ANONYMOUS)) {
+            return new ResponseEntity<>("Wrong option", HttpStatus.HTTP_403);
+        }
         AuthUser user = repository.findByUserName(username);
         if (Objects.isNull(user) || !user.getPassword().equals(password))
             return new ResponseEntity<>("Bad Credentials", HttpStatus.HTTP_400);

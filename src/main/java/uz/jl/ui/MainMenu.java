@@ -6,6 +6,7 @@ import uz.jl.dao.atm.ATMDao;
 import uz.jl.dao.auth.AuthUserDao;
 import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.card.CardDao;
+import uz.jl.services.atm.AtmService;
 import uz.jl.ui.menus.Menu;
 import uz.jl.ui.menus.MenuKey;
 import uz.jl.utils.Color;
@@ -70,7 +71,7 @@ public class MainMenu {
             case CRA -> AtmUI.create();
             case UATM -> AtmUI.update();
             case DATM -> AtmUI.delete();
-            case LISTA -> AtmUI.list();
+            case LISTA -> AtmService.list();
             case BATM -> AtmUI.block();
             case UNBATM -> AtmUI.unblock();
             case BLISTATM -> AtmUI.blockList();

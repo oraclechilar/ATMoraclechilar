@@ -4,6 +4,7 @@ import uz.jl.configs.Session;
 import uz.jl.dao.branch.BranchDao;
 import uz.jl.dao.db.FRWBranch;
 import uz.jl.enums.atm.Status;
+import uz.jl.enums.auth.Role;
 import uz.jl.enums.http.HttpStatus;
 import uz.jl.models.branch.Branch;
 import uz.jl.response.ResponseEntity;
@@ -25,6 +26,10 @@ public class BranchService {
     BranchDao branchDao = BranchDao.getInstance();
 
     public ResponseEntity<String> create(Branch branch) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         branch.setStatus(Status.ACTIVE);
         // TODO: 12/12/2021 Bank id bank yaratgandan keyin yozib qo'yamiz
         branch.setCreatedAt(new Date());
@@ -34,6 +39,10 @@ public class BranchService {
     }
 
     public ResponseEntity<String> delete(String name) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         Branch branch = findByName(name);
         if (Objects.isNull(branch)) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -43,6 +52,10 @@ public class BranchService {
     }
 
     public ResponseEntity<String> block(String str) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         Branch branch = findByName(str);
         if (Objects.isNull(branch))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -51,6 +64,10 @@ public class BranchService {
     }
 
     public ResponseEntity<String> unblock(String str) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         Branch branch = findByName(str);
         if (Objects.isNull(branch))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -60,6 +77,10 @@ public class BranchService {
     }
 
     public ResponseEntity<ArrayList<Branch>> list() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         if (getBranch().size() == 0) return new ResponseEntity<>(getBranch(), HttpStatus.HTTP_204);
         return new ResponseEntity<>(getBranch(), HttpStatus.HTTP_200);
     }
@@ -84,6 +105,10 @@ public class BranchService {
     }
 
     public ResponseEntity<String> getBranchID(String choice) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.SUPER_ADMIN)
+                && !Session.getInstance().getUser().getRole().equals(Role.ADMIN) ) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         int choiceN = castRequest(choice);
         if (choiceN == -1) {
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);

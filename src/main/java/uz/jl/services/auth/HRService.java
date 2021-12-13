@@ -30,7 +30,10 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
         super(repository, mapper);
     }
 
-    public ResponseEntity<String> create(String username, String password, String phoneNumber,String branchId) {
+    public ResponseEntity<String> create(String username, String password, String phoneNumber, String branchId) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUser temp = repository.findByUserName(username);
         if (Objects.nonNull(temp)) {
             return new ResponseEntity<>("Username already taken!", HttpStatus.HTTP_400);
@@ -48,16 +51,22 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
     }
 
     public ResponseEntity<String> list() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.EMPLOYEE) && !user.getStatus().equals(UserStatus.BLOCKED))
                 println(PURPLE, user.getUsername());
-            else
+            else if (user.getRole().equals(Role.EMPLOYEE) && user.getStatus().equals(UserStatus.BLOCKED))
                 println(RED, user.getUsername() + " - (blocked)");
         });
         return new ResponseEntity<>("");
     }
 
     public ResponseEntity<String> delete(String username, String password) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username)
                     && user.getPassword().equals(password))
@@ -69,6 +78,9 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
     }
 
     public ResponseEntity<String> block(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username) &&
                     !user.getStatus().equals(UserStatus.BLOCKED))
@@ -80,6 +92,9 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
     }
 
     public ResponseEntity<String> unblock(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         for (AuthUser user : AuthUserDao.getInstance().users) {
             if (user.getRole().equals(Role.EMPLOYEE) && user.getDeleted() != -1 && user.getUsername().equals(username) &&
                     user.getStatus().equals(UserStatus.BLOCKED))
@@ -91,6 +106,9 @@ public class HRService extends BaseAbstractService<AuthUser, AuthUserDao, AuthUs
     }
 
     public ResponseEntity<String> blockList() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.HR)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUserDao.getInstance().users.forEach(user -> {
             if (user.getRole().equals(Role.EMPLOYEE) && user.getStatus().equals(UserStatus.BLOCKED))
                 println(RED, user.getUsername() + " - (blocked)");

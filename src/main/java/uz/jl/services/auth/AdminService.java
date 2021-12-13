@@ -1,5 +1,6 @@
 package uz.jl.services.auth;
 
+import uz.jl.configs.Session;
 import uz.jl.dao.db.FRWAuthUser;
 import uz.jl.enums.auth.Role;
 import uz.jl.enums.auth.UserStatus;
@@ -24,6 +25,9 @@ public class AdminService {
     List<AuthUser> users = FRWAuthUser.getInstance().getAll();
 
     public ResponseEntity<String> create(AuthUser admin) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>("Wrong option", HttpStatus.HTTP_403);
+        }
         ResponseEntity<String> response = new ResponseEntity<>("Succesfully created", HttpStatus.HTTP_201);
         if (Objects.nonNull(findByUsername(admin.getUsername()))) {
             response.setStatus(HttpStatus.HTTP_400.getCode());
@@ -36,6 +40,9 @@ public class AdminService {
     }
 
     public ResponseEntity<String> delete(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>("Wrong option", HttpStatus.HTTP_403);
+        }
         AuthUser hr = findByUsername(username);
         if (Objects.isNull(hr))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -44,6 +51,9 @@ public class AdminService {
     }
 
     public ResponseEntity<String> block(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         AuthUser hr = findByUsername(username);
         if (Objects.isNull(hr))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -52,6 +62,9 @@ public class AdminService {
     }
 
     public ResponseEntity<String> unblock(String username) {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>("Wrong option", HttpStatus.HTTP_403);
+        }
         AuthUser hr = findByUsername(username);
         if (Objects.isNull(hr))
             return new ResponseEntity<>("Missmatch input", HttpStatus.HTTP_400);
@@ -60,6 +73,9 @@ public class AdminService {
     }
 
     public ResponseEntity<ArrayList<AuthUser>> blockList() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         ArrayList<AuthUser> blockedUsers = new ArrayList<>();
         for (AuthUser hr : getHr()) {
             if (hr.getStatus().equals(UserStatus.BLOCKED)) {
@@ -73,6 +89,9 @@ public class AdminService {
     }
 
     public ResponseEntity<ArrayList<AuthUser>> list() {
+        if (!Session.getInstance().getUser().getRole().equals(Role.ADMIN)) {
+            return new ResponseEntity<>(HttpStatus.HTTP_403);
+        }
         if (getHr().size() == 0) {
             return new ResponseEntity<>(getHr(), HttpStatus.HTTP_204);
         }
